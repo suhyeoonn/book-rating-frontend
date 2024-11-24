@@ -90,6 +90,5 @@ export interface ILoginUser {
 }
 
 export interface LoginResponse {
-  accessToken: string;
   user: IUser;
 }
