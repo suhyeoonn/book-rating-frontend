@@ -1,4 +1,4 @@
-import { Tag } from "@/lib/types";
+import { Tag } from "@/shared/types";
 import { Badge } from "./ui/badge";
 
 export default function TagGroup({ tags }: { tags: Tag[] }) {

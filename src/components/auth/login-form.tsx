@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import {
   Form,
   FormControl,
@@ -14,8 +14,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/lib/hooks/use-toast";
-import { useUser } from "@/contexts/UserContext";
+import { toast } from "@/shared/hooks/use-toast";
+import { useUser } from "@/shared/contexts/UserContext";
 
 const formSchema = z.object({
   username: z.string().min(1, {

@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+import { Button } from "../shared/ui/button";
 import { Input } from "./ui/input";
 
 export default function SearchInput() {

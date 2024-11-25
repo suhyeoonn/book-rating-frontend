@@ -2,9 +2,9 @@
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../shared/ui/button";
 import Link from "next/link";
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "@/shared/contexts/UserContext";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 const Auth = () => {

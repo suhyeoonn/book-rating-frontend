@@ -1,12 +1,12 @@
-import { Button } from "../ui/button";
+import { Button } from "../../shared/ui/button";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
-import { useReviewForm } from "@/lib/hooks/use-review-form";
+import { useReviewForm } from "@/shared/hooks/use-review-form";
 import { ChangeEvent } from "react";
-import { useUser } from "@/contexts/UserContext";
-import Tooltip from "../ui/tooltip";
+import { useUser } from "@/shared/contexts/UserContext";
+import Tooltip from "../../shared/ui/tooltip";
 
 export default function ReviewForm({
   bookId,

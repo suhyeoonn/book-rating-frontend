@@ -1,13 +1,13 @@
 // This is the root layout component for your Next.js app.
 // Learn more: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
 import { Manrope, Nanum_Gothic } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils";
 import "./globals.css";
 import Providers from "./providers";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import UserProvider from "@/contexts/UserContext";
+import UserProvider from "@/shared/contexts/UserContext";
 
 const fontHeading = Manrope({
   subsets: ["latin"],

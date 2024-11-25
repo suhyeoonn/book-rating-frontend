@@ -3,8 +3,8 @@
 import * as React from "react";
 import { Check, ChevronsUpDown, Cross, X } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/shared/utils";
+import { Button } from "@/shared/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -19,8 +19,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useQuery } from "@tanstack/react-query";
-import axiosClient from "@/lib/axios";
-import { Tag } from "@/lib/types";
+import axiosClient from "@/shared/axios";
+import { Tag } from "@/shared/types";
 
 interface TagOption {
   value: string;
