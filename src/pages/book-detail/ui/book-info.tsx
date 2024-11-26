@@ -1,7 +1,7 @@
 import { Book } from "@/shared/types";
 import Image from "next/image";
 import TagGroup from "../../../components/tag-group";
-import Rating from "../../../shared/ui/star-group";
+import StarGroup from "../../../shared/ui/star-group";
 import { validateSrc } from "@/shared/utils";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { Button } from "@/shared/ui/button";
@@ -41,7 +41,7 @@ export default function BookInfo({
 
       <div className="flex-1">
         <div className="flex justify-between">
-          <Rating rating={averageRating} />
+          <StarGroup rating={averageRating} />
         </div>
         <h1 className="mt-4 text-2xl lg:text-3xl font-bold text-slate-900">
           {selectedBook.title}

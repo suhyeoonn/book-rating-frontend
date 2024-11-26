@@ -3,7 +3,7 @@ import FilePenIcon from "../../../components/icons/file-pen";
 import { Button } from "../../../shared/ui/button";
 import TrashIcon from "../../../components/icons/trash";
 import type { Fn } from "@/shared/types";
-import Rating from "../../../shared/ui/star-group";
+import StarGroup from "../../../shared/ui/star-group";
 import { useUser } from "@/shared/contexts/UserContext";
 import { ReviewResponseItem } from "../model/review-interface";
 
@@ -22,7 +22,7 @@ export default function BookReview({
       <div className="space-y-2 flex-1">
         <div className="flex items-center justify-between">
           <div className="flex gap-3 items-center">
-            <Rating rating={review.rating} />
+            <StarGroup rating={review.rating} />
           </div>
           <div className="flex items-center gap-1 cursor-not-allowed">
             <div className="text-xs space-x-1">

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Book } from "@/shared/types";
-import Rating from "@/shared/ui/star-group";
+import StarGroup from "@/shared/ui/star-group";
 import { Button } from "@/shared/ui/button";
 import { deleteBook, patchBook } from "@/shared/api/book";
 import TagGroup from "../../../components/tag-group";
@@ -92,7 +92,7 @@ export default function BookCard({ book }: { book: Book }) {
             <TagGroup tags={book.tags} />
           </div> */}
           <div className="flex justify-between items-center">
-            <Rating rating={book.averageRating} />
+            <StarGroup rating={book.averageRating} />
             <span className="text-gray-500 text-xs">
               {book.reviewCount} reviews
             </span>

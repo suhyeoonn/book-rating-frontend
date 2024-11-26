@@ -1,5 +1,5 @@
 import { Tag } from "@/shared/types";
-import { Badge } from "./ui/badge";
+import { Badge } from "../shared/ui/badge";
 
 export default function TagGroup({ tags }: { tags: Tag[] }) {
   return <></>; // TODO: 백엔드 태그 기능 구현 필요
