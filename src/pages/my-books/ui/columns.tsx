@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Book } from "../models/data-table-interface";
+import { Book } from "../../../entities/my-book/models/data-table-interface";
 
 export const columns: ColumnDef<Book>[] = [
   {
@@ -9,23 +9,23 @@ export const columns: ColumnDef<Book>[] = [
     header: "상태",
   },
   {
-    accessorKey: "title",
+    accessorKey: "book.title",
     header: "제목",
   },
   {
-    accessorKey: "score",
-    header: "점수",
+    accessorKey: "rating",
+    header: "평점",
   },
   {
-    accessorKey: "authors",
+    accessorKey: "book.authors",
     header: "저자",
   },
   {
-    accessorKey: "createdDate",
+    accessorKey: "createdAt",
     header: "추가일",
   },
   {
-    accessorKey: "finishedDate",
+    accessorKey: "finishedAt",
     header: "완료일",
   },
 ];

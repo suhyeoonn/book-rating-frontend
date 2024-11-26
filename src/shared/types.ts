@@ -26,17 +26,6 @@ export interface AddBook {
   publisher: string;
 }
 
-export interface KakaoResponseBook {
-  authors: string[];
-  title: string;
-  publisher: string;
-  thumbnail: string;
-  isbn: string;
-  contents: string;
-  datetime: string;
-  url: string;
-}
-
 export interface Tag {
   id: number;
   name: string;

@@ -1,38 +1,25 @@
 import React from "react";
-import { DataTable } from "./data-table";
-import { Book } from "../models/data-table-interface";
-import { columns } from "./columns";
+import { Button } from "@/shared/ui/button";
+import Link from "next/link";
+import { PlusIcon } from "@radix-ui/react-icons";
+import BookList from "./book-list";
 
-async function getData(): Promise<Book[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: 1,
-      title: "book1",
-      status: "finish",
-      score: 5,
-      authors: "author1",
-      createdDate: "2024-01-01",
-      finishedDate: "2024-01-01",
-    },
-    {
-      id: 2,
-      title: "book1",
-      status: "finish",
-      score: 5,
-      authors: "author1",
-      createdDate: "2024-01-01",
-      finishedDate: "2024-01-01",
-    },
-  ];
-}
-
-export const MyBookPage = async () => {
-  const data = await getData();
-
+export const MyBookPage = () => {
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+    <div className="container mx-auto py-10 space-y-10">
+      <div className="flex justify-end">
+        <Button
+          asChild
+          variant="default"
+          className="transition-transform duration-300 border shadow-sm bg-primary rounded-sm font-semibold ml-auto"
+        >
+          <Link href="/my-books/add">
+            <PlusIcon className="w-5 h-5" />
+            Add Book
+          </Link>
+        </Button>
+      </div>
+      <BookList />
     </div>
   );
 };

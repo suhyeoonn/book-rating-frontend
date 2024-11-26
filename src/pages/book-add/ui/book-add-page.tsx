@@ -6,10 +6,10 @@ import { Button } from "@/shared/ui/button";
 import DebounceInput from "@/components/ui/debounce-input";
 import { AlertDialog } from "@/shared/ui/alert-dialog";
 import BookAlertDescription from "@/components/book/book-alert-description";
-import { useAddBook } from "@/shared/hooks/use-add-book";
+import { useAddBook } from "@/pages/book-add/lib/use-add-book";
 import ISBN from "isbn3";
 import { getIsbn } from "@/shared/utils";
-import { ToastAction } from "@/components/ui/toast";
+import { ToastAction } from "@/shared/ui/toast";
 import { toast } from "@/shared/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { Book } from "@/shared/types";
@@ -19,7 +19,6 @@ export const BookAddPage = () => {
   const { onSubmit, handleChange, data, selectedBook, setSelectedBook } =
     useAddBook({
       onSuccess: (book: Book) => {
-        const id = 1;
         toast({
           description: "책이 추가되었습니다.",
           action: (
