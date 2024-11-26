@@ -23,8 +23,8 @@ export const BookAddPage = () => {
           description: "책이 추가되었습니다.",
           action: (
             <ToastAction altText="Try again" asChild>
-              <Button onClick={() => router.push(`/books/${book.id}`)}>
-                보러 가기
+              <Button onClick={() => router.push(`/my-books/${book.id}`)}>
+                바로 가기
               </Button>
             </ToastAction>
           ),

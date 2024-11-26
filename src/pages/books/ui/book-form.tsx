@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Input } from "@/shared/ui/input";
 import { Label } from "@/components/ui/label";
 import { AddBook, Book } from "@/shared/types";
 import { ChangeEvent } from "react";

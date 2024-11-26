@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { Input } from "./input";
+import { Input } from "@/shared/ui/input";
 import { useDebounce } from "@frontend-opensource/use-react-hooks";
 
 const DebounceInput = ({

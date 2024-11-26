@@ -1,6 +1,6 @@
 import { Button } from "../../shared/ui/button";
 import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "../../shared/ui/textarea";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { useReviewForm } from "@/shared/hooks/use-review-form";
