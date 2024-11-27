@@ -1,4 +1,4 @@
-import { MyBookPage } from "@/pages/my-books/ui/my-books-page";
+import { MyBookPage } from "@/pages/my-books";
 import React from "react";
 
 const MyBooks = () => {
