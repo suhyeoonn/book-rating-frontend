@@ -3,7 +3,7 @@
 import { Manrope, Nanum_Gothic } from "next/font/google";
 import { cn } from "@/shared/utils";
 import "../styles";
-import Providers from "../providers";
+import QueryProvider from "../providers/query-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -46,7 +46,7 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
       >
         <div className="flex flex-col items-center min-h-screen">
           <UserProvider>
-            <Providers>{children}</Providers>
+            <QueryProvider>{children}</QueryProvider>
             <Toaster />
             <Footer />
           </UserProvider>
