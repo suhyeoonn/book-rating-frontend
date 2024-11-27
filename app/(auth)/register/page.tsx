@@ -1,5 +1,5 @@
 import { RegisterForm } from "@/components/auth/register-form";
-import Logo from "@/components/ui/logo";
+import Logo from "@/shared/ui/logo";
 import Link from "next/link";
 
 export const metadata = {

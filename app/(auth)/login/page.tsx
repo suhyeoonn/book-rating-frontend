@@ -1,6 +1,5 @@
-import { LoginForm } from "@/components/auth/login-form";
-import Logo from "@/components/ui/logo";
-import { Dancing_Script } from "next/font/google";
+import { LoginForm } from "@/pages/login/ui";
+import Logo from "@/shared/ui/logo";
 import Link from "next/link";
 
 export const metadata = {
