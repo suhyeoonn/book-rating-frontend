@@ -10,7 +10,9 @@ const MyBooks = () => {
   const router = useRouter();
 
   if (!user) {
-    alert("로그인이 필요한 서비스입니다.");
+    if (typeof window !== "undefined") {
+      alert("로그인 후 이용 가능합니다.");
+    }
     router.push("/login");
     return null;
   }
