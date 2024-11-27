@@ -2,8 +2,8 @@
 // Learn more: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
 import { Manrope, Nanum_Gothic } from "next/font/google";
 import { cn } from "@/shared/utils";
-import "./globals.css";
-import Providers from "./providers";
+import "../styles";
+import Providers from "../providers";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -34,7 +34,7 @@ export const metadata = {
   },
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body
