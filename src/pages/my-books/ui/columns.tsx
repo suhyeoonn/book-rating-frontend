@@ -26,10 +26,6 @@ export const columns: ColumnDef<Book>[] = [
     },
   },
   {
-    accessorKey: "book.authors",
-    header: "저자",
-  },
-  {
     accessorKey: "createdAt",
     header: "추가일",
     cell: ({ row }) => {
@@ -41,7 +37,14 @@ export const columns: ColumnDef<Book>[] = [
     header: "완료일",
     cell: ({ row }) => {
       const date = row.getValue("finishedAt");
-      return date && dayjs().format("YYYY-MM-DD");
+      return (date && dayjs().format("YYYY-MM-DD")) || "-";
+    },
+  },
+  {
+    accessorKey: "updatedAt",
+    header: "마지막 수정일",
+    cell: ({ row }) => {
+      return dayjs(row.getValue("updatedAt")).format("YYYY-MM-DD");
     },
   },
 ];

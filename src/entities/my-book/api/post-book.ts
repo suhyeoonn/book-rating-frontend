@@ -14,7 +14,7 @@ export const postBook = async ({
   publisher,
 }: AddBook) => {
   try {
-    const res = await axiosClient.post<Book>(`user-books`, {
+    const res = await axiosClient.post<Book>(`my-books`, {
       isbn: getIsbn(isbn),
       title,
       thumbnail,
