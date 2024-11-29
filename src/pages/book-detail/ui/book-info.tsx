@@ -1,4 +1,4 @@
-import { Book } from "@/shared/types";
+import { Book } from "@/entities/book/types";
 import Image from "next/image";
 import TagGroup from "../../../components/tag-group";
 import StarGroup from "../../../shared/ui/star-group";

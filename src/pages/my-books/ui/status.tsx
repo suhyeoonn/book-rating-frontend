@@ -1,13 +1,7 @@
+import { Status } from "@/entities/my-book/types";
 import { Badge } from "@/shared/ui/badge";
 import { cn } from "@/shared/utils";
 import React from "react";
-
-enum Status {
-  READY,
-  READING,
-  STOPPED,
-  FINISHED,
-}
 
 const variants = {
   [Status.READY]: {

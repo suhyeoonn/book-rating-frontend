@@ -1,5 +1,5 @@
-import { MyBookEditPage } from "@/pages/my-book-edit/ui";
+import { MyBookDetailPage } from "@/pages/my-book-detail/ui";
 
 export default function Page({ params: { id } }: { params: { id: string } }) {
-  return <MyBookEditPage id={+id} />;
+  return <MyBookDetailPage id={+id} />;
 }

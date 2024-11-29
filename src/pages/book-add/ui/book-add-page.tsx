@@ -12,7 +12,7 @@ import { getIsbn } from "@/shared/utils";
 import { ToastAction } from "@/shared/ui/toast";
 import { toast } from "@/shared/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { Book } from "@/shared/types";
+import { Book } from "@/entities/book/types";
 
 export const BookAddPage = () => {
   const router = useRouter();

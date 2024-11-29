@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Book } from "@/shared/types";
+import { Book } from "@/entities/book/types";
 import StarGroup from "@/shared/ui/star-group";
 import { Button } from "@/shared/ui/button";
 import { deleteBook, patchBook } from "@/shared/api/book";

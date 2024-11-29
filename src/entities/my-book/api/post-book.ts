@@ -1,5 +1,6 @@
+import { Book } from "@/entities/book/types";
 import axiosClient from "@/shared/axios";
-import { AddBook, Book } from "@/shared/types";
+import { AddBook } from "@/shared/types";
 import { getIsbn } from "@/shared/utils";
 import axios from "axios";
 

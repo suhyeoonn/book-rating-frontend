@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Book } from "../../../shared/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { KakaoResponseBook } from "../model/kakao-interface";
 import { bookApi } from "@/entities/my-book";
+import { Book } from "@/entities/book/types";
 
 interface Props {
   onSuccess: (book: Book) => void;

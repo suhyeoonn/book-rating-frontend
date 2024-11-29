@@ -1,6 +1,7 @@
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/components/ui/label";
-import { AddBook, Book } from "@/shared/types";
+import { AddBook } from "@/shared/types";
+import { Book } from "@/entities/book/types";
 import { ChangeEvent } from "react";
 import { TagCombobox } from "../../../components/ui/combobox";
 

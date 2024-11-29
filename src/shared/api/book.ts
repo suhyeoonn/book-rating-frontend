@@ -1,5 +1,6 @@
 import axios from "axios";
-import { AddBook, Book } from "../types";
+import { AddBook } from "../types";
+import { Book } from "@/entities/book/types";
 import axiosClient, { ssrAxiosClient } from "../axios";
 import { getIsbn } from "../utils";
 

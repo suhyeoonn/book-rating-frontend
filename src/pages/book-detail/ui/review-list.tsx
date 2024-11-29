@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AlertDialog } from "@/shared/ui/alert-dialog";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Book } from "@/shared/types";
+import { Book } from "@/entities/book/types";
 import { toast } from "@/shared/hooks/use-toast";
 import BookReview from "./review-item";
 import { deleteReview, fetchReviews } from "../api/review";

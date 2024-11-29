@@ -1,5 +1,5 @@
+import { Book } from "@/entities/book/types";
 import axiosClient from "@/shared/axios";
-import { Book } from "@/shared/types";
 
 export const fetchBooks = async (): Promise<Book[]> => {
   try {
