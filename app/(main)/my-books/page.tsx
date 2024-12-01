@@ -3,19 +3,23 @@
 import { MyBookPage } from "@/pages/my-books";
 import { useUser } from "@/shared/contexts/UserContext";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 const MyBooks = () => {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
   const router = useRouter();
 
-  if (!user) {
-    if (typeof window !== "undefined") {
-      alert("로그인 후 이용 가능합니다.");
+  useEffect(() => {
+    if (!isLoading && !user) {
+      if (typeof window !== "undefined") {
+        alert("로그인 후 이용 가능합니다.");
+        router.push("/login");
+      }
     }
-    router.push("/login");
-    return null;
-  }
+  }, [isLoading, user]);
+
+  if (!user) return null;
+
   return <MyBookPage />;
 };
 

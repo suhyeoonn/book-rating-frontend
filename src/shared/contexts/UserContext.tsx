@@ -3,6 +3,7 @@
 import { login as loginApi, loginCheck } from "@/shared/api/auth";
 import axiosClient from "@/shared/axios";
 import { IUser } from "@/shared/types";
+import { useToggle } from "@frontend-opensource/use-react-hooks";
 import { useRouter } from "next/navigation";
 import React, {
   createContext,
@@ -19,6 +20,7 @@ interface LoginInfo {
 
 interface UserContextType {
   user: IUser | undefined;
+  isLoading: boolean;
   login: (loginInfo: LoginInfo) => void;
   logout: () => void;
 }
@@ -30,16 +32,22 @@ export const UserContext = createContext<UserContextType | undefined>(
 const UserProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [user, setUser] = useState<IUser | undefined>(undefined);
+  const [isLoading, setIsLoading] = useToggle(true);
 
   useEffect(() => {
+    console.log("checklogin");
     checkLogin();
   }, []);
 
   const checkLogin = async () => {
-    const user = await loginCheck();
-    if (!user) return;
+    try {
+      const user = await loginCheck();
+      if (!user) return;
 
-    setUser(user);
+      setUser(user);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const login = async (values: LoginInfo) => {
@@ -56,7 +64,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, isLoading }}>
       {children}
     </UserContext.Provider>
   );
