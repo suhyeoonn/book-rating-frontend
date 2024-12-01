@@ -4,7 +4,6 @@ import React from "react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import BookInfo from "@/pages/book-detail/ui/book-info";
-import ReviewForm from "@/components/review/review-form";
 import { notFound } from "next/navigation";
 import { fetchBook } from "@/shared/api/book";
 import ReviewList from "@/pages/book-detail/ui/review-list";
@@ -46,10 +45,6 @@ export const BookDetailPage = ({ id }: { id: string }) => {
   return (
     <div className="container md:w-3/4 lg:w-1/2 mx-auto py-8 px-4 md:px-6 flex flex-col  gap-6">
       <BookInfo selectedBook={selectedBook} averageRating={averageRating} />
-      <ReviewForm
-        bookId={selectedBook?.id}
-        handleAverageRating={handleAverageRating}
-      />
       <ReviewList
         selectedBook={selectedBook}
         setAverageRating={setAverageRating}

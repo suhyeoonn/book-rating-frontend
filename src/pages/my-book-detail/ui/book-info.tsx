@@ -1,7 +1,7 @@
 import Image from "next/image";
 import TagGroup from "../../../components/tag-group";
 import StarGroup from "../../../shared/ui/star-group";
-import { validateSrc } from "@/shared/utils";
+import { formatDateTime, validateSrc } from "@/shared/utils";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import dayjs from "dayjs";
@@ -10,9 +10,12 @@ import Tooltip from "@/shared/ui/tooltip";
 import { MyBook } from "@/entities/my-book/types";
 
 import BookContent from "./book-content";
+import StatusSelect from "./status-select";
+import RatingSelect from "./rating-select";
+import { ReactNode } from "react";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
-  const { book, rating } = myBook;
+  const { book, rating, status, createdAt, updatedAt, finishedAt } = myBook;
   return (
     <div className="flex gap-16 justify-center text-slate-500">
       <div className="flex flex-col">
@@ -21,10 +24,10 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           alt={book.title}
           width={150}
           height={150}
-          className="p-1 max-h-52 object-contain"
+          className="p-1 max-h-52 object-contain shadow-sm"
         />
-        <div className="flex items-center">
-          <StarGroup rating={rating} />
+        <div className="mt-8 flex items-center">
+          <RatingSelect value={rating} />
         </div>
       </div>
 
@@ -33,20 +36,23 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
         <h1 className="text-2xl lg:text-3xl font-bold text-slate-900">
           {book.title}
         </h1>
-        <div className="text-sm mt-2 grid grid-cols-2 gap-2 sm:grid-cols-1">
-          <p>
-            <span className="font-semibold pr-1">저자</span>
-            {book.authors}
-          </p>
-          <p>
-            <span className="font-semibold pr-1">출판</span>
+        <div className="text-sm mt-2 grid grid-cols-2 gap-4 sm:grid-cols-1">
+          <DetailItem label="저자">{book.authors}</DetailItem>
+          <DetailItem label="출판">
             {book.publisher} | {dayjs(book.datetime).format("YYYY-MM-DD")}
-          </p>
+          </DetailItem>
           <BookContent book={book} />
-          <div>
+          <div className="flex gap-1 items-center">
             <span className="font-semibold pr-1">상태</span>
-            ready
+            <StatusSelect value={status} />
           </div>
+          <DetailItem label="추가일">{formatDateTime(createdAt)}</DetailItem>
+          <DetailItem label="마지막 수정일">
+            {formatDateTime(updatedAt)}
+          </DetailItem>
+          <DetailItem label="완료일">
+            {formatDateTime(finishedAt) || "-"}
+          </DetailItem>
         </div>
 
         {/* <div className="flex flex-wrap gap-2 text-sm text-muted-foreground mt-2">
@@ -56,3 +62,16 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
     </div>
   );
 }
+
+interface DetailItemProps {
+  label: string;
+  children: ReactNode;
+}
+const DetailItem = ({ label, children }: DetailItemProps) => {
+  return (
+    <p>
+      <span className="font-semibold pr-3">{label}</span>
+      {children}
+    </p>
+  );
+};

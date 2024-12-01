@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Book } from "../../../entities/my-book/models/data-table.interface";
 import StarGroup from "@/shared/ui/star-group";
-import StatusBadge from "./status";
+import StatusBadge from "../../../shared/ui/status";
 import dayjs from "dayjs";
 
 export const columns: ColumnDef<Book>[] = [

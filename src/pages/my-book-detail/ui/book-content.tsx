@@ -19,11 +19,14 @@ const BookContent = ({ book }: Props) => {
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="space-y-2">
-      <div className="flex items-center justify-between">
-        <span className="font-semibold pr-1">소개</span>
+      <div
+        className="flex items-center justify-between cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="font-semibold pr-3 flex-shrink-0">소개</span>
         <p className="truncate">{!isOpen && book.contents.slice(0, 50)}</p>
         <CollapsibleTrigger asChild className="px-1">
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" className="h-auto">
             <ChevronsUpDown className="h-4 w-4" />
             <span className="sr-only">Toggle</span>
           </Button>

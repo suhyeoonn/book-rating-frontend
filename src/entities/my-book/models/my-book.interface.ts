@@ -6,9 +6,10 @@ export interface MyBook {
   title: string;
   rating: number;
   status: Status;
-  score: number;
   authors: string;
-  createdDate: string;
-  finishedDate: string;
+  review: string;
+  createdAt: string;
+  finishedAt: string;
+  updatedAt: string;
   book: Book;
 }

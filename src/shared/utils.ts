@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
+import dayjs from "dayjs";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -23,3 +24,6 @@ export const validateSrc = (src: string) => {
   }
   return src;
 };
+
+export const formatDateTime = (date: string) =>
+  date && dayjs(date).format("YYYY-MM-DD HH:mm:ss");
