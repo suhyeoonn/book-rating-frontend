@@ -3,7 +3,6 @@ import { Status } from "./status.enum";
 
 export interface MyBook {
   id: number;
-  title: string;
   rating: number;
   status: Status;
   authors: string;

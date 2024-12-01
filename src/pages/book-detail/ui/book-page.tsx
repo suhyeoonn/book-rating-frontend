@@ -8,6 +8,14 @@ import { notFound } from "next/navigation";
 import { fetchBook } from "@/shared/api/book";
 import ReviewList from "@/pages/book-detail/ui/review-list";
 import { AxiosError } from "axios";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/shared/ui/breadcrumb";
 
 export const BookDetailPage = ({ id }: { id: string }) => {
   const {
@@ -44,6 +52,17 @@ export const BookDetailPage = ({ id }: { id: string }) => {
 
   return (
     <div className="container md:w-3/4 lg:w-1/2 mx-auto py-8 px-4 md:px-6 flex flex-col  gap-6">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">책 탐색</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{selectedBook.title}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <BookInfo selectedBook={selectedBook} averageRating={averageRating} />
       <ReviewList
         selectedBook={selectedBook}

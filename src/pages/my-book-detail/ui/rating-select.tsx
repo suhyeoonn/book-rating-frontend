@@ -7,18 +7,18 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/shared/ui/select";
 import StarGroup from "@/shared/ui/star-group";
 import { useSelect } from "@/shared/hooks/use-select";
 
 const RatingSelect = ({ value }: { value: number }) => {
-  const { selectedValue, handleChange } = useSelect(value + "");
-
+  const { selectedValue, handleChange } = useSelect(
+    value > 0 ? value + "" : ""
+  );
   return (
     <Select defaultValue={selectedValue} onValueChange={handleChange}>
       <SelectTrigger>
-        <SelectValue placeholder="상태" />
+        <StarGroup rating={selectedValue ? +selectedValue : 0} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
