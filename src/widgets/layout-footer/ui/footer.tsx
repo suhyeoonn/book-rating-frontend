@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="container flex justify-between w-full py-4 text-sm text-slate-500 border-t border-gray-100">
       <p>© 2024 Book Rating. All rights reserved.</p>
@@ -21,5 +21,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

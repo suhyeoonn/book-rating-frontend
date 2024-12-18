@@ -5,8 +5,7 @@ import { cn } from "@/shared/utils";
 import "../styles";
 import QueryProvider from "../providers/query-provider";
 import { Toaster } from "@/components/ui/toaster";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
+import { Footer } from "@/widgets/layout-footer";
 import UserProvider from "@/shared/contexts/UserContext";
 
 const fontHeading = Manrope({
