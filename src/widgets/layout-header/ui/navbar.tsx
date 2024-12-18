@@ -5,6 +5,7 @@ import { Noto_Sans_KR } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { menus } from "../model/menu";
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"], // 사용할 문자 셋
@@ -12,16 +13,6 @@ const notoSansKr = Noto_Sans_KR({
   variable: "--font-nav",
 });
 
-const menus = [
-  {
-    label: "책 탐색",
-    link: "/books",
-  },
-  {
-    label: "내 책장",
-    link: "/my-books",
-  },
-];
 const active = "border-b-2 border-b-primary";
 const Nav = () => {
   const pathname = usePathname();
