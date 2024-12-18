@@ -1,10 +1,10 @@
 export const menus = [
   {
     label: "Search",
-    link: "/books",
+    href: "/books",
   },
   {
     label: "My Books",
-    link: "/my-books",
+    href: "/my-books",
   },
 ];

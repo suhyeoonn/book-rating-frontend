@@ -19,12 +19,12 @@ const Nav = () => {
 
   return (
     <div className="flex gap-10 h-full items-stretch">
-      {menus.map(({ label, link }) => (
+      {menus.map(({ label, href }) => (
         <Link
-          key={link}
-          href={link}
+          key={href}
+          href={href}
           className={cx(
-            link === pathname ? active : "text-slate-500",
+            href === pathname ? active : "text-slate-500",
             "font-medium transition duration-200 inline-flex items-center px-2",
             notoSansKr.variable,
             "font-sans"
