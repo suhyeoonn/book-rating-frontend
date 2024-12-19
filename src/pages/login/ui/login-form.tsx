@@ -82,7 +82,7 @@ export function LoginForm() {
         />
         <Button
           type="submit"
-          className="shadow-sm rounded-sm w-full text-sm/6 font-semibold"
+          className="shadow-sm w-full text-sm/6 font-semibold"
         >
           로그인
         </Button>

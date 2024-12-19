@@ -11,7 +11,7 @@ export const MyBookPage = () => {
         <Button
           asChild
           variant="default"
-          className="transition-transform duration-300 border shadow-sm bg-primary rounded-sm font-semibold ml-auto"
+          className="transition-transform duration-300 border shadow-sm bg-primary font-semibold ml-auto"
         >
           <Link href="/my-books/add">
             <PlusIcon className="w-5 h-5" />
