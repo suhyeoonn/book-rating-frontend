@@ -23,7 +23,7 @@ export const postBook = async ({
       contents,
       datetime,
       url,
-      authors: authors.join(", "),
+      authors,
       publisher,
     });
     return res.data;

@@ -12,3 +12,7 @@ export interface MyBook {
   updatedAt: string;
   book: Book;
 }
+
+export interface ExistsResponse {
+  exists: boolean;
+}

@@ -29,7 +29,10 @@ export const useAddBook = (mutateCallback: Props) => {
   const onSubmit = async () => {
     if (!selectedBook) return;
     try {
-      mutation.mutate(selectedBook, mutateCallback);
+      mutation.mutate(
+        { ...selectedBook, authors: selectedBook.authors.join(", ") },
+        mutateCallback
+      );
 
       setOpen(false);
     } catch (err) {

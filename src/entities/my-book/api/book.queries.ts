@@ -1,6 +1,6 @@
 import { keepPreviousData, queryOptions } from "@tanstack/react-query";
 import { fetchBooks } from "./get-books";
-import { getBook } from "./get-book";
+import { existBook, getBook } from "./get-book";
 
 export const bookQueries = {
   all: () => ["userBooks"] as const,
@@ -15,5 +15,11 @@ export const bookQueries = {
     queryOptions({
       queryKey: [...bookQueries.all(), id],
       queryFn: () => getBook(id),
+    }),
+  exists: (isbn: string, userId: number | undefined) =>
+    queryOptions({
+      queryKey: [...bookQueries.all(), isbn, userId],
+      queryFn: () => existBook(isbn),
+      enabled: !!userId,
     }),
 };

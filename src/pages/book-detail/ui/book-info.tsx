@@ -3,12 +3,9 @@ import Image from "next/image";
 import TagGroup from "../../../components/tag-group";
 import StarGroup from "../../../shared/ui/star-group";
 import { validateSrc } from "@/shared/utils";
-import { HeartFilledIcon } from "@radix-ui/react-icons";
-import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import dayjs from "dayjs";
-import { useAuth } from "@/shared/contexts/AuthContext";
-import Tooltip from "@/shared/ui/tooltip";
+import { AddMyListButton } from "@/features/add-my-list";
 
 export default function BookInfo({
   selectedBook,
@@ -17,11 +14,9 @@ export default function BookInfo({
   selectedBook: Book;
   averageRating: number;
 }) {
-  const { user } = useAuth();
-
   return (
     <div className="flex gap-16 justify-center text-slate-500">
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center">
         <Image
           src={validateSrc(selectedBook.thumbnail)}
           alt={selectedBook.title}
@@ -30,12 +25,12 @@ export default function BookInfo({
           className="p-1 max-h-52 object-contain"
         />
         <div className="flex-grow flex items-center">
-          <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
-            <Button disabled={!user}>
-              <HeartFilledIcon className="opacity-70 w-6 h-6 pr-2" />내 리스트에
-              추가
-            </Button>
-          </Tooltip>
+          <AddMyListButton
+            book={{
+              ...selectedBook,
+              tags: [],
+            }}
+          />
         </div>
       </div>
 

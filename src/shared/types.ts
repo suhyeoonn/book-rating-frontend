@@ -8,7 +8,7 @@ export interface AddBook {
   contents: string;
   datetime: string;
   url: string;
-  authors: string[];
+  authors: string;
   publisher: string;
 }
 
