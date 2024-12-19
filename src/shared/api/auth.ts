@@ -1,6 +1,11 @@
 import axios from "axios";
 import axiosClient from "../axios";
-import { ILoginUser, IRegisterUser, IUser, LoginResponse } from "../types";
+import {
+  AuthMeResponse,
+  ILoginUser,
+  IRegisterUser,
+  LoginResponse,
+} from "../types";
 
 export const login = async (loginInfo: ILoginUser) => {
   try {
@@ -36,9 +41,9 @@ export const register = async (user: IRegisterUser) => {
   }
 };
 
-export const loginCheck = async (): Promise<IUser | undefined> => {
+export const me = async () => {
   try {
-    const { data } = await axiosClient.get(`auth/me`);
+    const { data } = await axiosClient.get<AuthMeResponse>(`auth/me`);
     return data;
   } catch (err) {
     console.error(err);

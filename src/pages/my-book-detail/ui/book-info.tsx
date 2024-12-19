@@ -5,7 +5,7 @@ import { formatDateTime, validateSrc } from "@/shared/utils";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import dayjs from "dayjs";
-import { useUser } from "@/shared/contexts/UserContext";
+import { useAuth } from "@/shared/contexts/AuthContext";
 import Tooltip from "@/shared/ui/tooltip";
 import { MyBook } from "@/entities/my-book/types";
 

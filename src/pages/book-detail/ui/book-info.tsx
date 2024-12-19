@@ -7,7 +7,7 @@ import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import dayjs from "dayjs";
-import { useUser } from "@/shared/contexts/UserContext";
+import { useAuth } from "@/shared/contexts/AuthContext";
 import Tooltip from "@/shared/ui/tooltip";
 
 export default function BookInfo({
@@ -17,7 +17,7 @@ export default function BookInfo({
   selectedBook: Book;
   averageRating: number;
 }) {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   return (
     <div className="flex gap-16 justify-center text-slate-500">

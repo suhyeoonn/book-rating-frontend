@@ -4,7 +4,7 @@ import { Button } from "../../../shared/ui/button";
 import TrashIcon from "../../../components/icons/trash";
 import type { Fn } from "@/shared/types";
 import StarGroup from "../../../shared/ui/star-group";
-import { useUser } from "@/shared/contexts/UserContext";
+import { useAuth } from "@/shared/contexts/AuthContext";
 import { ReviewResponseItem } from "../model/review-interface";
 
 export default function BookReview({
@@ -16,7 +16,7 @@ export default function BookReview({
   review: ReviewResponseItem;
   deleteHandler: Fn;
 }) {
-  const { user } = useUser();
+  const { user } = useAuth();
   return (
     <div className="flex items-start gap-4 border-b border-b-gray-100">
       <div className="space-y-2 flex-1">

@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/shared/ui/input";
 import { toast } from "@/shared/hooks/use-toast";
-import { useUser } from "@/shared/contexts/UserContext";
+import { useAuth } from "@/shared/contexts/AuthContext";
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -27,7 +27,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
-  const { login } = useUser();
+  const { login } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

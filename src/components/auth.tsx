@@ -4,11 +4,11 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
 import { Button } from "../shared/ui/button";
 import Link from "next/link";
-import { useUser } from "@/shared/contexts/UserContext";
+import { useAuth } from "@/shared/contexts/AuthContext";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 const Auth = () => {
-  const { user, logout } = useUser();
+  const { user, logout } = useAuth();
   const { username } = user || {};
 
   return (

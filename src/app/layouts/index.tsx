@@ -6,7 +6,7 @@ import "../styles";
 import QueryProvider from "../providers/query-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { Footer } from "@/widgets/layout-footer";
-import UserProvider from "@/shared/contexts/UserContext";
+import AuthProvider from "@/shared/contexts/AuthContext";
 
 const fontHeading = Manrope({
   subsets: ["latin"],
@@ -44,11 +44,11 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
         )}
       >
         <div className="flex flex-col items-center min-h-screen">
-          <UserProvider>
+          <AuthProvider>
             <QueryProvider>{children}</QueryProvider>
             <Toaster />
             <Footer />
-          </UserProvider>
+          </AuthProvider>
         </div>
       </body>
     </html>

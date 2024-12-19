@@ -5,7 +5,7 @@ import { Textarea } from "../../shared/ui/textarea";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { ChangeEvent } from "react";
-import { useUser } from "@/shared/contexts/UserContext";
+import { useAuth } from "@/shared/contexts/AuthContext";
 import Tooltip from "../../shared/ui/tooltip";
 import { MyBook } from "@/entities/my-book/types";
 import { useReviewForm } from "@/shared/hooks/use-review-form";
