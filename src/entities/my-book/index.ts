@@ -1,1 +1,1 @@
-export * as bookApi from "./api";
+export * as myBookApi from "./api";

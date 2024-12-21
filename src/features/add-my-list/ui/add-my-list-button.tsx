@@ -1,4 +1,4 @@
-import { bookApi } from "@/entities/my-book";
+import { myBookApi } from "@/entities/my-book";
 import { postBook } from "@/entities/my-book/api";
 import { useAuth } from "@/shared/contexts/AuthContext";
 import { AddBook } from "@/shared/types";
@@ -22,13 +22,13 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   const [isInList, setIsInList] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const { data } = useQuery(bookApi.bookQueries.exists(book.isbn, user?.id));
+  const { data } = useQuery(myBookApi.bookQueries.exists(book.isbn, user?.id));
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: bookApi.postBook,
+    mutationFn: myBookApi.postBook,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: bookApi.bookQueries.all() });
+      queryClient.invalidateQueries({ queryKey: myBookApi.bookQueries.all() });
     },
   });
 

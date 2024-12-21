@@ -5,28 +5,17 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import BookInfo from "@/pages/book-detail/ui/book-info";
 import { notFound } from "next/navigation";
-import { fetchBook } from "@/shared/api/book";
 import ReviewList from "@/pages/book-detail/ui/review-list";
-import { AxiosError } from "axios";
 import { menus } from "@/widgets/layout-header/model/menu";
 import { Breadcrumb } from "@/shared/ui/breadcrumb";
+import { bookApi } from "@/entities/book";
 
 export const BookDetailPage = ({ id }: { id: string }) => {
   const {
     data: selectedBook,
     isFetching,
     isError,
-  } = useQuery({
-    queryKey: ["book", id],
-    queryFn: () => fetchBook(+id),
-    retry: (_, error) => {
-      const axiosError = error as AxiosError;
-
-      // 네트워크 오류일 때만 재시도
-      if (axiosError?.response?.status === 500) return true;
-      return false;
-    },
-  });
+  } = useQuery(bookApi.bookQueries.detail(+id));
 
   const [averageRating, setAverageRating] = useState(
     selectedBook?.averageRating || 0

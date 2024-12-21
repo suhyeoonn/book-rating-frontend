@@ -4,17 +4,6 @@ import { Book } from "@/entities/book/types";
 import axiosClient, { ssrAxiosClient } from "../axios";
 import { getIsbn } from "../utils";
 
-export const fetchBook = async (id: number): Promise<Book> => {
-  try {
-    const { data } = await axiosClient.get(`books/${id}`);
-
-    return data;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch data.");
-  }
-};
-
 export const patchBook = async (book: Book) => {
   try {
     await axiosClient.patch(`books/${book.id}`, book);

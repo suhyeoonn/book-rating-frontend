@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { KakaoResponseBook } from "../model/kakao-interface";
-import { bookApi } from "@/entities/my-book";
+import { myBookApi } from "@/entities/my-book";
 import { Book } from "@/entities/book/types";
 
 interface Props {
@@ -19,10 +19,10 @@ export const useAddBook = (mutateCallback: Props) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: bookApi.postBook,
+    mutationFn: myBookApi.postBook,
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: bookApi.bookQueries.all() });
+      queryClient.invalidateQueries({ queryKey: myBookApi.bookQueries.all() });
     },
   });
 
