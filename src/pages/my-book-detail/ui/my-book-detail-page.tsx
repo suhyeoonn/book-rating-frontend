@@ -4,6 +4,7 @@ import BookInfo from "./book-info";
 import ReviewForm from "@/components/review/review-form";
 import { Breadcrumb } from "@/shared/ui/breadcrumb";
 import { menus } from "@/widgets/layout-header";
+import { TiptapEditor } from "@/features/write-review";
 
 interface Props {
   id: number;
@@ -16,7 +17,8 @@ export const MyBookDetailPage = async ({ id }: Props) => {
       <Breadcrumb links={[menus[1]]} pathName={myBook.book.title} />
       <BookInfo book={myBook} />
       <hr />
-      <ReviewForm myBook={myBook} />
+      <TiptapEditor />
+      {/* <ReviewForm myBook={myBook} /> */}
     </div>
   );
 };
