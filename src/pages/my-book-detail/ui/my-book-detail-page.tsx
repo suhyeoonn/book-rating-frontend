@@ -1,7 +1,6 @@
 import React from "react";
 import { getBook } from "@/entities/my-book/api";
 import BookInfo from "./book-info";
-import ReviewForm from "@/components/review/review-form";
 import { Breadcrumb } from "@/shared/ui/breadcrumb";
 import { menus } from "@/widgets/layout-header";
 import { TiptapEditor } from "@/features/write-review";
@@ -18,7 +17,6 @@ export const MyBookDetailPage = async ({ id }: Props) => {
       <BookInfo book={myBook} />
       <hr />
       <TiptapEditor id={id} review={review} />
-      {/* <ReviewForm myBook={myBook} /> */}
     </div>
   );
 };
