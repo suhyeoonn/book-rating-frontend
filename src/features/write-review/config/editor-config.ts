@@ -1,44 +1,23 @@
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import Placeholder from "@tiptap/extension-placeholder";
 
-export const useEditorConfig = () => {
+export const useEditorConfig = (content: string) => {
   const editor = useEditor({
-    extensions: [StarterKit.configure({ heading: { levels: [1, 2, 3] } })],
+    extensions: [
+      StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
+      Placeholder.configure({
+        placeholder: "내용을 입력해주세요.",
+        emptyEditorClass:
+          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:left-0.5 before:text-gray-400 before:opacity-50 before-pointer-events-none",
+      }),
+    ],
     editorProps: {
       attributes: {
-        class: "prose prose-sm sm:prose-base m-5 focus:outline-none",
+        class: "prose prose-sm sm:prose-base m-5 focus:outline-none min-h-36",
       },
     },
-    content: `
-        <h2>
-          Hi there,
-        </h2>
-        <p>
-          this is a basic <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-        </p>
-        <ul>
-          <li>
-            That’s a bullet list with one …
-          </li>
-          <li>
-            … or two list items.
-          </li>
-        </ul>
-        <p>
-          Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
-        </p>
-    <pre><code class="language-css">body {
-      display: none;
-    }</code></pre>
-        <p>
-          I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
-        </p>
-        <blockquote>
-          Wow, that’s amazing. Good work, boy! 👏
-          <br />
-          — Mom
-        </blockquote>
-      `,
+    content,
   });
   return { editor };
 };

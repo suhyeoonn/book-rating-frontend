@@ -11,13 +11,13 @@ interface Props {
 }
 export const MyBookDetailPage = async ({ id }: Props) => {
   const myBook = await getBook(id);
-
+  const { review } = myBook;
   return (
     <div className="container md:w-3/4 lg:w-1/2 mx-auto py-8 px-4 md:px-6 flex flex-col  gap-6">
       <Breadcrumb links={[menus[1]]} pathName={myBook.book.title} />
       <BookInfo book={myBook} />
       <hr />
-      <TiptapEditor />
+      <TiptapEditor id={id} review={review} />
       {/* <ReviewForm myBook={myBook} /> */}
     </div>
   );
