@@ -1,4 +1,4 @@
-import { UpdateReviewParams } from "@/features/write-review/model/types";
+import { UpdateReviewParams } from "@/features/my-books/write-review/model/types";
 import axiosClient from "@/shared/axios";
 import axios from "axios";
 

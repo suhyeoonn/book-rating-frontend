@@ -1,18 +1,12 @@
 import Image from "next/image";
 import TagGroup from "../../../components/tag-group";
-import StarGroup from "../../../shared/ui/star-group";
 import { formatDateTime, validateSrc } from "@/shared/utils";
-import { Button } from "@/shared/ui/button";
-import Link from "next/link";
 import dayjs from "dayjs";
-import { useAuth } from "@/shared/contexts/AuthContext";
-import Tooltip from "@/shared/ui/tooltip";
 import { MyBook } from "@/entities/my-book/types";
-
 import BookContent from "./book-content";
-import StatusSelect from "./status-select";
 import RatingSelect from "./rating-select";
 import { ReactNode } from "react";
+import { StatusSelect } from "@/features/my-books/change-status";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const { book, rating, status, createdAt, updatedAt, finishedAt } = myBook;

@@ -12,7 +12,7 @@ import {
 import StatusBadge from "@/shared/ui/status";
 import { useSelect } from "@/shared/hooks/use-select";
 
-const StatusSelect = ({ value }: { value: number }) => {
+export const StatusSelect = ({ value }: { value: number }) => {
   const { selectedValue, handleChange } = useSelect(value + "");
   return (
     <Select defaultValue={selectedValue} onValueChange={handleChange}>
@@ -31,5 +31,3 @@ const StatusSelect = ({ value }: { value: number }) => {
     </Select>
   );
 };
-
-export default StatusSelect;

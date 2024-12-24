@@ -3,7 +3,7 @@ import { getBook } from "@/entities/my-book/api";
 import BookInfo from "./book-info";
 import { Breadcrumb } from "@/shared/ui/breadcrumb";
 import { menus } from "@/widgets/layout-header";
-import { TiptapEditor } from "@/features/write-review";
+import { TiptapEditor } from "@/features/my-books/write-review";
 
 interface Props {
   id: number;
