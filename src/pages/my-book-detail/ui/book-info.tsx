@@ -6,7 +6,7 @@ import { MyBook } from "@/entities/my-book/types";
 import BookContent from "./book-content";
 import RatingSelect from "./rating-select";
 import { ReactNode } from "react";
-import { StatusSelect } from "@/features/my-books/change-status";
+import { StatusSelect } from "@/features/my-books/update-status";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const { id, book, rating, status, createdAt, updatedAt, finishedAt } = myBook;

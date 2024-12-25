@@ -11,20 +11,12 @@ import {
 } from "@/shared/ui/select";
 import StatusBadge from "@/shared/ui/status";
 import { useSelect } from "@/shared/hooks/use-select";
-import { bookQueries, updateStatus } from "@/entities/my-book/api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useUpdateStatus } from "../api/use-update-status";
 
 export const StatusSelect = ({ id, value }: { id: number; value: number }) => {
   const { selectedValue, handleChange } = useSelect(value + "");
 
-  const queryClient = useQueryClient();
-
-  const mutationUpdate = useMutation({
-    mutationFn: updateStatus,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: bookQueries.list().queryKey });
-    },
-  });
+  const mutationUpdate = useUpdateStatus();
 
   const changeStatus = (value: string) => {
     handleChange(value);
