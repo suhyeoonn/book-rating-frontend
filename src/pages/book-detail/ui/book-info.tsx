@@ -5,7 +5,7 @@ import StarGroup from "../../../shared/ui/star-group";
 import { validateSrc } from "@/shared/utils";
 import Link from "next/link";
 import dayjs from "dayjs";
-import { AddMyListButton } from "@/features/add-my-list";
+import { AddMyListButton } from "@/features/my-books/add-my-list";
 
 export default function BookInfo({
   selectedBook,

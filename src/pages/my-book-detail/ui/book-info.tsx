@@ -9,7 +9,7 @@ import { ReactNode } from "react";
 import { StatusSelect } from "@/features/my-books/change-status";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
-  const { book, rating, status, createdAt, updatedAt, finishedAt } = myBook;
+  const { id, book, rating, status, createdAt, updatedAt, finishedAt } = myBook;
   return (
     <div className="flex gap-16 justify-center text-slate-500">
       <div className="flex flex-col">
@@ -38,7 +38,7 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           <BookContent book={book} />
           <div className="flex gap-1 items-center">
             <span className="font-semibold pr-1">상태</span>
-            <StatusSelect value={status} />
+            <StatusSelect id={id} value={status} />
           </div>
           <DetailItem label="추가일">{formatDateTime(createdAt)}</DetailItem>
           <DetailItem label="마지막 수정일">
