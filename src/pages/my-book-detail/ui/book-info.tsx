@@ -4,9 +4,9 @@ import { formatDateTime, validateSrc } from "@/shared/utils";
 import dayjs from "dayjs";
 import { MyBook } from "@/entities/my-book/types";
 import BookContent from "./book-content";
-import RatingSelect from "./rating-select";
 import { ReactNode } from "react";
 import { StatusSelect } from "@/features/my-books/update-status";
+import { RatingSelect } from "@/features/my-books/update-rating";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const { id, book, rating, status, createdAt, updatedAt, finishedAt } = myBook;
@@ -21,7 +21,7 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           className="p-1 max-h-52 object-contain shadow-sm"
         />
         <div className="mt-8 flex items-center">
-          <RatingSelect value={rating} />
+          <RatingSelect id={id} value={rating} />
         </div>
       </div>
 
