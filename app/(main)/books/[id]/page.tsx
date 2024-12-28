@@ -8,9 +8,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params: { id } }: PageProps) {
-  const movie = await bookApi.fetchBook(+id);
+  const { title } = await bookApi.fetchBook(+id);
   return {
-    title: movie.title,
+    title,
   };
 }
 
@@ -19,5 +19,6 @@ export default async function BookDetail({
 }: {
   params: { id: string };
 }) {
-  return <BookDetailPage id={id} />;
+  const book = await bookApi.fetchBook(+id);
+  return <BookDetailPage book={book} />;
 }
