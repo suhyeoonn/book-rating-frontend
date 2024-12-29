@@ -71,8 +71,11 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 text-center text-gray-500 italic"
+              >
+                아직 등록된 책이 없어요. 읽고 싶은 책을 추가해보세요!
               </TableCell>
             </TableRow>
           )}

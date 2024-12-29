@@ -8,11 +8,14 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const keyword = searchParams.get("keyword");
 
-  const { data } = await axios.get(`${KAKAO_API}?query=${keyword}`, {
-    headers: {
-      Authorization: process.env.KAKAO_API_KEY,
-    },
-  });
+  const { data } = await axios.get(
+    `${KAKAO_API}?query=${keyword}&page=1&size=20`,
+    {
+      headers: {
+        Authorization: process.env.KAKAO_API_KEY,
+      },
+    }
+  );
 
   return NextResponse.json(data);
 }
