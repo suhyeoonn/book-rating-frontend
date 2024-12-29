@@ -11,35 +11,38 @@ interface BookListProps {
 }
 const BookList = ({ data, setSelectedBook }: BookListProps) => {
   return (
-    <ul className="mt-5 flex flex-col gap-2">
+    <ul className="mt-5 flex flex-col">
       {data.map((d) => (
         <li
           key={d.isbn}
-          className="rounded-lg flex items-center gap-5 p-5 bg-white border-b cursor-pointer hover:bg-gray-100 shadow-sm"
+          className="flex items-center gap-5 p-5 bg-white border-b border-b-gray-100 cursor-pointer hover:bg-gray-100"
+          onClick={() => setSelectedBook(d)}
         >
           <Image src={d.thumbnail} alt={d.title} width={100} height={100} />
-          <div className="flex-1">
-            <Row label="title" value={d.title} />
-            <Row label="Authors" value={d.authors.join(", ")} />
-            <Row label="publisher" value={d.publisher} />
-            <Row
-              label="isbn"
-              value={ISBN.hyphenate(getIsbn(d.isbn)) || getIsbn(d.isbn)}
-            />
+          <div className="flex-1 text-sm">
+            <div className="font-semibold text-gray-900">{d.title}</div>
+            <div className="mt-5 text-gray-500 space-y-1 text-xs">
+              <div>
+                <span className="font-semibold mr-1">저자</span>
+                <span>{d.authors.join(", ")}</span>
+              </div>
+              <div>
+                <span className="font-semibold mr-1">출판사</span>
+                <span>{d.publisher}</span>
+              </div>
+              <div>
+                <span className="font-semibold mr-1">ISBN</span>
+                <span>
+                  {ISBN.hyphenate(getIsbn(d.isbn)) || getIsbn(d.isbn)}
+                </span>
+              </div>
+            </div>
           </div>
-          <Button onClick={() => setSelectedBook(d)}>Add</Button>
+          <Button className="text-xs">추가</Button>
         </li>
       ))}
     </ul>
   );
 };
 
-const Row = ({ label, value }: { label: string; value: string }) => {
-  return (
-    <div>
-      <span className="capitalize font-bold text-gray-500">{label}</span>:{" "}
-      {value}
-    </div>
-  );
-};
 export default BookList;
