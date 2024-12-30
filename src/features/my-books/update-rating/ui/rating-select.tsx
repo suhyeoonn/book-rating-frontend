@@ -10,22 +10,26 @@ import {
 } from "@/shared/ui/select";
 import StarGroup from "@/shared/ui/star-group";
 import { useSelect } from "@/shared/hooks/use-select";
-import { useUpdateRating } from "../api/use-update-rating";
 
-export const RatingSelect = ({ id, value }: { id: number; value: number }) => {
+export const RatingSelect = ({
+  rating,
+  changeCallback,
+}: {
+  rating: number;
+  changeCallback: (value: string) => void;
+}) => {
   const { selectedValue, handleChange } = useSelect(
-    value > 0 ? value + "" : ""
+    rating > 0 ? rating + "" : ""
   );
 
-  const mutationUpdate = useUpdateRating();
-
-  const changeRating = (value: string) => {
-    handleChange(value);
-    mutationUpdate.mutate({ id, rating: +value });
-  };
-
   return (
-    <Select defaultValue={selectedValue} onValueChange={changeRating}>
+    <Select
+      defaultValue={selectedValue}
+      onValueChange={(value: string) => {
+        handleChange(value);
+        changeCallback(value);
+      }}
+    >
       <SelectTrigger>
         <StarGroup rating={selectedValue ? +selectedValue : 0} />
       </SelectTrigger>

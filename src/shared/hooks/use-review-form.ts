@@ -8,7 +8,7 @@ import {
   postReview,
 } from "@/shared/api/review";
 import { toast } from "@/shared/hooks/use-toast";
-import { AddReview, Review } from "@/shared/types";
+import { Review } from "@/shared/types";
 import { MyBook } from "@/entities/my-book/types";
 
 export function useReviewForm(myBook: MyBook) {

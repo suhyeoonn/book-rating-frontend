@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import TagGroup from "../../../components/tag-group";
 import { formatDateTime, validateSrc } from "@/shared/utils";
@@ -6,10 +8,17 @@ import { MyBook } from "@/entities/my-book/types";
 import BookContent from "./book-content";
 import { ReactNode } from "react";
 import { StatusSelect } from "@/features/my-books/update-status";
-import { RatingSelect } from "@/features/my-books/update-rating";
+import UpdateRating from "@/features/my-books/update-rating/ui/update-rating";
+import { Select, SelectTrigger } from "@/shared/ui/select";
+import StarGroup from "@/shared/ui/star-group";
+import RatingWithReviewModal from "@/features/review/add-review/ui/rating-with-review-modal";
+import React from "react";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
-  const { id, book, rating, status, createdAt, updatedAt, finishedAt } = myBook;
+  const { id, book, status, review, createdAt, updatedAt, finishedAt } = myBook;
+
+  const [open, setOpen] = React.useState(false);
+
   return (
     <div className="flex gap-16 justify-center text-slate-500">
       <div className="flex flex-col">
@@ -21,7 +30,20 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           className="p-1 max-h-52 object-contain shadow-sm"
         />
         <div className="mt-8 flex items-center">
-          <RatingSelect id={id} value={rating} />
+          {!review.rating ? (
+            <Select open={open} onOpenChange={() => setOpen(true)}>
+              <SelectTrigger>
+                <StarGroup rating={0} />
+              </SelectTrigger>
+            </Select>
+          ) : (
+            <UpdateRating rating={review.rating} id={id} />
+          )}
+          <RatingWithReviewModal
+            open={open}
+            setOpen={setOpen}
+            bookId={book.id}
+          />
         </div>
       </div>
 
@@ -39,6 +61,10 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           <div className="flex gap-1 items-center">
             <span className="font-semibold pr-1">상태</span>
             <StatusSelect id={id} value={status} />
+          </div>
+          <div className="flex gap-1 items-center">
+            <span className="font-semibold pr-1">한줄평</span>
+            {review.content || "-"}
           </div>
           <DetailItem label="추가일">{formatDateTime(createdAt)}</DetailItem>
           <DetailItem label="마지막 수정일">

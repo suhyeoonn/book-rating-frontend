@@ -24,8 +24,6 @@ export interface Review {
   updateAt?: string;
 }
 
-export type AddReview = Omit<Review, "id">;
-
 export interface AddReviewResponse {
   review: Review;
   averageRating: number;

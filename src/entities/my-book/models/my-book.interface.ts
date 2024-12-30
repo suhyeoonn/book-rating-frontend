@@ -1,16 +1,17 @@
 import { Book } from "@/entities/book/types";
 import { Status } from "./status.enum";
+import { Review } from "@/entities/review/types";
 
 export interface MyBook {
   id: number;
-  rating: number;
   status: Status;
   authors: string;
-  review: string;
+  memo: string;
   createdAt: string;
   finishedAt: string;
   updatedAt: string;
   book: Book;
+  review: Review;
 }
 
 export interface ExistsResponse {
