@@ -27,7 +27,7 @@ export const TiptapEditor = ({ id, review }: UpdateReviewParams) => {
       <EditorContent editor={editor} />
       <div className="flex justify-end p-6 border-t">
         <Button onClick={handleSave} size={"lg"}>
-          Save
+          저장
         </Button>
       </div>
     </>

@@ -52,7 +52,7 @@ export default function BookInfo({
             {dayjs(selectedBook.datetime).format("YYYY-MM-DD")}
           </p>
         </div>
-        <p className="mt-6 text-slate-600 ">
+        <p className="mt-6 text-slate-600 text-sm">
           {selectedBook.contents + "..."}
           {selectedBook.url && (
             <Link
