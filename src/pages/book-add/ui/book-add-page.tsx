@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/shared/ui/button";
-import DebounceInput from "@/components/ui/debounce-input";
+import DebounceInput from "@/shared/ui/debounce-input";
 import { AlertDialog } from "@/shared/ui/alert-dialog";
 import { useAddBook } from "@/pages/book-add/api/use-add-book";
 import { ToastAction } from "@/shared/ui/toast";

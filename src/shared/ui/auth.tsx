@@ -1,8 +1,8 @@
 "use client";
 
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/shared/ui/avatar";
 import React from "react";
-import { Button } from "../shared/ui/button";
+import { Button } from "./button";
 import Link from "next/link";
 import { useAuth } from "@/shared/contexts/AuthContext";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
@@ -15,12 +15,12 @@ const Auth = () => {
     <div>
       {username ? (
         <div className="flex items-center">
-          <div className="flex items-center rounded-lg py-2 h-10 gap-2">
+          <div className="flex h-10 items-center gap-2 rounded-lg py-2">
             <Avatar className="h-8 w-8 border">
               <AvatarImage src={"/placeholder-user.jpg"} alt="User" />
               <AvatarFallback>{username}</AvatarFallback>
             </Avatar>
-            <span className="text-slate-900 font-medium border-r pr-3 text-sm">
+            <span className="border-r pr-3 text-sm font-medium text-slate-900">
               {username}
             </span>
           </div>
@@ -28,7 +28,7 @@ const Auth = () => {
             size="sm"
             variant="ghost"
             onClick={logout}
-            className="text-slate-900 font-medium"
+            className="font-medium text-slate-900"
           >
             Logout
           </Button>
@@ -42,7 +42,7 @@ const Auth = () => {
           <Button
             variant="ghost"
             asChild
-            className="text-slate-900 font-semibold"
+            className="font-semibold text-slate-900"
           >
             <Link href="/login">
               <div className="flex items-center gap-1">

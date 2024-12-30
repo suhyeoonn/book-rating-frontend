@@ -12,12 +12,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/shared/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 import { useQuery } from "@tanstack/react-query";
 import axiosClient from "@/shared/axios";
 import { Tag } from "@/shared/types";
@@ -90,7 +86,7 @@ export function TagCombobox({ ...props }) {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      tagIds.includes(tag.value) ? "opacity-100" : "opacity-0"
+                      tagIds.includes(tag.value) ? "opacity-100" : "opacity-0",
                     )}
                   />
                   {tag.label}

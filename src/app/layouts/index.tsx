@@ -4,7 +4,7 @@ import { Manrope, Nanum_Gothic } from "next/font/google";
 import { cn } from "@/shared/utils";
 import "../styles";
 import QueryProvider from "../providers/query-provider";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/shared/ui/toaster";
 import { Footer } from "@/widgets/layout-footer";
 import AuthProvider from "@/shared/contexts/AuthContext";
 
@@ -38,12 +38,12 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <body
         className={cn(
-          "antialiased ",
+          "antialiased",
           fontHeading.variable,
-          nanumGothic.variable
+          nanumGothic.variable,
         )}
       >
-        <div className="flex flex-col items-center min-h-screen">
+        <div className="flex min-h-screen flex-col items-center">
           <AuthProvider>
             <QueryProvider>{children}</QueryProvider>
             <Toaster />

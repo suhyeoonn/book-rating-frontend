@@ -13,24 +13,24 @@ import {
 } from "react-hook-form";
 
 import { cn } from "@/shared/utils";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/shared/ui/label";
 
 const Form = FormProvider;
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   name: TName;
 };
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue
+  {} as FormFieldContextValue,
 );
 
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
@@ -69,7 +69,7 @@ type FormItemContextValue = {
 };
 
 const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+  {} as FormItemContextValue,
 );
 
 const FormItem = React.forwardRef<
@@ -98,7 +98,7 @@ const FormLabel = React.forwardRef<
       className={cn(
         error && "text-destructive",
         className,
-        "text-sm/6 font-bold text-gray-900"
+        "text-sm/6 font-bold text-gray-900",
       )}
       htmlFor={formItemId}
       {...props}

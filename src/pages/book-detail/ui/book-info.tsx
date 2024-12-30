@@ -1,6 +1,6 @@
 import { Book } from "@/entities/book/types";
 import Image from "next/image";
-import TagGroup from "../../../components/tag-group";
+import TagGroup from "../../../shared/ui/tag-group";
 import StarGroup from "../../../shared/ui/star-group";
 import { validateSrc } from "@/shared/utils";
 import Link from "next/link";
@@ -15,16 +15,16 @@ export default function BookInfo({
   averageRating: number;
 }) {
   return (
-    <div className="flex gap-16 justify-center text-slate-500">
+    <div className="flex justify-center gap-16 text-slate-500">
       <div className="flex flex-col items-center">
         <Image
           src={validateSrc(selectedBook.thumbnail)}
           alt={selectedBook.title}
           width={150}
           height={150}
-          className="p-1 max-h-52 object-contain"
+          className="max-h-52 object-contain p-1"
         />
-        <div className="flex-grow flex items-center">
+        <div className="flex flex-grow items-center">
           <AddMyListButton
             book={{
               ...selectedBook,
@@ -38,21 +38,21 @@ export default function BookInfo({
         <div className="flex justify-between">
           <StarGroup rating={averageRating} />
         </div>
-        <h1 className="mt-4 text-2xl lg:text-3xl font-bold text-slate-900">
+        <h1 className="mt-4 text-2xl font-bold text-slate-900 lg:text-3xl">
           {selectedBook.title}
         </h1>
-        <div className="text-sm mt-2 grid grid-cols-2 gap-2 sm:grid-cols-1">
+        <div className="mt-2 grid grid-cols-2 gap-2 text-sm sm:grid-cols-1">
           <p>
-            <span className="font-semibold pr-1">저자</span>
+            <span className="pr-1 font-semibold">저자</span>
             {selectedBook.authors}
           </p>
           <p>
-            <span className="font-semibold pr-1">출판</span>
+            <span className="pr-1 font-semibold">출판</span>
             {selectedBook.publisher} |{" "}
             {dayjs(selectedBook.datetime).format("YYYY-MM-DD")}
           </p>
         </div>
-        <p className="mt-6 text-slate-600 text-sm">
+        <p className="mt-6 text-sm text-slate-600">
           {selectedBook.contents + "..."}
           {selectedBook.url && (
             <Link
@@ -64,7 +64,7 @@ export default function BookInfo({
             </Link>
           )}
         </p>
-        <div className="flex flex-wrap gap-2 text-sm text-muted-foreground mt-2">
+        <div className="mt-2 flex flex-wrap gap-2 text-sm text-muted-foreground">
           <TagGroup tags={selectedBook.tags} />
         </div>
       </div>

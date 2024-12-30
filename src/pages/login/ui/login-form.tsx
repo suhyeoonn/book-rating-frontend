@@ -12,7 +12,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
 import { toast } from "@/shared/hooks/use-toast";
 import { useAuth } from "@/shared/contexts/AuthContext";
@@ -82,7 +82,7 @@ export function LoginForm() {
         />
         <Button
           type="submit"
-          className="shadow-sm w-full text-sm/6 font-semibold"
+          className="w-full text-sm/6 font-semibold shadow-sm"
         >
           로그인
         </Button>

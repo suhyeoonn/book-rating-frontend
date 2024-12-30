@@ -6,7 +6,7 @@ import { Book } from "@/entities/book/types";
 import StarGroup from "@/shared/ui/star-group";
 import { Button } from "@/shared/ui/button";
 import { deleteBook, patchBook } from "@/shared/api/book";
-import TagGroup from "../../../components/tag-group";
+import TagGroup from "../../../shared/ui/tag-group";
 
 import BookForm from "./book-form";
 import BookEditModal from "./book-edit-modal";

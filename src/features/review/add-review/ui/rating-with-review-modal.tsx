@@ -10,7 +10,7 @@ import {
 } from "@/shared/ui/alert-dialog";
 import React from "react";
 import { Input } from "@/shared/ui/input";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/shared/ui/label";
 import { useAddReview } from "../api/use-add-review";
 import { RatingSelect } from "../../update-rating";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import TagGroup from "../../../components/tag-group";
+import TagGroup from "../../../shared/ui/tag-group";
 import { formatDateTime, validateSrc } from "@/shared/utils";
 import dayjs from "dayjs";
 import { MyBook } from "@/entities/my-book/types";

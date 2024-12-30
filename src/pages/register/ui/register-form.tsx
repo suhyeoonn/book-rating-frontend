@@ -12,7 +12,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
 import { register } from "@/shared/api/auth";
 import { toast } from "@/shared/hooks/use-toast";
@@ -110,7 +110,7 @@ export function RegisterForm() {
         />
         <Button
           type="submit"
-          className="shadow-sm rounded-sm w-full text-sm/6 font-semibold"
+          className="w-full rounded-sm text-sm/6 font-semibold shadow-sm"
         >
           가입하기
         </Button>

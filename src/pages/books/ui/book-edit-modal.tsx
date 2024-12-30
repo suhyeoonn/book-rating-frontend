@@ -4,7 +4,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/shared/ui/dialog";
 import { Button } from "../../../shared/ui/button";
 import { ReactNode } from "react";
 import { Fn } from "@/shared/types";

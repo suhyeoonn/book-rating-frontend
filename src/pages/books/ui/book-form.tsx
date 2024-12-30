@@ -1,9 +1,9 @@
 import { Input } from "@/shared/ui/input";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/shared/ui/label";
 import { AddBook } from "@/shared/types";
 import { Book } from "@/entities/book/types";
 import { ChangeEvent } from "react";
-import { TagCombobox } from "../../../components/ui/combobox";
+import { TagCombobox } from "../../../shared/ui/combobox";
 
 export default function BookForm<T extends Book | AddBook>({
   formData,
