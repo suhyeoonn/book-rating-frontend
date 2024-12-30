@@ -4,7 +4,6 @@ import React from "react";
 import { Button } from "@/shared/ui/button";
 import DebounceInput from "@/components/ui/debounce-input";
 import { AlertDialog } from "@/shared/ui/alert-dialog";
-import BookAlertDescription from "@/components/book/book-alert-description";
 import { useAddBook } from "@/pages/book-add/api/use-add-book";
 import { ToastAction } from "@/shared/ui/toast";
 import { toast } from "@/shared/hooks/use-toast";
@@ -49,7 +48,7 @@ export const BookAddPage = () => {
       {data?.length ? (
         <BookList data={data} setSelectedBook={setSelectedBook} />
       ) : (
-        <div className="mt-5 text-gray-500 italic text-center text-sm">
+        <div className="mt-5 text-center text-sm italic text-gray-500">
           검색 결과가 없습니다.
         </div>
       )}
@@ -60,10 +59,10 @@ export const BookAddPage = () => {
         handleAction={onSubmit}
         title="책을 추가하시겠습니까?"
         description={
-          <BookAlertDescription
-            title={selectedBook?.title || ""}
-            action="add"
-          />
+          <>
+            <span className="pr-1 font-bold">{selectedBook?.title}</span>
+            이(가) 추가됩니다.
+          </>
         }
       />
     </div>
