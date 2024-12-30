@@ -6,3 +6,8 @@ export interface Review {
   updatedAt: string;
   userId: number;
 }
+
+export interface UpdateRatingParams {
+  reviewId: number;
+  rating: number;
+}

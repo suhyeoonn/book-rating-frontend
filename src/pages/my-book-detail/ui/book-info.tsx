@@ -8,10 +8,10 @@ import { MyBook } from "@/entities/my-book/types";
 import BookContent from "./book-content";
 import { ReactNode } from "react";
 import { StatusSelect } from "@/features/my-books/update-status";
-import UpdateRating from "@/features/my-books/update-rating/ui/update-rating";
+import { UpdateRating } from "@/features/review/update-rating";
+import { RatingWithReviewModal } from "@/features/review/add-review";
 import { Select, SelectTrigger } from "@/shared/ui/select";
 import StarGroup from "@/shared/ui/star-group";
-import RatingWithReviewModal from "@/features/review/add-review/ui/rating-with-review-modal";
 import React from "react";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
@@ -37,7 +37,7 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
               </SelectTrigger>
             </Select>
           ) : (
-            <UpdateRating rating={review.rating} id={id} />
+            <UpdateRating rating={review.rating} reviewId={review.id} />
           )}
           <RatingWithReviewModal
             open={open}

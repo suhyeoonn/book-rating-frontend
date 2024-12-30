@@ -1,4 +1,5 @@
-import { bookQueries, updateRating } from "@/entities/my-book/api";
+import { bookQueries } from "@/entities/my-book/api";
+import { updateRating } from "@/entities/review/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 

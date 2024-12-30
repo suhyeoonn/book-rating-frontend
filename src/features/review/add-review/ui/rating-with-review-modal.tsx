@@ -9,10 +9,10 @@ import {
   AlertDialogTitle,
 } from "@/shared/ui/alert-dialog";
 import React from "react";
-import { RatingSelect } from "../../../my-books/update-rating/ui/rating-select";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAddReview } from "../api/use-add-review";
+import { RatingSelect } from "../../update-rating";
 
 const defaultContent: Record<number, string> = {
   0: "",
@@ -23,7 +23,7 @@ const defaultContent: Record<number, string> = {
   5: "정말 감명 깊게 읽었어요. 최고의 책이에요!",
 };
 
-const RatingWithReviewModal = ({
+export const RatingWithReviewModal = ({
   open,
   setOpen,
   bookId,
@@ -81,5 +81,3 @@ const RatingWithReviewModal = ({
     </AlertDialogRoot>
   );
 };
-
-export default RatingWithReviewModal;

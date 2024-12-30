@@ -1,1 +1,1 @@
-export type { Review } from "./model/review.interface";
+export type { Review, UpdateRatingParams } from "./model/review.interface";

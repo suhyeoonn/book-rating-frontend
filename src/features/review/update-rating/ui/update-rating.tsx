@@ -5,18 +5,16 @@ import { RatingSelect } from "./rating-select";
 import { useUpdateRating } from "../api/use-update-rating";
 
 interface UpdateRatingProps {
-  id: number;
+  reviewId: number;
   rating: number;
 }
 
-const UpdateRating = ({ id, rating }: UpdateRatingProps) => {
+export const UpdateRating = ({ reviewId, rating }: UpdateRatingProps) => {
   const mutationUpdate = useUpdateRating();
 
   const changeRating = (value: string) => {
-    mutationUpdate.mutate({ id, rating: +value });
+    mutationUpdate.mutate({ reviewId: reviewId, rating: +value });
   };
 
   return <RatingSelect rating={rating} changeCallback={changeRating} />;
 };
-
-export default UpdateRating;
