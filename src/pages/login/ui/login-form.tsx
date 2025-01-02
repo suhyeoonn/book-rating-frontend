@@ -16,25 +16,14 @@ import {
 import { Input } from "@/shared/ui/input";
 import { toast } from "@/shared/hooks/use-toast";
 import { useAuth } from "@/shared/contexts/AuthContext";
-
-const formSchema = z.object({
-  username: z.string().min(1, {
-    message: "아이디를 입력하세요.",
-  }),
-  password: z.string().min(1, {
-    message: "패스워드를 입력하세요.",
-  }),
-});
+import { defaultValues, formSchema } from "../model/form-schema";
 
 export function LoginForm() {
   const { login } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-    },
+    defaultValues,
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
