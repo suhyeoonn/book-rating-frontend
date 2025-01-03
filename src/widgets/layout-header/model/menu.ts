@@ -1,7 +1,7 @@
 export const menus = [
   {
     label: "Search",
-    href: "/books",
+    href: "/search",
   },
   {
     label: "My Books",

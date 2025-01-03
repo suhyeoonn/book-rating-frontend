@@ -8,7 +8,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/books",
+        destination: "/search",
         permanent: true, // 301 리다이렉트 (SEO에 적합)
       },
     ];

@@ -1,9 +1,9 @@
-import { BooksPage } from "@/pages/books";
+import { SearchPage } from "@/pages/search";
 
 export const metadata = {
   title: "Search",
 };
 
 export default function Home() {
-  return <BooksPage />;
+  return <SearchPage />;
 }

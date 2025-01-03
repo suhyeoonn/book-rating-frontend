@@ -1,5 +1,5 @@
 import { bookApi } from "@/entities/book";
-import { BookDetailPage } from "@/pages/book-detail";
+import { SearchDetailPage } from "@/pages/search-detail";
 
 interface PageProps {
   params: {
@@ -20,5 +20,5 @@ export default async function BookDetail({
   params: { id: string };
 }) {
   const book = await bookApi.fetchBook(+id);
-  return <BookDetailPage book={book} />;
+  return <SearchDetailPage book={book} />;
 }
