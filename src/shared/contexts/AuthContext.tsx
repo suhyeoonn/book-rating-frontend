@@ -3,7 +3,7 @@
 import { login as loginApi, me } from "@/shared/api/auth";
 import axiosClient from "@/shared/axios";
 import { IUser } from "@/shared/types";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, {
   createContext,
   ReactNode,
@@ -25,7 +25,7 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
-  undefined
+  undefined,
 );
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -60,6 +60,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const params = useSearchParams();
+
   const login = async (values: LoginInfo) => {
     const data = await loginApi(values);
     if (!data) return;
@@ -67,7 +69,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(data.user);
     setToken(data.token);
 
-    router.replace("/");
+    router.replace(params?.get("next") || "/");
   };
 
   const logout = async () => {
