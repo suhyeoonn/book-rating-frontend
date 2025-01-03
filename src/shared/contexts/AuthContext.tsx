@@ -1,6 +1,6 @@
 "use client";
 
-import { login as loginApi, me } from "@/shared/api/auth";
+import { me } from "@/shared/api/auth";
 import axiosClient from "@/shared/axios";
 import { IUser } from "@/shared/types";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -13,14 +13,9 @@ import React, {
   useState,
 } from "react";
 
-interface LoginInfo {
-  username: string;
-  password: string;
-}
-
 interface AuthContextType {
   user: IUser | null;
-  login: (loginInfo: LoginInfo) => void;
+  setAuth: (user: IUser, token: string) => void;
   logout: () => void;
 }
 
@@ -60,26 +55,20 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const params = useSearchParams();
-
-  const login = async (values: LoginInfo) => {
-    const data = await loginApi(values);
-    if (!data) return;
-
-    setUser(data.user);
-    setToken(data.token);
-
-    router.replace(params?.get("next") || "/");
-  };
-
+  // TODO: pages 레이어의 api로 이동
   const logout = async () => {
     await axiosClient.post("auth/logout");
     setUser(null);
     setToken(null);
   };
 
+  const setAuth = (user: IUser, token: string) => {
+    setUser(user);
+    setToken(token);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setAuth, logout }}>
       {children}
     </AuthContext.Provider>
   );

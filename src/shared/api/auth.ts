@@ -1,30 +1,6 @@
 import axios from "axios";
 import axiosClient from "../axios";
-import {
-  AuthMeResponse,
-  ILoginUser,
-  IRegisterUser,
-  LoginResponse,
-} from "../types";
-
-export const login = async (loginInfo: ILoginUser) => {
-  try {
-    const { data } = await axiosClient.post<LoginResponse>(
-      `auth/login`,
-      loginInfo
-    );
-    return data;
-  } catch (err) {
-    if (axios.isAxiosError(err) && err.response) {
-      if (err.response.status === 401) {
-        throw new Error("아이디 또는 패스워드를 확인하세요.");
-      }
-    } else {
-      console.error(err);
-      throw new Error("Network Error");
-    }
-  }
-};
+import { AuthMeResponse, IRegisterUser } from "../types";
 
 export const register = async (user: IRegisterUser) => {
   try {

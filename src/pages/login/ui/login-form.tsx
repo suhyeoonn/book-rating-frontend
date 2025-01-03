@@ -17,9 +17,10 @@ import { Input } from "@/shared/ui/input";
 import { toast } from "@/shared/hooks/use-toast";
 import { useAuth } from "@/shared/contexts/AuthContext";
 import { defaultValues, formSchema } from "../model/form-schema";
+import { useLogin } from "../api/use-login";
 
 export function LoginForm() {
-  const { login } = useAuth();
+  const { login } = useLogin();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
