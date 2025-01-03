@@ -1,4 +1,4 @@
-import Protected from "@/features/auth/protected";
+import ProtectedRoute from "@/features/auth/protected-route";
 import { MyBookPage } from "@/pages/my-books";
 import React from "react";
 
@@ -8,9 +8,9 @@ export const metadata = {
 
 const MyBooks = () => {
   return (
-    <Protected>
+    <ProtectedRoute>
       <MyBookPage />
-    </Protected>
+    </ProtectedRoute>
   );
 };
 

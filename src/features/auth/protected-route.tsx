@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 interface ProtectedProps {
   children: ReactNode;
 }
-const Protected = ({ children }: ProtectedProps) => {
+const ProtectedRoute = ({ children }: ProtectedProps) => {
   const { user } = useAuth();
   const router = useRouter();
 
@@ -21,4 +21,4 @@ const Protected = ({ children }: ProtectedProps) => {
   return children;
 };
 
-export default Protected;
+export default ProtectedRoute;
