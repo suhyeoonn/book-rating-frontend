@@ -1,18 +1,13 @@
-import type { Fn } from "@/shared/types";
 import StarGroup from "../../../shared/ui/star-group";
-import { useAuth } from "@/shared/contexts/AuthContext";
 import { ReviewResponseItem } from "../model/review-interface";
 
 export default function BookReview({
   bookId,
   review,
-  deleteHandler,
 }: {
   bookId: number;
   review: ReviewResponseItem;
-  deleteHandler: Fn;
 }) {
-  const { user } = useAuth();
   return (
     <div className="flex items-start gap-4 border-b border-b-gray-100">
       <div className="flex-1 space-y-2">

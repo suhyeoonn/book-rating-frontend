@@ -15,7 +15,7 @@ export const SearchDetailPage = ({ book }: { book: Book }) => {
     <div className="container mx-auto flex flex-col gap-6 px-4 py-8 md:w-3/4 md:px-6 lg:w-1/2">
       <Breadcrumb links={[menus[0]]} pathName={book.title} />
       <BookInfo selectedBook={book} averageRating={averageRating} />
-      <ReviewList selectedBook={book} setAverageRating={setAverageRating} />
+      <ReviewList selectedBook={book} />
     </div>
   );
 };
