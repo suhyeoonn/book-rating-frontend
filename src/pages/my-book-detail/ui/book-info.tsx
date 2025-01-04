@@ -13,6 +13,7 @@ import { RatingWithReviewModal } from "@/features/review/add-review";
 import { Select, SelectTrigger } from "@/shared/ui/select";
 import StarGroup from "@/shared/ui/star-group";
 import React from "react";
+import { ReviewComment } from "@/features/review/update-review";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const { id, book, status, review, createdAt, updatedAt, finishedAt } = myBook;
@@ -64,7 +65,7 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           </div>
           <div className="flex items-center gap-1">
             <span className="pr-1 font-semibold">한줄평</span>
-            {review?.content || "-"}
+            <ReviewComment review={review} />
           </div>
           <DetailItem label="추가일">{formatDateTime(createdAt)}</DetailItem>
           <DetailItem label="마지막 수정일">

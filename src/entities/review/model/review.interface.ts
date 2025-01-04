@@ -11,3 +11,8 @@ export interface UpdateRatingParams {
   reviewId: number;
   rating: number;
 }
+
+export interface UpdateCommentParams {
+  reviewId: number;
+  comment: string;
+}
