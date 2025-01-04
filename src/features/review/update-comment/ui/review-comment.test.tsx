@@ -15,9 +15,22 @@ const review = {
 
 const queryClient = new QueryClient();
 
+jest.mock("@/entities/review", () => ({
+  reviewApi: {
+    reviewQueries: {
+      get: jest.fn((id) => ({
+        queryKey: ["reviews", id],
+        queryFn: jest.fn().mockResolvedValue({ data: review }),
+      })),
+      all: jest.fn(() => ["reviews"]),
+    },
+    postBook: jest.fn(),
+  },
+}));
+
 describe("한줄평", () => {
   test("작성된 한줄평이 없으면 '-'가 표시된다", () => {
-    render(<ReviewComment review={null} />);
+    render(<ReviewComment id={undefined} />);
 
     expect(screen.getByText("-")).toBeInTheDocument();
   });
@@ -25,18 +38,20 @@ describe("한줄평", () => {
   test("한줄평이 있으면 내용과 수정 버튼이 표시된다", () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ReviewComment review={review} />
+        <ReviewComment id={1} />
       </QueryClientProvider>,
     );
 
-    expect(screen.getByText(review.content)).toBeInTheDocument();
-    expect(screen.getByRole("button")).toBeInTheDocument();
+    waitFor(() => {
+      expect(screen.getByText(review.content)).toBeInTheDocument();
+      expect(screen.getByRole("button")).toBeInTheDocument();
+    });
   });
 
   test("수정 버튼을 클릭하면 수정 모달이 열린다", async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ReviewComment review={review} />
+        <ReviewComment id={1} />
       </QueryClientProvider>,
     );
 

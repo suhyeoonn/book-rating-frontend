@@ -18,7 +18,7 @@ export const useUpdateComment = ({
     mutationFn: updateComment,
     onSuccess: (data) => {
       queryClient.invalidateQueries({
-        queryKey: reviewApi.reviewQueries.all(),
+        queryKey: reviewApi.reviewQueries.get(reviewId).queryKey,
       });
       successCallback();
     },
