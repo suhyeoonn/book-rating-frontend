@@ -43,6 +43,8 @@ export const BookAddPage = () => {
       <DebounceInput
         changeCallback={handleSearchBook}
         placeholder="제목, ISBN, 출판사, 저자를 검색해 보세요"
+        className="flex-1 rounded-full bg-white px-4 py-2 placeholder:text-sm focus:outline-none focus:ring-2"
+        autoFocus
       />
 
       {data?.length ? (
