@@ -2,11 +2,7 @@ import "@testing-library/jest-dom";
 
 import { AddMyListButton } from "@/features/my-books/add-my-list";
 import { useAuth } from "@/shared/contexts/AuthContext";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen, waitFor } from "@testing-library/react";
 import { myBookApi } from "@/entities/my-book";
 
