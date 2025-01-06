@@ -34,7 +34,11 @@ describe("한줄평", () => {
   });
 
   test("작성된 한줄평이 없으면 '-'가 표시된다", () => {
-    render(<ReviewComment id={undefined} />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <ReviewComment id={undefined} />
+      </QueryClientProvider>,
+    );
 
     expect(screen.getByText("-")).toBeInTheDocument();
   });

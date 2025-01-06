@@ -3,9 +3,12 @@ import { getReview } from "./get-review";
 
 export const reviewQueries = {
   all: () => ["reviews"] as const,
-  get: (id: number) =>
+  get: (id: number | undefined) =>
     queryOptions({
       queryKey: [...reviewQueries.all(), id],
-      queryFn: () => getReview(id),
+      queryFn: async () => {
+        if (!id) return null;
+        return await getReview(id);
+      },
     }),
 };

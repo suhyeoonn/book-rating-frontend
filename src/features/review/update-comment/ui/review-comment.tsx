@@ -10,11 +10,11 @@ interface UpdateReviewProps {
   id: number | undefined;
 }
 export const ReviewComment = ({ id }: UpdateReviewProps) => {
-  if (!id) return "-";
-
   const { data } = useQuery(reviewApi.reviewQueries.get(id));
 
   const [open, setOpen] = React.useState(false);
+
+  if (!id) return "-";
 
   return (
     <>
