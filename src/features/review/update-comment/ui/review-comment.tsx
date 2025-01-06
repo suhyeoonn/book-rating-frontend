@@ -22,7 +22,7 @@ export const ReviewComment = ({ id }: UpdateReviewProps) => {
       <Button size={"icon"} variant={"outline"} onClick={() => setOpen(true)}>
         <Edit className="h-4 w-4" />
       </Button>
-      {data && (
+      {open && data && (
         <UpdateModal
           reviewId={id}
           content={data?.content}
