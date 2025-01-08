@@ -4,12 +4,17 @@
 // Since QueryClientProvider relies on useContext under the hood, we have to put 'use client' on top
 import {
   isServer,
+  QueryCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactNode } from "react";
+import useApiError, { CustomAxiosError } from "./use-api-error";
+import { AxiosError } from "axios";
 
 function makeQueryClient() {
+  const { handleError } = useApiError();
+
   return new QueryClient({
     defaultOptions: {
       queries: {
@@ -18,6 +23,13 @@ function makeQueryClient() {
         staleTime: 60 * 1000,
       },
     },
+    queryCache: new QueryCache({
+      onError: (error, query) => {
+        if (error instanceof AxiosError) {
+          handleError(error as CustomAxiosError); // 명시적으로 CustomAxiosError로 캐스팅
+        }
+      },
+    }),
   });
 }
 
