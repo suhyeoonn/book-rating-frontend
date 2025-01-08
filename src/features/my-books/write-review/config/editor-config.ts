@@ -14,7 +14,8 @@ export const useEditorConfig = (content: string) => {
     ],
     editorProps: {
       attributes: {
-        class: "prose prose-sm sm:prose-base m-5 focus:outline-none min-h-36",
+        class:
+          "prose prose-sm sm:prose-base m-5 focus:outline-none min-h-36 md:text-sm",
       },
     },
     content,

@@ -14,13 +14,13 @@ export const postReview = async ({
   try {
     return await axiosClient.post<AddReviewResponse>(
       `books/${bookId}/reviews`,
-      { content, rating }
+      { content, rating },
     );
   } catch (err) {
     if (axios.isAxiosError(err) && err.response) {
       if (err.response.status === 400) {
         throw new Error("존재하지 않는 책입니다.");
-      } else if (err.response.status === 401) {
+      } else if (err.response.status === 403) {
         throw new Error("로그인이 필요합니다.");
       }
     } else {
@@ -40,13 +40,13 @@ export const patchReview = async ({
   try {
     return await axiosClient.patch(
       `books/${bookId}/reviews/${review.id}`,
-      review
+      review,
     );
   } catch (err) {
     if (axios.isAxiosError(err) && err.response) {
       if (err.response.status === 400) {
         throw new Error("존재하지 않는 책입니다.");
-      } else if (err.response.status === 401) {
+      } else if (err.response.status === 403) {
         throw new Error("로그인이 필요합니다.");
       }
     } else {

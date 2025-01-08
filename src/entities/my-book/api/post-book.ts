@@ -31,7 +31,7 @@ export const postBook = async ({
     if (axios.isAxiosError(err) && err.response) {
       if (err.response.status === 409) {
         throw new Error("이미 등록된 책입니다.");
-      } else if (err.response.status === 401) {
+      } else if (err.response.status === 403) {
         throw new Error("로그인이 필요합니다.");
       }
       throw new Error(`문제가 발생했습니다. 잠시 후에 시도하세요.`);

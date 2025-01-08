@@ -22,7 +22,7 @@ export const MyBookDetailPage = ({ id }: Props) => {
     return <div>loading...</div>;
   }
 
-  const { review } = myBook;
+  const { memo } = myBook;
   return (
     <div className="container mx-auto flex flex-col gap-6 px-4 py-8 md:w-3/4 md:px-6 lg:w-1/2">
       <div className="flex justify-between">
@@ -31,7 +31,7 @@ export const MyBookDetailPage = ({ id }: Props) => {
       </div>
       <BookInfo book={myBook} />
       <hr />
-      <TiptapEditor id={id} review={review} />
+      <TiptapEditor id={id} memo={memo} />
     </div>
   );
 };
