@@ -3,7 +3,7 @@
 import { me } from "@/shared/api/auth";
 import axiosClient from "@/shared/axios";
 import { IUser } from "@/shared/types";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, {
   createContext,
   ReactNode,
@@ -15,8 +15,7 @@ import React, {
 
 interface AuthContextType {
   user: IUser | null;
-  setAuth: (user: IUser, token: string) => void;
-  logout: () => void;
+  setAuth: (user: IUser | null, token: string | null) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -55,20 +54,13 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // TODO: pages 레이어의 api로 이동
-  const logout = async () => {
-    await axiosClient.post("auth/logout");
-    setUser(null);
-    setToken(null);
-  };
-
-  const setAuth = (user: IUser, token: string) => {
+  const setAuth = (user: IUser | null, token: string | null) => {
     setUser(user);
     setToken(token);
   };
 
   return (
-    <AuthContext.Provider value={{ user, setAuth, logout }}>
+    <AuthContext.Provider value={{ user, setAuth }}>
       {children}
     </AuthContext.Provider>
   );

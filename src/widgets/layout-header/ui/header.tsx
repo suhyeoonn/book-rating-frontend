@@ -1,5 +1,5 @@
 import React from "react";
-import Auth from "../../../shared/ui/auth";
+import Auth from "./auth";
 import Logo from "@/shared/ui/logo";
 import Nav from "./navbar";
 

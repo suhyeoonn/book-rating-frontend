@@ -2,14 +2,17 @@
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/shared/ui/avatar";
 import React from "react";
-import { Button } from "./button";
+import { Button } from "../../../shared/ui/button";
 import Link from "next/link";
 import { useAuth } from "@/shared/contexts/AuthContext";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { useLogout } from "../api/use-logout";
 
 const Auth = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { username } = user || {};
+
+  const { logout } = useLogout();
 
   return (
     <div>
@@ -35,10 +38,6 @@ const Auth = () => {
         </div>
       ) : (
         <div className="space-x-2">
-          {/* <Button variant="ghost" asChild>
-            <Link href="/register">Sign up</Link>
-          </Button> */}
-
           <Button
             variant="ghost"
             asChild
