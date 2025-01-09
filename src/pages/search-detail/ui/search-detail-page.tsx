@@ -36,7 +36,10 @@ export const SearchDetailPage = ({ book }: { book: Book }) => {
         </div>
         <div className="flex-1">
           <div className="flex justify-between">
-            <StarGroup rating={book.averageRating} />
+            <div className="flex items-center gap-1">
+              <StarGroup rating={book.averageRating} />
+              <span className="text-xs font-bold">({book.averageRating})</span>
+            </div>
           </div>
           <BookInfo selectedBook={book} />
           <div className="mt-2 flex flex-wrap gap-2 text-sm text-muted-foreground">
