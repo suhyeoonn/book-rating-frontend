@@ -3,7 +3,7 @@ import { Review } from "../types";
 
 export const getReview = async (id: number): Promise<Review> => {
   try {
-    const { data } = await axiosClient.get(`reviews/${id}`);
+    const { data } = await axiosClient.get(`my-books/${id}/review`);
 
     return data;
   } catch (error) {

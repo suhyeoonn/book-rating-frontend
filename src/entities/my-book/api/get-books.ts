@@ -7,7 +7,6 @@ export const fetchBooks = async (): Promise<Book[]> => {
 
     return data;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch data.");
+    throw error;
   }
 };

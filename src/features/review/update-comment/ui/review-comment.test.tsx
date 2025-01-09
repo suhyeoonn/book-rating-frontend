@@ -8,7 +8,7 @@ const review = {
   bookId: 1,
   id: 1,
   rating: 4,
-  content: "대체로 만족스러운 책이에요",
+  comment: "대체로 만족스러운 책이에요",
   updatedAt: "2024-12-29T20:06:49.028Z",
   userId: 1,
 };
@@ -34,21 +34,13 @@ describe("한줄평", () => {
   });
 
   test("작성된 한줄평이 없으면 '-'가 표시된다", () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <ReviewComment id={undefined} />
-      </QueryClientProvider>,
-    );
+    render(<ReviewComment review={undefined} />);
 
     expect(screen.getByText("-")).toBeInTheDocument();
   });
 
   test("한줄평이 있으면 내용과 수정 버튼이 표시된다", async () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <ReviewComment id={1} />
-      </QueryClientProvider>,
-    );
+    render(<ReviewComment review={review} />);
 
     await waitFor(() => {
       expect(
@@ -61,7 +53,7 @@ describe("한줄평", () => {
   test("수정 버튼을 클릭하면 수정 모달이 열린다", async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ReviewComment id={1} />
+        <ReviewComment review={review} />
       </QueryClientProvider>,
     );
 
@@ -75,7 +67,7 @@ describe("한줄평", () => {
   it("모달을 닫았다가 다시 열었을 때, 원래의 코멘트가 유지되어야 한다", async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ReviewComment id={1} />
+        <ReviewComment review={review} />
       </QueryClientProvider>,
     );
 
@@ -84,7 +76,7 @@ describe("한줄평", () => {
     expect(screen.getByRole("alertdialog")).toBeInTheDocument();
 
     let inputElement = await screen.findByRole("textbox");
-    expect(inputElement).toHaveValue(review.content);
+    expect(inputElement).toHaveValue(review.comment);
 
     // 코멘트 내용 지우기
     await user.clear(inputElement);
@@ -97,6 +89,6 @@ describe("한줄평", () => {
     await user.click(screen.getByRole("button"));
 
     inputElement = await screen.findByRole("textbox");
-    expect(inputElement).toHaveValue(review.content);
+    expect(inputElement).toHaveValue(review.comment);
   });
 });

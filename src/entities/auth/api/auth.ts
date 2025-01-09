@@ -10,6 +10,13 @@ export const login = async (loginInfo: LoginParams) => {
     );
     return data;
   } catch (err) {
-    throw err;
+    if (axios.isAxiosError(err) && err.response) {
+      if (err.response.status === 401) {
+        throw new Error("아이디 또는 패스워드를 확인하세요.");
+      }
+    } else {
+      console.error(err);
+      throw new Error("Network Error");
+    }
   }
 };

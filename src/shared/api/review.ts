@@ -3,18 +3,21 @@ import { AddReviewResponse, Review } from "../types";
 import axiosClient from "../axios";
 
 export const postReview = async ({
-  bookId,
+  myBookId,
   content,
   rating,
 }: {
-  bookId: number;
+  myBookId: number;
   content: string;
   rating: number;
 }) => {
   try {
     return await axiosClient.post<AddReviewResponse>(
-      `books/${bookId}/reviews`,
-      { content, rating },
+      `my-books/${myBookId}/review`,
+      {
+        comment: content,
+        rating,
+      },
     );
   } catch (err) {
     if (axios.isAxiosError(err) && err.response) {

@@ -8,7 +8,7 @@ import {
   AlertDialogRoot,
   AlertDialogTitle,
 } from "@/shared/ui/alert-dialog";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import { useAddReview } from "../api/use-add-review";
@@ -26,20 +26,26 @@ const defaultContent: Record<number, string> = {
 export const RatingWithReviewModal = ({
   open,
   setOpen,
-  bookId,
+  id,
 }: {
   open: boolean;
   setOpen: (state: boolean) => void;
-  bookId: number;
+  id: number;
 }) => {
   const [rating, setRating] = React.useState(0);
-  const [content, setContent] = React.useState("");
+  const [comment, setComment] = React.useState("");
 
-  const { addReview } = useAddReview();
+  const { addReview } = useAddReview(id);
 
   const handleSave = () => {
-    addReview(bookId, content || defaultContent[rating], rating);
+    addReview(comment || defaultContent[rating], rating);
     setOpen(false);
+  };
+
+  const handleChange = ({
+    target: { value },
+  }: ChangeEvent<HTMLInputElement>) => {
+    setComment(value);
   };
 
   return (
@@ -48,7 +54,7 @@ export const RatingWithReviewModal = ({
         <AlertDialogHeader>
           <AlertDialogTitle>별점과 함께 한줄평을 공유하세요.</AlertDialogTitle>
           <AlertDialogDescription asChild>
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 space-y-3">
               <div className="space-y-1">
                 <Label className="font-semibold">별점</Label>
                 <RatingSelect
@@ -59,8 +65,11 @@ export const RatingWithReviewModal = ({
               <div className="space-y-1">
                 <Label className="font-semibold">한줄평</Label>
                 <Input
-                  className="text-xs"
-                  value={content || defaultContent[rating]}
+                  className="px-3 py-2 text-xs"
+                  disabled={!rating}
+                  placeholder="별점을 먼저 선택하세요."
+                  onChange={handleChange}
+                  value={comment || defaultContent[rating]}
                 />
               </div>
               <div className="flex">
