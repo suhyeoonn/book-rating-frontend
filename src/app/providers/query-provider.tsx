@@ -13,7 +13,7 @@ import useApiError, { CustomAxiosError } from "./use-api-error";
 import { AxiosError } from "axios";
 
 function makeQueryClient() {
-  const { handleError } = useApiError();
+  // const { handleError } = useApiError();
 
   return new QueryClient({
     defaultOptions: {
@@ -23,13 +23,13 @@ function makeQueryClient() {
         staleTime: 60 * 1000,
       },
     },
-    queryCache: new QueryCache({
-      onError: (error, query) => {
-        if (error instanceof AxiosError) {
-          handleError(error as CustomAxiosError); // 명시적으로 CustomAxiosError로 캐스팅
-        }
-      },
-    }),
+    // queryCache: new QueryCache({
+    //   onError: (error, query) => {
+    //     if (error instanceof AxiosError) {
+    //       handleError(error as CustomAxiosError); // 명시적으로 CustomAxiosError로 캐스팅
+    //     }
+    //   },
+    // }),
   });
 }
 
