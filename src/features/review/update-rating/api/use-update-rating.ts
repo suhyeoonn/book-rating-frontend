@@ -1,9 +1,10 @@
-import { bookQueries } from "@/entities/my-book/api";
+import { myBookApi } from "@/entities/my-book";
+import { reviewApi } from "@/entities/review";
 import { updateRating } from "@/entities/review/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-export const useUpdateRating = () => {
+export const useUpdateRating = (reviewId: number) => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -11,7 +12,12 @@ export const useUpdateRating = () => {
     mutationFn: updateRating,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: bookQueries.list().queryKey });
+      queryClient.invalidateQueries({
+        queryKey: reviewApi.reviewQueries.get(reviewId).queryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: myBookApi.bookQueries.list().queryKey,
+      });
       router.refresh();
     },
   });

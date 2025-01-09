@@ -10,7 +10,7 @@ interface UpdateRatingProps {
 }
 
 export const UpdateRating = ({ reviewId, rating }: UpdateRatingProps) => {
-  const mutationUpdate = useUpdateRating();
+  const mutationUpdate = useUpdateRating(reviewId);
 
   const changeRating = (value: string) => {
     mutationUpdate.mutate({ reviewId: reviewId, rating: +value });
