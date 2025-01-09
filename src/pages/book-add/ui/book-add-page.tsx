@@ -6,7 +6,7 @@ import DebounceInput from "@/shared/ui/debounce-input";
 import { AlertDialog } from "@/shared/ui/alert-dialog";
 import { useAddBook } from "@/pages/book-add/api/use-add-book";
 import { ToastAction } from "@/shared/ui/toast";
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 import { useRouter } from "next/navigation";
 import { Book } from "@/entities/book/types";
 import { useSearchBook } from "../api/use-search-book";

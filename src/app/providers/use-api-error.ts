@@ -1,4 +1,4 @@
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";

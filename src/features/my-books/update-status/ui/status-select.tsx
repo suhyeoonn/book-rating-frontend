@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/shared/ui/select";
 import StatusBadge from "@/shared/ui/status";
-import { useSelect } from "@/shared/hooks/use-select";
+import { useSelect } from "@/shared/lib/use-select";
 import { useUpdateStatus } from "../api/use-update-status";
 
 export const StatusSelect = ({ id, value }: { id: number; value: number }) => {
@@ -25,7 +25,7 @@ export const StatusSelect = ({ id, value }: { id: number; value: number }) => {
 
   return (
     <Select defaultValue={selectedValue} onValueChange={changeStatus}>
-      <SelectTrigger className="w-[100px] px-1 py-1 border-0">
+      <SelectTrigger className="w-[100px] border-0 px-1 py-1">
         <SelectValue placeholder="상태" />
       </SelectTrigger>
       <SelectContent>

@@ -1,6 +1,6 @@
 import { reviewApi } from "@/entities/review";
 import { postReview } from "@/shared/api/review";
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useAddReview = (myBookId: number) => {

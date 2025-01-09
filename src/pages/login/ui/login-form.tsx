@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 import { useAuth } from "@/shared/contexts/AuthContext";
 import { defaultValues, formSchema } from "../model/form-schema";
 import { useLogin } from "../api/use-login";

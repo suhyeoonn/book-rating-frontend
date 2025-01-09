@@ -1,6 +1,6 @@
 import { reviewApi } from "@/entities/review";
 import { updateComment } from "@/entities/review/api";
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface UpdateCommentProps {

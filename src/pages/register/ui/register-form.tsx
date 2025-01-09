@@ -15,7 +15,7 @@ import {
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
 import { register } from "@/shared/api/auth";
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 import { useRouter } from "next/navigation";
 
 const formSchema = z

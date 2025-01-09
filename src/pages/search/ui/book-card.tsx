@@ -14,7 +14,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { AlertDialog } from "@/shared/ui/alert-dialog";
 import { validateSrc } from "@/shared/utils";
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 
 export default function BookCard({ book }: { book: Book }) {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);

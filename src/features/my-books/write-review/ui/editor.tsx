@@ -6,7 +6,7 @@ import { useEditorConfig } from "../config/editor-config";
 import Toolbar from "./editor-toolbar";
 import { updateReview } from "@/entities/my-book/api";
 import { UpdateReviewParams } from "../model/types";
-import { toast } from "@/shared/hooks/use-toast";
+import { toast } from "@/shared/lib/use-toast";
 
 export const TiptapEditor = ({ id, memo }: UpdateReviewParams) => {
   const { editor } = useEditorConfig(memo);

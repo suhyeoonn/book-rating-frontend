@@ -9,7 +9,7 @@ import {
   SelectTrigger,
 } from "@/shared/ui/select";
 import StarGroup from "@/shared/ui/star-group";
-import { useSelect } from "@/shared/hooks/use-select";
+import { useSelect } from "@/shared/lib/use-select";
 
 export const RatingSelect = ({
   rating,
@@ -19,7 +19,7 @@ export const RatingSelect = ({
   changeCallback: (value: string) => void;
 }) => {
   const { selectedValue, handleChange } = useSelect(
-    rating > 0 ? rating + "" : ""
+    rating > 0 ? rating + "" : "",
   );
 
   return (
