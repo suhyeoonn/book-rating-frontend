@@ -17,18 +17,6 @@ export interface Tag {
   name: string;
 }
 
-export interface Review {
-  id: number;
-  rating: number;
-  content: string;
-  updateAt?: string;
-}
-
-export interface AddReviewResponse {
-  review: Review;
-  averageRating: number;
-}
-
 export type Fn = () => void;
 
 export interface Tag {

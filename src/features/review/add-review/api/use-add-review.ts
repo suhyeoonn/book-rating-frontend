@@ -1,12 +1,11 @@
 import { reviewApi } from "@/entities/review";
-import { postReview } from "@/shared/api/review";
 import { toast } from "@/shared/lib/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useAddReview = (myBookId: number) => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: postReview,
+    mutationFn: reviewApi.postReview,
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: reviewApi.reviewQueries.get(myBookId).queryKey,

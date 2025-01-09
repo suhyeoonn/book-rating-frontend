@@ -25,7 +25,7 @@ export const updateComment = async ({
 }: UpdateCommentParams) => {
   try {
     const res = await axiosClient.patch(`reviews/${reviewId}/comment`, {
-      content: comment,
+      comment,
     });
     return res.data;
   } catch (err) {

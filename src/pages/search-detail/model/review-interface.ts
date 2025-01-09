@@ -1,4 +1,5 @@
-import { IUser, Review } from "@/shared/types";
+import { Review } from "@/entities/review/types";
+import { IUser } from "@/shared/types";
 
 export interface ReviewResponse {
   bookId: number;

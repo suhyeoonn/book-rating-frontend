@@ -1,17 +1,23 @@
 import axiosClient from "@/shared/axios";
-import { DeleteReviewResponse } from "../model/review-interface";
+import { AddReviewResponse } from "../model/review.interface";
 import axios from "axios";
 
-export const deleteReview = async ({
-  bookId,
-  reviewId,
+export const postReview = async ({
+  myBookId,
+  content,
+  rating,
 }: {
-  bookId: number;
-  reviewId: number;
+  myBookId: number;
+  content: string;
+  rating: number;
 }) => {
   try {
-    return await axiosClient.delete<DeleteReviewResponse>(
-      `books/${bookId}/reviews/${reviewId}`,
+    return await axiosClient.post<AddReviewResponse>(
+      `my-books/${myBookId}/review`,
+      {
+        comment: content,
+        rating,
+      },
     );
   } catch (err) {
     if (axios.isAxiosError(err) && err.response) {

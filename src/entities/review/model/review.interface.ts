@@ -16,3 +16,8 @@ export interface UpdateCommentParams {
   reviewId: number;
   comment: string;
 }
+
+export interface AddReviewResponse {
+  review: Review;
+  averageRating: number;
+}

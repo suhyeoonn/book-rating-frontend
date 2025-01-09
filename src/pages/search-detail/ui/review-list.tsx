@@ -2,8 +2,8 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Book } from "@/entities/book/types";
 import BookReview from "./review-item";
-import { fetchReviews } from "../api/review";
 import { ReviewResponse } from "../model/review-interface";
+import { reviewApi } from "@/entities/review";
 
 interface Props {
   selectedBook: Book;
@@ -11,7 +11,7 @@ interface Props {
 const ReviewList = ({ selectedBook }: Props) => {
   const { isPending, isError, data, error } = useQuery<ReviewResponse>({
     queryKey: ["reviews", selectedBook],
-    queryFn: () => fetchReviews(selectedBook.id),
+    queryFn: () => reviewApi.fetchReviews(selectedBook.id),
     enabled: !!selectedBook?.id,
   });
 
@@ -25,9 +25,7 @@ const ReviewList = ({ selectedBook }: Props) => {
               아직 작성된 리뷰가 없어요. 내 리스트에서 첫 리뷰를 남겨보세요! ✍️
             </div>
           ) : (
-            data?.reviews.map((c) => (
-              <BookReview key={c.id} bookId={selectedBook.id || 0} review={c} />
-            ))
+            data?.reviews.map((c) => <BookReview key={c.id} review={c} />)
           )}
         </div>
       </div>
