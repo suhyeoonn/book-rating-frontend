@@ -26,7 +26,7 @@ jest.mock("@/entities/review", () => ({
   },
 }));
 
-describe("한줄평", () => {
+describe("한줄평 수정", () => {
   let queryClient: QueryClient;
 
   beforeEach(() => {

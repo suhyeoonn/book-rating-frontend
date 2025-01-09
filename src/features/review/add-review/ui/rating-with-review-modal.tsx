@@ -38,7 +38,7 @@ export const RatingWithReviewModal = ({
   const { addReview } = useAddReview(id);
 
   const handleSave = () => {
-    addReview(comment || defaultContent[rating], rating);
+    addReview(comment, rating);
     setOpen(false);
   };
 
@@ -46,6 +46,13 @@ export const RatingWithReviewModal = ({
     target: { value },
   }: ChangeEvent<HTMLInputElement>) => {
     setComment(value);
+  };
+
+  const handleRating = (value: string) => {
+    if (!rating) {
+      setComment(defaultContent[+value]);
+    }
+    setRating(+value);
   };
 
   return (
@@ -57,10 +64,7 @@ export const RatingWithReviewModal = ({
             <div className="mt-2 space-y-3">
               <div className="space-y-1">
                 <Label className="font-semibold">별점</Label>
-                <RatingSelect
-                  rating={rating}
-                  changeCallback={(value: string) => setRating(+value)}
-                />
+                <RatingSelect rating={rating} changeCallback={handleRating} />
               </div>
               <div className="space-y-1">
                 <Label className="font-semibold">한줄평</Label>
@@ -69,7 +73,7 @@ export const RatingWithReviewModal = ({
                   disabled={!rating}
                   placeholder="별점을 먼저 선택하세요."
                   onChange={handleChange}
-                  value={comment || defaultContent[rating]}
+                  value={comment}
                 />
               </div>
               <div className="flex">
@@ -82,7 +86,10 @@ export const RatingWithReviewModal = ({
           <AlertDialogCancel onClick={() => setOpen(false)}>
             취소
           </AlertDialogCancel>
-          <AlertDialogAction disabled={rating === 0} onClick={handleSave}>
+          <AlertDialogAction
+            disabled={rating === 0 || !comment}
+            onClick={handleSave}
+          >
             저장
           </AlertDialogAction>
         </AlertDialogFooter>
