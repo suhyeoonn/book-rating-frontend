@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { myBookApi } from "@/entities/my-book";
 import { ToggleGroup, ToggleGroupItem } from "@/shared/ui/toggle-group";
 import { ListIcon, TextCursorInputIcon } from "lucide-react";
-import { MemoList } from "@/features/my-books/list-view";
+import { NoteList } from "./note-list";
 
 interface Props {
   id: number;
@@ -49,7 +49,7 @@ export const MyBookDetailPage = ({ id }: Props) => {
           <ListIcon className="h-4 w-4" />
         </ToggleGroupItem>
       </ToggleGroup>
-      {mode === "single" ? <TiptapEditor id={id} memo={memo} /> : <MemoList />}
+      {mode === "single" ? <TiptapEditor id={id} memo={memo} /> : <NoteList />}
     </div>
   );
 };

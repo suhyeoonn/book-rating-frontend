@@ -5,17 +5,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/shared/ui/sheet";
-import { TiptapEditor } from "../../write-review";
+import { TiptapEditor } from "../../../my-books/write-review";
 import { Input } from "@/shared/ui/input";
-import { Memo } from "../model/memo.interface";
+import { Note } from "../model/note.interface";
 
 interface MemoSliderProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  memo: Memo;
+  memo: Note;
 }
 
-export const MemoSlider = ({ open, setOpen, memo }: MemoSliderProps) => {
+export const SideNoteEditor = ({ open, setOpen, memo }: MemoSliderProps) => {
   const { title, createdAt, content } = memo;
 
   return (

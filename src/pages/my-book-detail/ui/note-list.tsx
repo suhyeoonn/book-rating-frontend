@@ -1,10 +1,9 @@
 import { cn } from "@/shared/utils";
 import { FileTextIcon, PlusIcon } from "lucide-react";
 import React, { useState } from "react";
-import { MemoSlider } from "./memo-slider";
-import { Memo } from "../model/memo.interface";
+import { Note, SideNoteEditor } from "@/features/note/create-note";
 
-const arr: Memo[] = [
+const arr: Note[] = [
   {
     id: 1,
     title: "a",
@@ -22,9 +21,9 @@ const arr: Memo[] = [
 const liStyle =
   "flex cursor-pointer items-center rounded-md p-1 hover:bg-muted/50";
 
-export const MemoList = () => {
+export const NoteList = () => {
   const [open, setOpen] = useState(false);
-  const [memo, setMemo] = useState<Memo | null>(null);
+  const [memo, setMemo] = useState<Note | null>(null);
 
   const handleCreateMemo = () => {
     setMemo({
@@ -36,7 +35,7 @@ export const MemoList = () => {
     setOpen(true);
   };
 
-  const handleOpenSlider = (memo: Memo) => {
+  const handleOpenSlider = (memo: Note) => {
     setMemo(memo);
     setOpen(true);
   };
@@ -62,7 +61,7 @@ export const MemoList = () => {
           메모 추가
         </li>
       </ul>
-      {memo && <MemoSlider open={open} setOpen={setOpen} memo={memo} />}
+      {memo && <SideNoteEditor open={open} setOpen={setOpen} memo={memo} />}
     </>
   );
 };
