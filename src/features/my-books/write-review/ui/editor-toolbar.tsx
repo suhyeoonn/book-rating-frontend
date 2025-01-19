@@ -14,7 +14,7 @@ import React from "react";
 
 const Toolbar = ({ editor }: { editor: Editor }) => {
   return (
-    <div className="flex items-center justify-center gap-2 p-6 py-3 border-b sm:gap-8">
+    <div className="flex items-center justify-center gap-2 border-t p-6 py-3 sm:gap-8">
       <div className="flex items-center justify-center gap-2">
         <Button
           size="icon"

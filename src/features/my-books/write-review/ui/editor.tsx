@@ -22,7 +22,7 @@ export const TiptapEditor = ({ id, memo }: UpdateReviewParams) => {
   };
 
   return (
-    <>
+    <div>
       <Toolbar editor={editor} />
       <EditorContent editor={editor} />
       <div className="flex justify-end border-t p-6">
@@ -30,6 +30,6 @@ export const TiptapEditor = ({ id, memo }: UpdateReviewParams) => {
           저장
         </Button>
       </div>
-    </>
+    </div>
   );
 };
