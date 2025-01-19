@@ -1,7 +1,7 @@
 import { cn } from "@/shared/utils";
 import { FileTextIcon, PlusIcon } from "lucide-react";
 import React, { useState } from "react";
-import { Note, SideNoteEditor } from "@/features/note/create-note";
+import { createNote, Note, SideNoteEditor } from "@/features/note/create-note";
 
 const arr: Note[] = [
   {
@@ -21,17 +21,13 @@ const arr: Note[] = [
 const liStyle =
   "flex cursor-pointer items-center rounded-md p-1 hover:bg-muted/50";
 
-export const NoteList = () => {
+export const NoteList = ({ bookId }: { bookId: number }) => {
   const [open, setOpen] = useState(false);
   const [memo, setMemo] = useState<Note | null>(null);
 
-  const handleCreateMemo = () => {
-    setMemo({
-      id: 100,
-      title: "",
-      createdAt: "2024-12-22 3:00 AM",
-      content: "",
-    });
+  const handleCreateMemo = async () => {
+    const result = await createNote({ bookId });
+    setMemo(result);
     setOpen(true);
   };
 

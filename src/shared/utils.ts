@@ -26,4 +26,4 @@ export const validateSrc = (src: string) => {
 };
 
 export const formatDateTime = (date: string) =>
-  date && dayjs(date).format("YYYY-MM-DD HH:mm:ss");
+  date && dayjs(date).format("YYYY-MM-DD hh:mm A");

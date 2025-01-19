@@ -4,3 +4,7 @@ export interface Note {
   createdAt: string;
   content: string;
 }
+
+export interface CreateNoteParams {
+  bookId: number;
+}

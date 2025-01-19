@@ -8,6 +8,7 @@ import {
 import { TiptapEditor } from "../../../my-books/write-review";
 import { Input } from "@/shared/ui/input";
 import { Note } from "../model/note.interface";
+import { formatDateTime } from "@/shared/utils";
 
 interface MemoSliderProps {
   open: boolean;
@@ -31,10 +32,10 @@ export const SideNoteEditor = ({ open, setOpen, memo }: MemoSliderProps) => {
             />
           </SheetTitle>
           <SheetDescription asChild>
-            <div className="grid grid-cols-4 text-sm">
-              <dt>생성일</dt>
-              <dd className="col-span-2">{createdAt}</dd>
-            </div>
+            <dl className="grid grid-cols-4 text-sm">
+              <dt className="font-semibold">생성일</dt>
+              <dd className="col-span-2">{formatDateTime(createdAt)}</dd>
+            </dl>
           </SheetDescription>
         </SheetHeader>
         <div className="flex-1">

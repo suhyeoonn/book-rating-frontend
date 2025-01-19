@@ -49,7 +49,11 @@ export const MyBookDetailPage = ({ id }: Props) => {
           <ListIcon className="h-4 w-4" />
         </ToggleGroupItem>
       </ToggleGroup>
-      {mode === "single" ? <TiptapEditor id={id} memo={memo} /> : <NoteList />}
+      {mode === "single" ? (
+        <TiptapEditor id={id} memo={memo} />
+      ) : (
+        <NoteList bookId={id} />
+      )}
     </div>
   );
 };
