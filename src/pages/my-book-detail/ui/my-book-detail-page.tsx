@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getBook } from "@/entities/my-book/api";
 import BookInfo from "./book-info";
 import { Breadcrumb } from "@/shared/ui/breadcrumb";
@@ -12,6 +12,7 @@ import { myBookApi } from "@/entities/my-book";
 import { ToggleGroup, ToggleGroupItem } from "@/shared/ui/toggle-group";
 import { ListIcon, TextCursorInputIcon } from "lucide-react";
 import { NoteList } from "./note-list";
+import { useMyBookStore } from "@/entities/my-book/models/mybook.store";
 
 interface Props {
   id: number;
@@ -20,6 +21,12 @@ export const MyBookDetailPage = ({ id }: Props) => {
   const { data: myBook, isFetching } = useQuery(
     myBookApi.bookQueries.detail(id),
   );
+
+  const setBookId = useMyBookStore((state) => state.setBookId);
+
+  useEffect(() => {
+    setBookId(id);
+  }, [id]);
 
   const [mode, setMode] = useState("single");
 
@@ -49,11 +56,7 @@ export const MyBookDetailPage = ({ id }: Props) => {
           <ListIcon className="h-4 w-4" />
         </ToggleGroupItem>
       </ToggleGroup>
-      {mode === "single" ? (
-        <TiptapEditor id={id} memo={memo} />
-      ) : (
-        <NoteList bookId={id} />
-      )}
+      {mode === "single" ? <TiptapEditor id={id} memo={memo} /> : <NoteList />}
     </div>
   );
 };

@@ -7,17 +7,21 @@ import {
 } from "@/shared/ui/sheet";
 import { TiptapEditor } from "../../../my-books/write-review";
 import { Input } from "@/shared/ui/input";
-import { Note } from "../model/note.interface";
 import { formatDateTime } from "@/shared/utils";
+import { Note } from "@/entities/note";
 
-interface MemoSliderProps {
+interface SideNoteEditorProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  memo: Note;
+  note: Note;
 }
 
-export const SideNoteEditor = ({ open, setOpen, memo }: MemoSliderProps) => {
-  const { title, createdAt, content } = memo;
+export const SideNoteEditor = ({
+  open,
+  setOpen,
+  note,
+}: SideNoteEditorProps) => {
+  const { title, createdAt, content } = note;
 
   return (
     <Sheet open={open} onOpenChange={setOpen} modal={false}>

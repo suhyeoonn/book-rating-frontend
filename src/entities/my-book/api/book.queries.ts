@@ -1,5 +1,5 @@
 import { keepPreviousData, queryOptions } from "@tanstack/react-query";
-import { fetchBooks } from "./get-books";
+import { getBooks } from "./get-books";
 import { existBook, getBook } from "./get-book";
 
 export const bookQueries = {
@@ -8,7 +8,7 @@ export const bookQueries = {
   list: () =>
     queryOptions({
       queryKey: [...bookQueries.all(), "list"],
-      queryFn: () => fetchBooks(),
+      queryFn: () => getBooks(),
       placeholderData: keepPreviousData,
     }),
   detail: (id: number) =>

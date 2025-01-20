@@ -1,63 +1,65 @@
 import { cn } from "@/shared/utils";
-import { FileTextIcon, PlusIcon } from "lucide-react";
+import { FileIcon, FileTextIcon, PlusIcon } from "lucide-react";
 import React, { useState } from "react";
-import { createNote, Note, SideNoteEditor } from "@/features/note/create-note";
-
-const arr: Note[] = [
-  {
-    id: 1,
-    title: "a",
-    createdAt: "2024-12-22 3:00 AM",
-    content: "",
-  },
-  {
-    id: 2,
-    title: "b",
-    createdAt: "2024-12-22 3:00 AM",
-    content: "",
-  },
-];
+import { createNote, SideNoteEditor } from "@/features/note/create-note";
+import { useMyBookStore } from "@/entities/my-book/models/mybook.store";
+import { useQuery } from "@tanstack/react-query";
+import { Note, noteQueries } from "@/entities/note";
 
 const liStyle =
   "flex cursor-pointer items-center rounded-md p-1 hover:bg-muted/50";
 
-export const NoteList = ({ bookId }: { bookId: number }) => {
+export const NoteList = () => {
+  const bookId = useMyBookStore((state) => state.bookId);
+
+  const { data, isFetching } = useQuery(noteQueries.list(bookId));
+
   const [open, setOpen] = useState(false);
-  const [memo, setMemo] = useState<Note | null>(null);
+  const [note, setNote] = useState<Note | null>(null);
+
+  if (!bookId) return <></>;
 
   const handleCreateMemo = async () => {
     const result = await createNote({ bookId });
-    setMemo(result);
+    setNote(result);
     setOpen(true);
   };
 
-  const handleOpenSlider = (memo: Note) => {
-    setMemo(memo);
+  const handleOpenSlider = (note: Note) => {
+    setNote(note);
     setOpen(true);
   };
 
   return (
     <>
       <ul>
-        {arr.map((memo) => (
-          <li
-            key={memo.id}
-            className={liStyle}
-            onClick={() => handleOpenSlider(memo)}
-          >
-            <FileTextIcon className="mr-1 h-5 w-5 text-slate-500" />
-            {memo.title}
-          </li>
-        ))}
+        {data &&
+          data.map((note) => (
+            <li
+              key={note.id}
+              className={cn(liStyle, "font-semibold text-slate-600")}
+              onClick={() => handleOpenSlider(note)}
+            >
+              {note.content ? (
+                <FileTextIcon className="mr-1 h-5 w-5 text-slate-400" />
+              ) : (
+                <FileIcon className="mr-1 h-5 w-5 text-slate-400" />
+              )}
+              {note.title ? (
+                note.title
+              ) : (
+                <span className="text-slate-400">새 노트</span>
+              )}
+            </li>
+          ))}
         <li
-          className={cn(liStyle, "text-sm text-slate-500 hover:text-slate-700")}
+          className={cn(liStyle, "text-slate-500 hover:text-slate-700")}
           onClick={handleCreateMemo}
         >
-          <PlusIcon className="mr-1 h-5 w-5 text-slate-400" />
-          메모 추가
+          <PlusIcon className="mr-1 h-5 w-5 text-slate-400" />새 노트
         </li>
       </ul>
-      {memo && <SideNoteEditor open={open} setOpen={setOpen} memo={memo} />}
+      {note && <SideNoteEditor open={open} setOpen={setOpen} note={note} />}
     </>
   );
 };
