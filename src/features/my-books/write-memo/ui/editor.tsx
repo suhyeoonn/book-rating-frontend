@@ -1,15 +1,15 @@
 "use client";
 
-import { EditorContent } from "@tiptap/react";
 import { Button } from "@/shared/ui/button";
-import { useEditorConfig } from "../config/editor-config";
-import Toolbar from "./editor-toolbar";
 import { updateReview } from "@/entities/my-book/api";
-import { UpdateReviewParams } from "../model/types";
 import { toast } from "@/shared/lib/use-toast";
+import { UpdateReviewParams } from "@/entities/my-book/models/my-book.interface";
+import { useEditorConfig } from "@/entities/editor/config/editor-config";
+import Toolbar from "@/entities/editor/ui/editor-toolbar";
+import { EditorContent } from "@tiptap/react";
 
-export const TiptapEditor = ({ id, memo }: UpdateReviewParams) => {
-  const { editor } = useEditorConfig(memo);
+export const MemoEditor = ({ id, memo }: UpdateReviewParams) => {
+  const { editor } = useEditorConfig(memo); // TODO: useRef
 
   if (!editor) {
     return null;

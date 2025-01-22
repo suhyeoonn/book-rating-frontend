@@ -1,11 +1,11 @@
+import axiosClient from "@/shared/axios";
+import axios from "axios";
 import {
   UpdateReviewParams,
   UpdateStatusParams,
-} from "@/features/my-books/write-review/model/types";
-import axiosClient from "@/shared/axios";
-import axios from "axios";
+} from "../models/my-book.interface";
 
-export const updateReview = async ({ id, memo }: UpdateReviewParams) => {
+export const updateMemo = async ({ id, memo }: UpdateReviewParams) => {
   try {
     const res = await axiosClient.patch<UpdateReviewParams>(
       `my-books/${id}/memo`,

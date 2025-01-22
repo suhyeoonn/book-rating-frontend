@@ -1,7 +1,7 @@
 import { cn } from "@/shared/utils";
 import { FileIcon, FileTextIcon, PlusIcon } from "lucide-react";
 import React, { useState } from "react";
-import { createNote, SideNoteEditor } from "@/features/note/create-note";
+import { createNote, SideNoteEditor } from "@/features/note/write-note";
 import { useMyBookStore } from "@/entities/my-book/models/mybook.store";
 import { useQuery } from "@tanstack/react-query";
 import { Note, noteQueries } from "@/entities/note";
@@ -36,7 +36,7 @@ export const NoteList = () => {
         {data &&
           data.map((note) => (
             <li
-              key={note.id}
+              key={note._id}
               className={cn(liStyle, "font-semibold text-slate-600")}
               onClick={() => handleOpenSlider(note)}
             >

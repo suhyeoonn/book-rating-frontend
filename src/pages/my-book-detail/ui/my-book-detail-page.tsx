@@ -5,7 +5,7 @@ import { getBook } from "@/entities/my-book/api";
 import BookInfo from "./book-info";
 import { Breadcrumb } from "@/shared/ui/breadcrumb";
 import { menus } from "@/widgets/layout-header";
-import { TiptapEditor } from "@/features/my-books/write-review";
+import { MemoEditor } from "@/features/my-books/write-memo";
 import { RemoveButton } from "@/features/my-books/remove-book";
 import { useQuery } from "@tanstack/react-query";
 import { myBookApi } from "@/entities/my-book";
@@ -56,7 +56,7 @@ export const MyBookDetailPage = ({ id }: Props) => {
           <ListIcon className="h-4 w-4" />
         </ToggleGroupItem>
       </ToggleGroup>
-      {mode === "single" ? <TiptapEditor id={id} memo={memo} /> : <NoteList />}
+      {mode === "single" ? <MemoEditor id={id} memo={memo} /> : <NoteList />}
     </div>
   );
 };
