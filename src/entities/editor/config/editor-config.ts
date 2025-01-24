@@ -1,6 +1,7 @@
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
+import { useEffect } from "react";
 
 export const useEditorConfig = (content: string) => {
   const editor = useEditor({
@@ -20,5 +21,12 @@ export const useEditorConfig = (content: string) => {
     },
     content,
   });
+
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content);
+    }
+  }, [content, editor]);
+
   return { editor };
 };
