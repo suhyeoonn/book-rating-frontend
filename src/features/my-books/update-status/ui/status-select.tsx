@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select";
-import StatusBadge from "@/shared/ui/status";
+import { ReadingStatusBadge } from "@/entities/my-book";
 import { useSelect } from "@/shared/lib/use-select";
 import { useUpdateStatus } from "../api/use-update-status";
 
@@ -31,8 +31,8 @@ export const StatusSelect = ({ id, value }: { id: number; value: number }) => {
       <SelectContent>
         <SelectGroup>
           {Array.from({ length: 4 }).map((_, i) => (
-            <SelectItem key={i} value={i + ""}>
-              <StatusBadge status={i} />
+            <SelectItem key={i} value={i + ""} className="cursor-pointer">
+              <ReadingStatusBadge status={i} />
             </SelectItem>
           ))}
         </SelectGroup>

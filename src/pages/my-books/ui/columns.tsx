@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Book } from "../../../entities/my-book/models/data-table.interface";
 import StarGroup from "@/shared/ui/star-group";
-import StatusBadge from "../../../shared/ui/status";
+import { ReadingStatusBadge } from "@/entities/my-book";
 import dayjs from "dayjs";
 
 export const columns: ColumnDef<Book>[] = [
@@ -15,7 +15,7 @@ export const columns: ColumnDef<Book>[] = [
     accessorKey: "status",
     header: "상태",
     cell: ({ row }) => {
-      return <StatusBadge status={row.getValue("status")} />;
+      return <ReadingStatusBadge status={row.getValue("status")} />;
     },
   },
   {
