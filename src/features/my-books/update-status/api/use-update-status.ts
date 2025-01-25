@@ -8,11 +8,16 @@ export const useUpdateStatus = () => {
     mutationFn: updateStatus,
 
     onSuccess: (_, updatedItem) => {
-      queryClient.invalidateQueries({
-        queryKey: bookQueries.detail(updatedItem.id).queryKey,
-      });
+      // 캐시된 데이터 업데이트
+      queryClient.setQueryData(
+        bookQueries.detail(updatedItem.id).queryKey,
+        (oldData) => {
+          if (!oldData) return;
 
-      // 캐시된 리스트 데이터를 업데이트
+          return { ...oldData, status: updatedItem.status };
+        },
+      );
+
       queryClient.setQueryData(bookQueries.list().queryKey, (oldData) => {
         if (!oldData) return;
 
