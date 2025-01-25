@@ -1,12 +1,12 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Book } from "../../../entities/my-book/models/data-table.interface";
 import StarGroup from "@/shared/ui/star-group";
 import { ReadingStatusBadge } from "@/entities/my-book";
 import dayjs from "dayjs";
+import { MyBookListItem } from "@/entities/my-book/types";
 
-export const columns: ColumnDef<Book>[] = [
+export const columns: ColumnDef<MyBookListItem>[] = [
   {
     accessorKey: "book.title",
     header: "제목",

@@ -1,2 +1,2 @@
 export { ReadingStatus as Status } from "./models/reading-status.enum";
-export type { MyBook } from "./models/my-book.interface";
+export type { MyBook, MyBookListItem } from "./models/my-book.interface";

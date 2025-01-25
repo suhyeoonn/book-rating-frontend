@@ -11,6 +11,7 @@ import {
 import { ReactNode } from "react";
 import useApiError, { CustomAxiosError } from "./use-api-error";
 import { AxiosError } from "axios";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function QueryProvider({ children }: { children: ReactNode }) {
   // NOTE: Avoid useState when initializing the query client if you don't
@@ -37,6 +38,9 @@ export default function QueryProvider({ children }: { children: ReactNode }) {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }

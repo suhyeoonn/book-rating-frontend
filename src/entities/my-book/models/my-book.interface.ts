@@ -14,6 +14,16 @@ export interface MyBook {
   review: Review;
 }
 
+export interface MyBookListItem {
+  id: number;
+  status: ReadingStatus;
+  createdAt: string;
+  finishedAt: string;
+  updatedAt: string;
+  book: Book;
+  rating: number;
+}
+
 export interface ExistsResponse {
   exists: boolean;
 }

@@ -1,7 +1,7 @@
-import { Book } from "@/entities/my-book/models/data-table.interface";
 import axiosClient from "@/shared/axios";
+import { MyBookListItem } from "../models/my-book.interface";
 
-export const getBooks = async (): Promise<Book[]> => {
+export const getBooks = async (): Promise<MyBookListItem[]> => {
   try {
     const { data } = await axiosClient.get(`my-books`);
 
