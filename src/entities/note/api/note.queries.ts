@@ -1,5 +1,5 @@
 import { keepPreviousData, queryOptions } from "@tanstack/react-query";
-import { getNotes } from "./get-notes";
+import { noteApi } from "./note-api";
 
 export const noteQueries = {
   all: () => ["notes"] as const,
@@ -7,7 +7,7 @@ export const noteQueries = {
   list: (bookId: number | null) =>
     queryOptions({
       queryKey: [...noteQueries.all(), "list", bookId],
-      queryFn: () => getNotes(bookId as number),
+      queryFn: () => noteApi.getAll(bookId as number),
       placeholderData: keepPreviousData,
       enabled: !!bookId,
     }),

@@ -1,10 +1,10 @@
 import { cn } from "@/shared/utils";
 import { FileIcon, FileTextIcon, PlusIcon } from "lucide-react";
 import React, { useState } from "react";
-import { createNote, SideNoteEditor } from "@/features/note/write-note";
+import { SideNoteEditor } from "@/features/note/write-note";
 import { useMyBookStore } from "@/entities/my-book/models/mybook.store";
 import { useQuery } from "@tanstack/react-query";
-import { Note, noteQueries } from "@/entities/note";
+import { Note, noteApi, noteQueries } from "@/entities/note";
 
 const liStyle =
   "flex cursor-pointer items-center rounded-md p-1 hover:bg-muted/50";
@@ -20,8 +20,8 @@ export const NoteList = () => {
   if (!bookId) return <></>;
 
   const handleCreateMemo = async () => {
-    const result = await createNote({ bookId });
-    setNote(result);
+    const { data } = await noteApi.create(bookId);
+    setNote(data);
     setOpen(true);
   };
 

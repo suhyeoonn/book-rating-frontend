@@ -8,7 +8,7 @@ import {
 } from "./sheet";
 import { Input } from "@/shared/ui/input";
 import { formatDateTime } from "@/shared/utils";
-import { Note, patchNote } from "@/entities/note";
+import { Note, noteApi } from "@/entities/note";
 import { useEditorConfig } from "@/entities/editor/config/editor-config";
 import Toolbar from "@/entities/editor/ui/editor-toolbar";
 import { EditorContent } from "@tiptap/react";
@@ -30,6 +30,7 @@ export const SideNoteEditor = ({
 }: SideNoteEditorProps) => {
   console.log(note);
   const { title, handleChangeTitle, content, deleteNote } = useWriteNote(note);
+  const mutationDelete = deleteNote(() => setOpen(false));
 
   const { editor } = useEditorConfig(content);
 
@@ -40,7 +41,7 @@ export const SideNoteEditor = ({
   const handleSave = async () => {
     const content = editor.getJSON();
     try {
-      await patchNote({ id: note._id, title, content });
+      await noteApi.patch({ id: note._id, title, content });
       toast({ title: "저장되었습니다." });
     } catch (err) {
       toast({
@@ -52,7 +53,7 @@ export const SideNoteEditor = ({
   };
 
   const handleDelete = async () => {
-    deleteNote(() => setOpen(false));
+    mutationDelete.mutate(note._id);
   };
 
   return (
