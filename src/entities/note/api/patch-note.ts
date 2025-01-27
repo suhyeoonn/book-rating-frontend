@@ -7,7 +7,6 @@ export const patchNote = async ({ id, title, content }: PatchNoteRequest) => {
       title,
       content,
     });
-    console.log(res);
     if (res.status !== 200) {
       throw new Error(res.data);
     }

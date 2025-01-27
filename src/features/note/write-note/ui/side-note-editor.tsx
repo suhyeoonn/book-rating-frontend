@@ -29,7 +29,7 @@ export const SideNoteEditor = ({
   note,
 }: SideNoteEditorProps) => {
   console.log(note);
-  const { title, handleChangeTitle, content } = useWriteNote(note);
+  const { title, handleChangeTitle, content, deleteNote } = useWriteNote(note);
 
   const { editor } = useEditorConfig(content);
 
@@ -51,9 +51,13 @@ export const SideNoteEditor = ({
     }
   };
 
+  const handleDelete = async () => {
+    deleteNote(() => setOpen(false));
+  };
+
   return (
     <Sheet open={open} onOpenChange={setOpen} modal={false}>
-      <SheetContent className="flex flex-col overflow-auto">
+      <SheetContent className="flex flex-col">
         <div className="flex items-center justify-between p-2">
           <SheetClose>
             <Button
@@ -68,13 +72,13 @@ export const SideNoteEditor = ({
             variant="ghost"
             size="sm"
             className="h-5 p-0 text-xs text-destructive"
-            // onClick={() => setOpen(true)}
+            onClick={handleDelete}
           >
             <Trash2Icon className="h-4" />
             Delete
           </Button>
         </div>
-        <div className="p-6 pt-0">
+        <div className="overflow-auto p-6 pt-0">
           <SheetHeader className="mx-5 mb-8 space-y-4">
             <SheetTitle asChild>
               <Input
