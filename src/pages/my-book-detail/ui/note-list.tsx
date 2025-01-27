@@ -3,7 +3,7 @@ import { FileIcon, FileTextIcon, PlusIcon } from "lucide-react";
 import React, { useState } from "react";
 import { SideNoteEditor } from "@/features/note/write-note";
 import { useMyBookStore } from "@/entities/my-book/models/mybook.store";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Note, noteApi, noteQueries } from "@/entities/note";
 
 const liStyle =
@@ -19,8 +19,14 @@ export const NoteList = () => {
 
   if (!bookId) return <></>;
 
+  const queryClient = useQueryClient();
   const handleCreateMemo = async () => {
     const { data } = await noteApi.create(bookId);
+
+    queryClient.invalidateQueries({
+      queryKey: noteQueries.list(bookId).queryKey,
+    });
+
     setNote(data);
     setOpen(true);
   };
