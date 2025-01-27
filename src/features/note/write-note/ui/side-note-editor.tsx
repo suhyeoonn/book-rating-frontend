@@ -51,7 +51,7 @@ export const SideNoteEditor = ({
 
   return (
     <Sheet open={open} onOpenChange={setOpen} modal={false}>
-      <SheetContent className="flex flex-col space-y-4">
+      <SheetContent className="flex flex-col space-y-4 overflow-auto">
         <SheetHeader className="mb-8 space-y-4">
           <SheetTitle asChild>
             <Input

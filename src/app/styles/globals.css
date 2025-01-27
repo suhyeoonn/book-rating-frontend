@@ -33,7 +33,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background font-body text-foreground;
   }
 
   h1,
@@ -59,4 +59,11 @@
   ul {
     @apply px-5 py-2;
   }
+}
+
+.prose
+  :where(blockquote p:first-of-type):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::before {
+  content: none;
 }
