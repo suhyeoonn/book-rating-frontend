@@ -5,7 +5,6 @@ import TagGroup from "../../../shared/ui/tag-group";
 import { formatDateTime, validateSrc } from "@/shared/utils";
 import dayjs from "dayjs";
 import { MyBook } from "@/entities/my-book/types";
-import BookContent from "./book-content";
 import { ReactNode } from "react";
 import { StatusSelect } from "@/features/my-books/update-status";
 import { UpdateRating } from "@/features/review/update-rating";
@@ -16,6 +15,8 @@ import React from "react";
 import { ReviewComment } from "@/features/review/update-comment";
 import { useQuery } from "@tanstack/react-query";
 import { reviewApi } from "@/entities/review";
+import Link from "next/link";
+import { menus } from "@/widgets/layout-header";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const { id, book, status, createdAt, updatedAt, finishedAt } = myBook;
@@ -24,14 +25,14 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className="flex justify-center gap-16 text-slate-500">
+    <article className="flex justify-center gap-16 text-slate-500">
       <div className="flex flex-col">
         <Image
           src={validateSrc(book.thumbnail)}
           alt={book.title}
           width={150}
           height={150}
-          className="max-h-52 object-contain p-1 shadow-sm"
+          className="max-h-52 border border-gray-100 object-contain p-1 shadow-lg"
         />
         <div className="mt-8 flex items-center">
           {!review?.rating ? (
@@ -47,25 +48,18 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
         </div>
       </div>
 
-      <div className="flex-1">
-        <div className="flex justify-between"></div>
-        <h1 className="text-2xl font-bold text-slate-900 lg:text-3xl">
-          {book.title}
-        </h1>
-        <div className="mt-2 grid grid-cols-2 gap-4 text-sm sm:grid-cols-1">
+      <section className="flex-1">
+        <h2 className="text-2xl font-bold text-slate-900 underline-offset-4 hover:underline lg:text-3xl">
+          <Link href={`${menus[0].href}/${book.id}`}>{book.title}</Link>
+        </h2>
+        <dl className="mt-4 grid grid-cols-1 gap-4 text-sm">
+          <DetailItem label="상태">
+            <StatusSelect id={id} value={status} />
+          </DetailItem>
           <DetailItem label="저자">{book.authors}</DetailItem>
           <DetailItem label="출판">
             {book.publisher} | {dayjs(book.datetime).format("YYYY-MM-DD")}
           </DetailItem>
-          <BookContent book={book} />
-          <div className="flex items-center gap-1">
-            <span className="pr-1 font-semibold">상태</span>
-            <StatusSelect id={id} value={status} />
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="pr-1 font-semibold">한줄평</span>
-            <ReviewComment review={review} />
-          </div>
           <DetailItem label="추가일">{formatDateTime(createdAt)}</DetailItem>
           <DetailItem label="마지막 수정일">
             {formatDateTime(updatedAt)}
@@ -73,13 +67,16 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           <DetailItem label="완료일">
             {formatDateTime(finishedAt) || "-"}
           </DetailItem>
-        </div>
+          <DetailItem label="한줄평">
+            <ReviewComment review={review} />
+          </DetailItem>
+        </dl>
 
         {/* <div className="flex flex-wrap gap-2 text-sm text-muted-foreground mt-2">
           <TagGroup tags={myBook.tags} />
         </div> */}
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }
 
@@ -89,9 +86,9 @@ interface DetailItemProps {
 }
 const DetailItem = ({ label, children }: DetailItemProps) => {
   return (
-    <p>
-      <span className="pr-3 font-semibold">{label}</span>
-      {children}
-    </p>
+    <div className="grid grid-cols-1 items-center sm:grid-cols-9">
+      <dt className="col-span-2 font-semibold">{label}</dt>
+      <dd className="col-span-7">{children}</dd>
+    </div>
   );
 };
