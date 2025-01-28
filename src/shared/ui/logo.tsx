@@ -11,11 +11,11 @@ const dancingScript = Dancing_Script({
 const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href="/">
-      <div
+      <h1
         className={cx(dancingScript.className, className, "text-3xl font-bold")}
       >
         Book Rating
-      </div>
+      </h1>
     </Link>
   );
 };

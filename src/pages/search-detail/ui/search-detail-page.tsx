@@ -16,16 +16,16 @@ export const SearchDetailPage = ({ book }: { book: Book }) => {
   return (
     <div className="container mx-auto flex flex-col gap-6 px-4 py-8 md:w-3/4 md:px-6 lg:w-1/2">
       <Breadcrumb links={[menus[0]]} pathName={book.title} />
-      <div className="flex justify-center gap-16 text-slate-500">
-        <div className="flex flex-col items-center">
+      <article className="flex justify-center gap-16 text-slate-500">
+        <section className="flex flex-col items-center">
           <Image
             src={validateSrc(book.thumbnail)}
             alt={book.title}
             width={150}
             height={150}
-            className="max-h-52 object-contain p-1"
+            className="max-h-52 border border-gray-100 object-contain p-1 shadow-lg"
           />
-          <div className="flex flex-grow items-center">
+          <div className="mt-4 flex flex-grow items-center">
             <AddMyListButton
               book={{
                 ...book,
@@ -33,8 +33,8 @@ export const SearchDetailPage = ({ book }: { book: Book }) => {
               }}
             />
           </div>
-        </div>
-        <div className="flex-1">
+        </section>
+        <section className="flex-1">
           <div className="flex justify-between">
             <div className="flex items-center gap-1">
               <StarGroup rating={book.averageRating} />
@@ -45,8 +45,8 @@ export const SearchDetailPage = ({ book }: { book: Book }) => {
           <div className="mt-2 flex flex-wrap gap-2 text-sm text-muted-foreground">
             <TagGroup tags={book.tags} />
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
       <ReviewList selectedBook={book} />
     </div>
   );
