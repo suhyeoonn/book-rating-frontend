@@ -9,10 +9,9 @@ class NoteApi {
     this.#client = noteServiceAxiosClient;
   }
 
-  async create(bookId: number) {
+  async create(myBookId: number) {
     return this.#client.post(this.#BASE_URL, {
-      bookId,
-      userId: 2, // TODO: jwt로 파악
+      bookId: myBookId,
     });
   }
 

@@ -6,3 +6,19 @@ export const noteServiceAxiosClient = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+// 모든 요청에 JWT 추가
+noteServiceAxiosClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("jwt");
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);

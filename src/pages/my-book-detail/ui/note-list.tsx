@@ -10,21 +10,21 @@ const liStyle =
   "flex cursor-pointer items-center rounded-md p-1 hover:bg-muted/50";
 
 export const NoteList = () => {
-  const bookId = useMyBookStore((state) => state.bookId);
+  const myBookId = useMyBookStore((state) => state.bookId);
 
-  const { data, isFetching } = useQuery(noteQueries.list(bookId));
+  const { data, isFetching } = useQuery(noteQueries.list(myBookId));
 
   const [open, setOpen] = useState(false);
   const [note, setNote] = useState<Note | null>(null);
 
-  if (!bookId) return <></>;
+  if (!myBookId) return <></>;
 
   const queryClient = useQueryClient();
   const handleCreateMemo = async () => {
-    const { data } = await noteApi.create(bookId);
+    const { data } = await noteApi.create(myBookId);
 
     queryClient.invalidateQueries({
-      queryKey: noteQueries.list(bookId).queryKey,
+      queryKey: noteQueries.list(myBookId).queryKey,
     });
 
     setNote(data);
