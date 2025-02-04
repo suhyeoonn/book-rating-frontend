@@ -31,6 +31,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     fetchMe();
   }, []);
 
+  // TODO:
   useLayoutEffect(() => {
     const authInterceptor = axiosClient.interceptors.request.use((config) => {
       config.headers.Authorization = token && `Bearer ${token}`;
