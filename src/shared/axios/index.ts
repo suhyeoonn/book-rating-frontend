@@ -1,16 +1,28 @@
 import axios from "axios";
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "";
-
-// TODO: CORS 해결하려고 두 가지 분리한 것 같은데 시간 지나니 헷갈린다
-// apiBaseUrl가 필요한가?
 const axiosClient = axios.create({
-  baseURL: "/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true, //인증 정보(쿠키) 포함
 });
+
+// 모든 요청에 JWT 추가
+// TODO: public, private 분리
+axiosClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("jwt");
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
 
 export const ssrAxiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,

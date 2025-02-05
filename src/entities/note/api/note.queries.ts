@@ -1,5 +1,5 @@
 import { keepPreviousData, queryOptions } from "@tanstack/react-query";
-import { noteApi } from "./note-api";
+import { noteApi } from "./note.api";
 
 export const noteQueries = {
   all: () => ["notes"] as const,

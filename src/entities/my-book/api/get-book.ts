@@ -5,10 +5,7 @@ import axios from "axios";
 
 export const getBook = async (id: number): Promise<MyBook> => {
   try {
-    const token = localStorage.getItem("jwt");
-    const { data } = await axios.get(`http://localhost:8080/my-books/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const { data } = await axiosClient.get(`/my-books/${id}`);
 
     return data;
   } catch (err) {

@@ -15,22 +15,17 @@ export const postBook = async ({
   publisher,
 }: AddBook) => {
   try {
-    const token = localStorage.getItem("jwt");
-    const res = await axios.post<Book>(
-      `http://localhost:8080/my-books`,
-      {
-        isbn: getIsbn(isbn),
-        title,
-        thumbnail,
-        tags: [],
-        contents,
-        datetime,
-        url,
-        authors,
-        publisher,
-      },
-      { headers: { Authorization: `Bearer ${token}` } },
-    );
+    const res = await axiosClient.post<Book>(`http://localhost:8080/my-books`, {
+      isbn: getIsbn(isbn),
+      title,
+      thumbnail,
+      tags: [],
+      contents,
+      datetime,
+      url,
+      authors,
+      publisher,
+    });
     return res.data;
   } catch (err) {
     if (axios.isAxiosError(err) && err.response) {
