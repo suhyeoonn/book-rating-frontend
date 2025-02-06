@@ -16,28 +16,5 @@ export const useWriteNote = (note: Note) => {
     setTitle(value);
   };
 
-  const queryClient = useQueryClient();
-
-  const deleteNote = (closeDialog: () => void) => {
-    return useMutation({
-      mutationFn: (id: string) => noteApi.delete(id),
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: noteQueries.list(note.bookId).queryKey,
-        });
-        toast({ title: "삭제되었습니다." });
-        closeDialog();
-      },
-      onError: (err) => {
-        toast({
-          title: "문제가 발생했습니다.",
-          description: "잠시 후 다시 시도하세요",
-          variant: "destructive",
-        });
-        console.error(err);
-      },
-    });
-  };
-
-  return { title, handleChangeTitle, content: note.content, deleteNote };
+  return { title, handleChangeTitle, content: note.content };
 };

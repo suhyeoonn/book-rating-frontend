@@ -16,6 +16,7 @@ import { Button } from "@/shared/ui/button";
 import { useWriteNote } from "../model/use-write-note";
 import { toast } from "@/shared/lib/use-toast";
 import { ChevronsRight, Trash2Icon } from "lucide-react";
+import { useDeleteNote } from "../model/use-delete-note";
 
 interface SideNoteEditorProps {
   open: boolean;
@@ -29,8 +30,8 @@ export const SideNoteEditor = ({
   note,
 }: SideNoteEditorProps) => {
   console.log(note);
-  const { title, handleChangeTitle, content, deleteNote } = useWriteNote(note);
-  const mutationDelete = deleteNote(() => setOpen(false));
+  const { title, handleChangeTitle, content } = useWriteNote(note);
+  const mutationDelete = useDeleteNote(note.bookId, () => setOpen(false));
 
   const { editor } = useEditorConfig(content);
 

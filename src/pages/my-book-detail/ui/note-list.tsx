@@ -10,6 +10,8 @@ const liStyle =
   "flex cursor-pointer items-center rounded-md p-1 hover:bg-muted/50";
 
 export const NoteList = () => {
+  const queryClient = useQueryClient();
+
   const myBookId = useMyBookStore((state) => state.bookId);
 
   const { data, isFetching } = useQuery(noteQueries.list(myBookId));
@@ -19,7 +21,6 @@ export const NoteList = () => {
 
   if (!myBookId) return <></>;
 
-  const queryClient = useQueryClient();
   const handleCreateMemo = async () => {
     const { data } = await noteApi.create(myBookId);
 
