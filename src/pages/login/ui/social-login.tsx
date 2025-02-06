@@ -32,7 +32,7 @@ export const SocialLogin = () => {
         />
         <span className="ml-2.5 font-semibold">구글 로그인</span>
       </Button>
-      <Button
+      {/* <Button
         variant="outline"
         className="w-full bg-[#03c75a] text-white hover:bg-[#03c75a] hover:text-white"
         onClick={() => handleSocialLogin("naver")}
@@ -45,7 +45,7 @@ export const SocialLogin = () => {
         />
 
         <span className="font-semibold">네이버 로그인</span>
-      </Button>
+      </Button> */}
     </div>
   );
 };
