@@ -19,13 +19,7 @@ export const register = async (user: IRegisterUser) => {
 
 export const me = async () => {
   try {
-    const token = localStorage.getItem("jwt");
-    const { data } = await axios.get<AuthMeResponse>(
-      `http://localhost:8080/auth/me`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
-    );
+    const { data } = await axiosClient.get<AuthMeResponse>(`/auth/me`);
     return data;
   } catch (err) {
     console.error(err);

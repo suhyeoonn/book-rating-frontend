@@ -9,7 +9,7 @@ export const SocialLogin = () => {
   const params = useSearchParams();
 
   const handleSocialLogin = (provider: string) => {
-    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/oauth2/authorization/${provider}`;
   };
 
   return (
