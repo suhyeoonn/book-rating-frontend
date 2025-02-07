@@ -19,7 +19,7 @@ export default function BookCard({ book }: { book: Book }) {
           className="max-h-52 w-full bg-gradient-to-b from-gray-50 to-gray-100 object-contain p-1 py-2"
         />
         <div className="flex-1 space-y-1 bg-white p-3">
-          <h3 className="mb-2 truncate text-sm font-medium text-slate-900">
+          <h3 className="mb-2 truncate text-sm font-normal text-slate-900">
             {book.title}
           </h3>
           {/* <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">

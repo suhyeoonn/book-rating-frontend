@@ -23,7 +23,7 @@ const Auth = () => {
               <AvatarImage src={"/placeholder-user.jpg"} alt="User" />
               <AvatarFallback>{username}</AvatarFallback>
             </Avatar>
-            <span className="border-r pr-3 text-sm font-medium text-slate-900">
+            <span className="border-r pr-3 text-sm font-normal text-slate-900">
               {username}
             </span>
           </div>
@@ -31,7 +31,7 @@ const Auth = () => {
             size="sm"
             variant="ghost"
             onClick={logout}
-            className="font-medium text-slate-900"
+            className="font-normal text-slate-900"
           >
             Logout
           </Button>
@@ -41,7 +41,7 @@ const Auth = () => {
           <Button
             variant="ghost"
             asChild
-            className="font-semibold text-slate-900"
+            className="font-medium text-slate-900"
           >
             <Link href="/login">
               <div className="flex items-center gap-1">
