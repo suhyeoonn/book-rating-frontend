@@ -7,7 +7,7 @@ export const Footer = () => {
     <footer className="container flex w-full justify-between border-t border-gray-100 py-4 text-sm text-slate-500">
       <p>© 2024 Book Rating. All rights reserved.</p>
       <div className="flex items-center">
-        <div className="flex gap-5 text-sm">
+        <div className="flex gap-5 text-xs">
           <Link href="/privacy-policy" className="pr-5">
             개인정보 처리방침
           </Link>
