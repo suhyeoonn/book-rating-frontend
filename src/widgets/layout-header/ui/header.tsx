@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from "./auth";
-import Logo from "@/shared/ui/logo";
+import Logo from "@/widgets/layout-header/ui/logo";
 import Nav from "./navbar";
 
 export const Header = () => {

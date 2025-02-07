@@ -1,4 +1,4 @@
-import Logo from "@/shared/ui/logo";
+import Logo from "@/widgets/layout-header/ui/logo";
 import Link from "next/link";
 import { LoginForm } from "./login-form";
 import { Button } from "@/shared/ui/button";

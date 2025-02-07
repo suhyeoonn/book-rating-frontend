@@ -1,4 +1,4 @@
-import Logo from "@/shared/ui/logo";
+import Logo from "@/widgets/layout-header/ui/logo";
 import Link from "next/link";
 import { RegisterForm } from "./register-form";
 
