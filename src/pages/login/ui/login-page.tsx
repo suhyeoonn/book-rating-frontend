@@ -1,14 +1,16 @@
-import Logo from "@/widgets/layout-header/ui/logo";
 import Link from "next/link";
 import { LoginForm } from "./login-form";
-import { Button } from "@/shared/ui/button";
-import Image from "next/image";
 import { SocialLogin } from "./social-login";
+import { LogoFull } from "@/widgets/logo";
 
 export function LoginPage() {
   return (
     <div className="flex w-[400px] flex-col justify-center border-0 p-5">
-      <Logo className="text-center" />
+      <Link href="/">
+        <h1>
+          <LogoFull className="mx-auto" />
+        </h1>
+      </Link>
       <LoginForm />
       <SocialLogin />
       <p className="mt-10 text-center text-sm/6 text-gray-500">
