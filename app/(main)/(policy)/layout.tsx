@@ -2,9 +2,7 @@ import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="privacy-policy rounded-xl bg-gray-50 p-10 my-2 shadow-lg">
-      {children}
-    </div>
+    <div className="privacy-policy my-2 rounded-xl border p-10">{children}</div>
   );
 };
 

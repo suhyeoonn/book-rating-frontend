@@ -29,13 +29,14 @@ const page = () => {
         <br />
         서비스 이용 중 발생한 데이터 손실이나 장애에 대해 책임을 지지 않습니다.
       </p>
+
       <h3>5. 개인정보 보호</h3>
       <p>
         사용자의 개인정보는 개인정보 처리방침에 따라 처리됩니다. 자세한 내용은
         <Link
           href="/privacy-policy"
           target="_blank"
-          className="text-blue-700 font-bold underline px-1"
+          className="px-1 font-bold text-blue-700 underline"
         >
           [개인정보 처리방침]
         </Link>
