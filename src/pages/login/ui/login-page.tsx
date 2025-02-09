@@ -7,13 +7,13 @@ export function LoginPage() {
   return (
     <div className="flex w-[400px] flex-col justify-center border-0 p-5">
       <Link href="/">
-        <h1>
+        <h1 className="mb-10">
           <LogoFull className="mx-auto" />
         </h1>
       </Link>
-      <LoginForm />
+      {/* <LoginForm /> */}
       <SocialLogin />
-      <p className="mt-10 text-center text-sm/6 text-gray-500">
+      {/* <p className="mt-10 text-center text-sm/6 text-gray-500">
         회원이 아니세요?{" "}
         <Link
           href="/register"
@@ -21,7 +21,7 @@ export function LoginPage() {
         >
           지금 가입하기
         </Link>
-      </p>
+      </p> */}
     </div>
   );
 }

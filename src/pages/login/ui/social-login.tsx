@@ -14,11 +14,11 @@ export const SocialLogin = () => {
 
   return (
     <div className="mt-4 flex flex-col gap-4">
-      <div className="flex items-center gap-4 text-sm text-gray-600">
+      {/* <div className="flex items-center gap-4 text-sm text-gray-600">
         <div className="flex-1 border-t border-gray-300"></div>
         <span>or</span>
         <div className="flex-1 border-t border-gray-300"></div>
-      </div>
+      </div> */}
       <Button
         variant="outline"
         className="w-full"
