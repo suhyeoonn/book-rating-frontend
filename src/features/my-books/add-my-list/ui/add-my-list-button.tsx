@@ -54,9 +54,9 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
       <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
         <Button disabled={!user || isInList} onClick={handleAddToList}>
           {isInList ? (
-            <CheckSquare className="opacity-70 w-6 h-6 pr-2" />
+            <CheckSquare className="h-6 w-6 pr-2 opacity-70" />
           ) : (
-            <HeartFilledIcon className="opacity-70 w-6 h-6 pr-2" />
+            <HeartFilledIcon className="h-6 w-6 pr-2 opacity-70" />
           )}
           {isInList ? "내 리스트에 추가됨" : "내 리스트에 추가"}
         </Button>

@@ -6,7 +6,7 @@ import Nav from "./navbar";
 export const Header = () => {
   return (
     <header className="container flex h-16 w-full items-center justify-between border-b">
-      <div className="flex h-full items-center gap-10">
+      <div className="flex h-full items-center gap-5 md:gap-10">
         <Logo />
         <Nav />
       </div>

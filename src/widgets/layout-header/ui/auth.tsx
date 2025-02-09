@@ -23,7 +23,7 @@ const Auth = () => {
               <AvatarImage src={"/placeholder-user.jpg"} alt="User" />
               <AvatarFallback>{username}</AvatarFallback>
             </Avatar>
-            <span className="border-r pr-3 text-sm font-normal text-slate-900">
+            <span className="hidden border-r pr-3 text-sm font-normal text-slate-900 md:block">
               {username}
             </span>
           </div>

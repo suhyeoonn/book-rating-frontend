@@ -14,10 +14,10 @@ import TagGroup from "@/shared/ui/tag-group";
 
 export const SearchDetailPage = ({ book }: { book: Book }) => {
   return (
-    <div className="container mx-auto flex flex-col gap-6 px-4 py-8 md:w-3/4 md:px-6 lg:w-1/2">
+    <div className="container mx-auto flex flex-col gap-6 px-4 py-0 md:w-3/4 md:px-6 md:py-8 lg:w-1/2">
       <Breadcrumb links={[menus[0]]} pathName={book.title} />
-      <article className="flex justify-center gap-16 text-slate-500">
-        <section className="flex flex-col items-center">
+      <article className="grid grid-cols-1 justify-center gap-16 text-slate-500 md:grid-cols-4">
+        <section className="col-span-1 flex flex-col items-center">
           <Image
             src={validateSrc(book.thumbnail)}
             alt={book.title}
@@ -34,7 +34,7 @@ export const SearchDetailPage = ({ book }: { book: Book }) => {
             />
           </div>
         </section>
-        <section className="flex-1">
+        <section className="flex-1 md:col-span-3">
           <div className="flex justify-between">
             <div className="flex items-center gap-1">
               <StarGroup rating={book.averageRating} />

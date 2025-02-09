@@ -17,8 +17,10 @@ const ReviewList = ({ selectedBook }: Props) => {
 
   return (
     <>
-      <div className="flex flex-col border-t p-4">
-        <h3 className="mb-4 text-sm font-medium text-slate-800">Reviews</h3>
+      <div className="flex flex-col border-t py-4">
+        <h3 className="mb-4 text-base font-medium text-slate-800 md:text-lg">
+          Reviews
+        </h3>
         <div className="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 mb-4 flex-grow space-y-4 overflow-auto pr-4">
           {data?.reviews.length === 0 ? (
             <div className="text-sm italic text-gray-500">

@@ -9,10 +9,10 @@ const Logo = ({ className }: { className?: string }) => {
       <h1>
         <LogoFull className="ml-2 mt-2 hidden lg:block" />
         <Image
-          className="ml-2 mt-2 block lg:hidden"
+          className="ml-4 mt-2 block lg:hidden"
           src="/logo/logo-icon.png"
           alt="Book Rating"
-          width={45}
+          width={40}
           height={40}
         />
       </h1>

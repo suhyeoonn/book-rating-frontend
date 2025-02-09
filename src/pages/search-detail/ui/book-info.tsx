@@ -8,7 +8,7 @@ export default function BookInfo({ selectedBook }: { selectedBook: Book }) {
       <h2 className="mt-4 text-2xl font-bold text-slate-900 lg:text-3xl">
         {selectedBook.title}
       </h2>
-      <dl className="mt-2 grid grid-cols-2 gap-2 text-sm sm:grid-cols-1">
+      <dl className="mt-2 grid grid-cols-1 gap-2 text-sm">
         <div className="grid grid-cols-12">
           <dt className="pr-1 font-semibold">저자</dt>
           <dd className="col-span-11">{selectedBook.authors}</dd>
