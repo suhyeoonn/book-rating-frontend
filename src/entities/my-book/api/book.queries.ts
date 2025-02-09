@@ -16,10 +16,9 @@ export const bookQueries = {
       queryKey: [...bookQueries.all(), id],
       queryFn: () => getBook(id),
     }),
-  exists: (isbn: string, userId: number | undefined) =>
+  exists: (isbn: string) =>
     queryOptions({
-      queryKey: [...bookQueries.all(), isbn, userId],
+      queryKey: [...bookQueries.all(), isbn],
       queryFn: () => existBook(isbn),
-      enabled: !!userId,
     }),
 };

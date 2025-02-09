@@ -1,5 +1,4 @@
 import { myBookApi } from "@/entities/my-book";
-import { postBook } from "@/entities/my-book/api";
 import { useAuth } from "@/shared/contexts/AuthContext";
 import { AddBook } from "@/shared/types";
 import { AlertDialog } from "@/shared/ui/alert-dialog";
@@ -22,7 +21,7 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   const [isInList, setIsInList] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const { data } = useQuery(myBookApi.bookQueries.exists(book.isbn, user?.id));
+  const { data } = useQuery(myBookApi.bookQueries.exists(book.isbn));
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
