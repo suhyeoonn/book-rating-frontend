@@ -9,11 +9,11 @@ export function HomePage() {
       {/* Hero Section */}
       <section className="relative flex h-[60vh] w-full items-center justify-center">
         <div className="text-center">
-          <h2 className="mb-4 text-3xl font-bold text-[#333] md:text-5xl">
+          <h2 className="mb-4 text-3xl font-bold text-[#333] sm:text-5xl">
             {/* 책을 읽고, 나만의 기록을 남겨보세요. */}
             책, 그 너머를 향해
           </h2>
-          <p className="mb-8 text-2xl font-medium text-[#888]">
+          <p className="mb-8 text-lg font-medium text-[#888] sm:text-2xl">
             읽고 기록하고 나누세요.
             <br />
             당신의 기록이 또 다른 독서의 시작이 됩니다.
@@ -30,7 +30,7 @@ export function HomePage() {
       <section className="flex w-full justify-center bg-gradient-to-t from-primary/10 to-primary/5 py-16">
         <div className="container px-4 sm:px-0">
           <h2 className="mb-8 text-3xl font-bold">지금, 이 책</h2>
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <BookList />
           </div>
         </div>
