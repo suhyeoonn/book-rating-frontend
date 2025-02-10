@@ -14,7 +14,7 @@ import TagGroup from "@/shared/ui/tag-group";
 
 export const SearchDetailPage = ({ book }: { book: Book }) => {
   return (
-    <div className="container mx-auto flex flex-col gap-6 px-4 py-0 md:w-3/4 md:px-6 md:py-8 lg:w-1/2">
+    <div className="container mx-auto flex flex-col gap-6 px-4 py-4 md:w-3/4 md:px-6 md:py-8 lg:w-1/2">
       <Breadcrumb links={[menus[0]]} pathName={book.title} />
       <article className="grid grid-cols-1 justify-center gap-16 text-slate-500 md:grid-cols-4">
         <section className="col-span-1 flex flex-col items-center">
