@@ -13,7 +13,7 @@ export function HomePage() {
             {/* 책을 읽고, 나만의 기록을 남겨보세요. */}
             책, 그 너머를 향해
           </h2>
-          <p className="text-[#888 mb-8 text-2xl font-medium">
+          <p className="mb-8 text-2xl font-medium text-[#888]">
             읽고 기록하고 나누세요.
             <br />
             당신의 기록이 또 다른 독서의 시작이 됩니다.
