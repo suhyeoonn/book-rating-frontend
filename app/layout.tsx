@@ -1,6 +1,5 @@
 export const metadata = {
   title: {
-    template: "%s | Book Rating",
     default: "Book Rating",
   },
 };
