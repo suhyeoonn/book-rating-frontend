@@ -1,28 +1,32 @@
 import { Badge } from "@/shared/ui/badge";
 import { cn } from "@/shared/utils";
 import React from "react";
-import { ReadingStatus } from "../models/reading-status.enum";
+import { readingStatusList, ReadingStatusEnum } from "../models/reading-status";
 
 const variants = {
-  [ReadingStatus.READY]: {
+  [ReadingStatusEnum.READY]: {
     style: "bg-yellow-50 text-yellow-800 ring-1 ring-inset ring-yellow-600/20",
-    label: "읽기 전",
+    label: readingStatusList[0].label,
   },
-  [ReadingStatus.READING]: {
+  [ReadingStatusEnum.READING]: {
     style: "bg-pink-50 text-pink-700 ring-1 ring-inset ring-pink-600/10",
-    label: "읽는 중",
+    label: readingStatusList[1].label,
   },
-  [ReadingStatus.STOPPED]: {
+  [ReadingStatusEnum.STOPPED]: {
     style: "bg-gray-50 text-gray-600 ring-1 ring-inset ring-gray-500/10",
-    label: "중단",
+    label: readingStatusList[2].label,
   },
-  [ReadingStatus.FINISHED]: {
+  [ReadingStatusEnum.FINISHED]: {
     style: "bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/10",
-    label: "완료",
+    label: readingStatusList[3].label,
   },
 };
 
-export const ReadingStatusBadge = ({ status }: { status: ReadingStatus }) => {
+export const ReadingStatusBadge = ({
+  status,
+}: {
+  status: ReadingStatusEnum;
+}) => {
   const { style, label } = variants[status];
   return <Badge className={cn(style)}>{label}</Badge>;
 };

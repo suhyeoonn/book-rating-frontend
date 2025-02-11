@@ -1,3 +1,5 @@
+"use client";
+
 import { myBookApi } from "@/entities/my-book";
 import { useAuth } from "@/shared/contexts/AuthContext";
 import { AddBook } from "@/shared/types";
@@ -5,11 +7,12 @@ import { AlertDialog } from "@/shared/ui/alert-dialog";
 import { Button } from "@/shared/ui/button";
 import Tooltip from "@/shared/ui/tooltip";
 import { menus } from "@/widgets/layout-header";
-import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CheckSquare } from "lucide-react";
+import { BookmarkCheckIcon, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { ReadStatusSelect } from "./read-status-select";
+import { readingStatusList } from "@/entities/my-book/types";
 
 interface AddMyListButtonProps {
   book: AddBook;
@@ -20,6 +23,7 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
 
   const [isInList, setIsInList] = useState(false);
   const [open, setOpen] = useState(false);
+  const [status, setStatus] = useState(readingStatusList[0].id);
 
   const { data } = useQuery(myBookApi.bookQueries.exists(book.isbn));
 
@@ -51,14 +55,35 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   return (
     <>
       <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
-        <Button disabled={!user || isInList} onClick={handleAddToList}>
-          {isInList ? (
-            <CheckSquare className="h-6 w-6 pr-2 opacity-70" />
+        <div className="flex items-stretch">
+          {!isInList ? (
+            <Button
+              disabled={!user || isInList}
+              onClick={handleAddToList}
+              className="rounded-r-none"
+            >
+              <Plus className="h-6 w-6 pr-2 opacity-70" />
+              읽기 전
+            </Button>
           ) : (
-            <HeartFilledIcon className="h-6 w-6 pr-2 opacity-70" />
+            <Button
+              className="w-24 cursor-default rounded-r-none border-primary font-semibold text-foreground hover:bg-inherit"
+              variant="outline"
+              aria-readonly
+            >
+              {/* <BookmarkCheckIcon className="h-6 w-6 pr-2 text-gray-700" />
+              중단 */}
+              <BookmarkCheckIcon className="h-6 w-6 pr-2 text-green-700" />
+              완료
+              {/* <BookmarkCheckIcon className="h-6 w-6 pr-2 text-red-700" />
+              읽는 중 */}
+            </Button>
           )}
-          {isInList ? "내 리스트에 추가됨" : "내 리스트에 추가"}
-        </Button>
+          <ReadStatusSelect
+            status={status}
+            onChange={(status) => setStatus(status)}
+          />
+        </div>
       </Tooltip>
       <AlertDialog
         open={open}

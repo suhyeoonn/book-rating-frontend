@@ -1,10 +1,10 @@
 import { Book } from "@/entities/book/types";
-import { ReadingStatus } from "./reading-status.enum";
+import { ReadingStatusEnum } from "./reading-status";
 import { Review } from "@/entities/review/types";
 
 export interface MyBook {
   id: number;
-  status: ReadingStatus;
+  status: ReadingStatusEnum;
   authors: string;
   memo: string;
   createdAt: string;
@@ -16,7 +16,7 @@ export interface MyBook {
 
 export interface MyBookListItem {
   id: number;
-  status: ReadingStatus;
+  status: ReadingStatusEnum;
   createdAt: string;
   finishedAt: string;
   updatedAt: string;

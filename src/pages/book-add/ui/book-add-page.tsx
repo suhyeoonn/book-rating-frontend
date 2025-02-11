@@ -39,7 +39,7 @@ export const BookAddPage = () => {
   });
 
   return (
-    <div className="w-full md:w-3/4 lg:w-1/2">
+    <div className="w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
       <DebounceInput
         changeCallback={handleSearchBook}
         placeholder="제목, ISBN, 출판사, 저자를 검색해 보세요"
