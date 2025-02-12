@@ -12,20 +12,23 @@ const liStyle =
 export const NoteList = () => {
   const queryClient = useQueryClient();
 
-  const myBookId = useMyBookStore((state) => state.bookId);
+  const bookInfo = useMyBookStore((state) => state);
 
-  const { data, isFetching } = useQuery(noteQueries.list(myBookId));
+  const { data, isFetching } = useQuery(noteQueries.list(bookInfo.myBookId));
 
   const [open, setOpen] = useState(false);
   const [note, setNote] = useState<Note | null>(null);
 
-  if (!myBookId) return <></>;
+  if (!bookInfo) return <></>;
 
   const handleCreateMemo = async () => {
-    const { data } = await noteApi.create(myBookId);
+    const { bookId, myBookId } = bookInfo;
+    if (!bookId || !myBookId) return;
+
+    const { data } = await noteApi.create({ myBookId, bookId });
 
     queryClient.invalidateQueries({
-      queryKey: noteQueries.list(myBookId).queryKey,
+      queryKey: noteQueries.list(bookInfo.myBookId).queryKey,
     });
 
     setNote(data);

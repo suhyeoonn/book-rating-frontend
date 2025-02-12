@@ -25,8 +25,10 @@ export const MyBookDetailPage = ({ id }: Props) => {
   const setBookId = useMyBookStore((state) => state.setBookId);
 
   useEffect(() => {
-    setBookId(id);
-  }, [id]);
+    if (!myBook) return;
+
+    setBookId({ myBookId: id, bookId: myBook?.book.id });
+  }, [myBook]);
 
   const [mode, setMode] = useState("single");
 

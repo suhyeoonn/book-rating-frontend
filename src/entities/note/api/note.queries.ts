@@ -4,16 +4,11 @@ import { noteApi } from "./note.api";
 export const noteQueries = {
   all: () => ["notes"] as const,
 
-  list: (bookId: number | null) =>
+  list: (myBookId: number | null) =>
     queryOptions({
-      queryKey: [...noteQueries.all(), "list", bookId],
-      queryFn: () => noteApi.getAll(bookId as number),
+      queryKey: [...noteQueries.all(), "list", myBookId],
+      queryFn: () => noteApi.getAll(myBookId as number),
       placeholderData: keepPreviousData,
-      enabled: !!bookId,
+      enabled: !!myBookId,
     }),
-  // detail: (id: number) =>
-  //   queryOptions({
-  //     queryKey: [...noteQueries.all(), id],
-  //     queryFn: () => getBook(id),
-  //   }),
 };

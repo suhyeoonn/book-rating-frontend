@@ -9,15 +9,13 @@ class NoteApi {
     this.#client = noteServiceAxiosClient;
   }
 
-  async create(myBookId: number) {
-    return this.#client.post(this.#BASE_URL, {
-      bookId: myBookId,
-    });
+  async create(payload: { bookId: number; myBookId: number }) {
+    return this.#client.post(this.#BASE_URL, payload);
   }
 
-  async getAll(bookId: number): Promise<Note[]> {
+  async getAll(myBookId: number): Promise<Note[]> {
     const { data } = await this.#client.get(
-      `${this.#BASE_URL}?bookId=${bookId}`,
+      `${this.#BASE_URL}?myBookId=${myBookId}`,
     );
     return data;
   }
