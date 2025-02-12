@@ -25,6 +25,7 @@ export interface MyBookListItem {
 }
 
 export interface BookStatusResponse {
+  myBookId: number;
   status: ReadingStatusEnum;
 }
 

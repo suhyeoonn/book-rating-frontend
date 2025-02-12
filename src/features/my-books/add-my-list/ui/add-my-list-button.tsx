@@ -14,6 +14,7 @@ import React, { useEffect, useState } from "react";
 import { ReadStatusSelect } from "./read-status-select";
 import { ReadingStatusEnum } from "@/entities/my-book/types";
 import { readingStatusConfig } from "@/entities/my-book/models/reading-status";
+import { updateStatus } from "@/entities/my-book/api";
 
 interface AddMyListButtonProps {
   book: AddBook;
@@ -24,20 +25,23 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
 
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("-1");
+  const [myBookId, setMyBookId] = useState<number | null>();
 
   const { data } = useQuery(myBookApi.bookQueries.status(book.isbn, user));
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: myBookApi.postBook,
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: myBookApi.bookQueries.all() });
+      setMyBookId(data.id);
     },
   });
 
   useEffect(() => {
     if (data) {
       setStatus(data.status + "");
+      setMyBookId(data.myBookId);
     }
   }, [data]);
 
@@ -51,35 +55,44 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
     router.push(menus[1].href);
   };
 
+  const changeHandler = async (status: string) => {
+    if (!myBookId) {
+      await handleAddToList(); // TODO: 추가 시 status 전달
+      return;
+    }
+    await updateStatus({ id: myBookId, status: +status });
+    queryClient.invalidateQueries({
+      queryKey: myBookApi.bookQueries.status(book.isbn, user).queryKey,
+    });
+  };
+
   return (
     <>
       <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
         <div className="flex items-stretch">
           {status === "-1" ? (
-            <Button
-              disabled={!user}
-              onClick={handleAddToList}
-              className="rounded-r-none"
-            >
+            <Button disabled={!user} onClick={handleAddToList} className="w-32">
               <Plus className="h-6 w-6 pr-2 opacity-70" />
               읽기 전
             </Button>
           ) : (
-            <Button
-              className="w-24 cursor-default rounded-r-none border-primary font-semibold text-foreground hover:bg-inherit"
-              variant="outline"
-              aria-readonly
-            >
-              <BookmarkCheckIcon
-                className={`h-6 w-6 pr-2 ${readingStatusConfig[status]?.color}`}
+            <>
+              <Button
+                className="w-24 cursor-default rounded-r-none border-primary font-semibold text-foreground hover:bg-inherit"
+                variant="outline"
+                aria-readonly
+              >
+                <BookmarkCheckIcon
+                  className={`h-6 w-6 pr-2 ${readingStatusConfig[status]?.color}`}
+                />
+                {readingStatusConfig[status]?.text || "알 수 없음"}
+              </Button>
+              <ReadStatusSelect
+                status={status || ReadingStatusEnum.READY + ""}
+                onChange={(status) => changeHandler(status)}
               />
-              {readingStatusConfig[status]?.text || "알 수 없음"}
-            </Button>
+            </>
           )}
-          <ReadStatusSelect
-            status={status || ReadingStatusEnum.READY + ""}
-            onChange={(status) => setStatus(status)}
-          />
         </div>
       </Tooltip>
       <AlertDialog
