@@ -20,11 +20,15 @@ interface AddMyListButtonProps {
   book: AddBook;
 }
 
+type NoneReadingStatus = -1;
+
 export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   const { user } = useAuth();
 
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState<ReadingStatusEnum>(-1);
+  const [status, setStatus] = useState<ReadingStatusEnum | NoneReadingStatus>(
+    -1,
+  );
   const [myBookId, setMyBookId] = useState<number | null>();
 
   const { data } = useQuery(myBookApi.bookQueries.status(book.isbn, user));
@@ -66,13 +70,11 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
     });
   };
 
-  console.log(status);
-
   return (
     <>
       <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
         <div className="flex items-stretch">
-          {status === ReadingStatusEnum.NONE ? (
+          {status === -1 ? (
             <Button disabled={!user} onClick={handleAddToList} className="w-32">
               <Plus className="h-6 w-6 pr-2 opacity-70" />
               읽기 전
