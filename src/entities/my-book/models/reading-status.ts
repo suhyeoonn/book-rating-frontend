@@ -3,6 +3,7 @@ export enum ReadingStatusEnum {
   READING,
   STOPPED,
   FINISHED,
+  NONE = -1,
 }
 
 export const readingStatusConfig = {
