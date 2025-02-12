@@ -24,8 +24,8 @@ export interface MyBookListItem {
   rating: number;
 }
 
-export interface ExistsResponse {
-  exists: boolean;
+export interface BookStatusResponse {
+  status: ReadingStatusEnum;
 }
 
 export interface UpdateReviewParams {

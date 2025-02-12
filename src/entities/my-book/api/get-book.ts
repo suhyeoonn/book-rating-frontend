@@ -1,6 +1,6 @@
 import axiosClient from "@/shared/axios";
 import { MyBook } from "../types";
-import { ExistsResponse } from "../models/my-book.interface";
+import { BookStatusResponse } from "../models/my-book.interface";
 import axios from "axios";
 
 export const getBook = async (id: number): Promise<MyBook> => {
@@ -13,7 +13,9 @@ export const getBook = async (id: number): Promise<MyBook> => {
   }
 };
 
-export const existBook = async (isbn: string): Promise<ExistsResponse> => {
+export const getBookStatus = async (
+  isbn: string,
+): Promise<BookStatusResponse> => {
   try {
     const { data } = await axiosClient.get(`my-books/exists?isbn=${isbn}`);
 

@@ -23,3 +23,10 @@ export const readingStatusList = [
     label: "완료",
   },
 ];
+
+export const readingStatusConfig = {
+  0: { text: readingStatusList[0].label, color: "text-yellow-700" },
+  1: { text: readingStatusList[1].label, color: "text-red-700" },
+  2: { text: readingStatusList[2].label, color: "text-gray-700" },
+  3: { text: readingStatusList[3].label, color: "text-green-700" },
+} as const;

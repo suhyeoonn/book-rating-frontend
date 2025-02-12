@@ -12,7 +12,8 @@ import { BookmarkCheckIcon, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ReadStatusSelect } from "./read-status-select";
-import { readingStatusList } from "@/entities/my-book/types";
+import { ReadingStatusEnum } from "@/entities/my-book/types";
+import { readingStatusConfig } from "@/entities/my-book/models/reading-status";
 
 interface AddMyListButtonProps {
   book: AddBook;
@@ -21,11 +22,10 @@ interface AddMyListButtonProps {
 export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   const { user } = useAuth();
 
-  const [isInList, setIsInList] = useState(false);
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState(readingStatusList[0].id);
+  const [status, setStatus] = useState("-1");
 
-  const { data } = useQuery(myBookApi.bookQueries.exists(book.isbn));
+  const { data } = useQuery(myBookApi.bookQueries.status(book.isbn, user));
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -36,14 +36,13 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   });
 
   useEffect(() => {
-    if (data?.exists) {
-      setIsInList(true);
+    if (data) {
+      setStatus(data.status + "");
     }
   }, [data]);
 
   const handleAddToList = async () => {
     mutation.mutate(book);
-    setIsInList(true);
     setOpen(true);
   };
 
@@ -56,9 +55,9 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
     <>
       <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
         <div className="flex items-stretch">
-          {!isInList ? (
+          {status === "-1" ? (
             <Button
-              disabled={!user || isInList}
+              disabled={!user}
               onClick={handleAddToList}
               className="rounded-r-none"
             >
@@ -71,16 +70,14 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
               variant="outline"
               aria-readonly
             >
-              {/* <BookmarkCheckIcon className="h-6 w-6 pr-2 text-gray-700" />
-              중단 */}
-              <BookmarkCheckIcon className="h-6 w-6 pr-2 text-green-700" />
-              완료
-              {/* <BookmarkCheckIcon className="h-6 w-6 pr-2 text-red-700" />
-              읽는 중 */}
+              <BookmarkCheckIcon
+                className={`h-6 w-6 pr-2 ${readingStatusConfig[status]?.color}`}
+              />
+              {readingStatusConfig[status]?.text || "알 수 없음"}
             </Button>
           )}
           <ReadStatusSelect
-            status={status}
+            status={status || ReadingStatusEnum.READY + ""}
             onChange={(status) => setStatus(status)}
           />
         </div>

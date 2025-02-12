@@ -75,7 +75,7 @@ describe("Search > 상세 페이지", () => {
     (useAuth as jest.Mock).mockReturnValue({
       user: { id: 1, name: "Test User" },
     });
-    (myBookApi.bookQueries.exists as jest.Mock).mockReturnValue({
+    (myBookApi.bookQueries.status as jest.Mock).mockReturnValue({
       queryKey: ["userBooks", "12345", 1],
       queryFn: jest.fn().mockResolvedValue({ exists: false }),
       enabled: true,
@@ -97,7 +97,7 @@ describe("Search > 상세 페이지", () => {
     (useAuth as jest.Mock).mockReturnValue({
       user: { id: 1, name: "Test User" },
     });
-    (myBookApi.bookQueries.exists as jest.Mock).mockReturnValue({
+    (myBookApi.bookQueries.status as jest.Mock).mockReturnValue({
       queryKey: ["userBooks", "12345", 1],
       queryFn: jest.fn().mockResolvedValue({ exists: true }),
       enabled: true,

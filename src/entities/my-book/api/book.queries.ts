@@ -1,6 +1,7 @@
 import { keepPreviousData, queryOptions } from "@tanstack/react-query";
 import { getBooks } from "./get-books";
-import { existBook, getBook } from "./get-book";
+import { getBookStatus, getBook } from "./get-book";
+import { IUser } from "@/shared/types";
 
 export const bookQueries = {
   all: () => ["userBooks"] as const,
@@ -16,9 +17,10 @@ export const bookQueries = {
       queryKey: [...bookQueries.all(), id],
       queryFn: () => getBook(id),
     }),
-  exists: (isbn: string) =>
+  status: (isbn: string, user: IUser | null) =>
     queryOptions({
       queryKey: [...bookQueries.all(), isbn],
-      queryFn: () => existBook(isbn),
+      queryFn: () => getBookStatus(isbn),
+      enabled: !!user,
     }),
 };
