@@ -10,12 +10,12 @@ import {
   DropdownMenuTrigger,
 } from "@/shared/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { readingStatusList } from "@/entities/my-book/types";
+import { ReadingStatusEnum, readingStatusList } from "@/entities/my-book/types";
 import { ReadingStatusBadge } from "@/entities/my-book";
 import { useAuth } from "@/shared/contexts/AuthContext";
 
 interface ReadStatusSelectProps {
-  status: string;
+  status: ReadingStatusEnum;
   onChange: (status: string) => void;
 }
 
@@ -31,11 +31,11 @@ export function ReadStatusSelect({ status, onChange }: ReadStatusSelectProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40">
         <DropdownMenuRadioGroup
-          value={status}
+          value={status + ""}
           onValueChange={(status) => onChange(status)}
         >
           {readingStatusList
-            .filter((item) => status !== item.id + "")
+            .filter((item) => status !== item.id)
             .map((item) => (
               <DropdownMenuRadioItem
                 key={item.id}

@@ -24,7 +24,7 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   const { user } = useAuth();
 
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState("-1");
+  const [status, setStatus] = useState<ReadingStatusEnum | null>(null);
   const [myBookId, setMyBookId] = useState<number | null>();
 
   const { data } = useQuery(myBookApi.bookQueries.status(book.isbn, user));
@@ -40,7 +40,7 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
 
   useEffect(() => {
     if (data) {
-      setStatus(data.status + "");
+      setStatus(data.status);
       setMyBookId(data.myBookId);
     }
   }, [data]);
@@ -70,7 +70,7 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
     <>
       <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
         <div className="flex items-stretch">
-          {status === "-1" ? (
+          {status === null ? (
             <Button disabled={!user} onClick={handleAddToList} className="w-32">
               <Plus className="h-6 w-6 pr-2 opacity-70" />
               읽기 전
@@ -85,10 +85,10 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
                 <BookmarkCheckIcon
                   className={`h-6 w-6 pr-2 ${readingStatusConfig[status]?.color}`}
                 />
-                {readingStatusConfig[status]?.text || "알 수 없음"}
+                {readingStatusConfig[status]?.label || "알 수 없음"}
               </Button>
               <ReadStatusSelect
-                status={status || ReadingStatusEnum.READY + ""}
+                status={status ?? ReadingStatusEnum.READY}
                 onChange={(status) => changeHandler(status)}
               />
             </>

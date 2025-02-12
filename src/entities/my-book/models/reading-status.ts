@@ -5,28 +5,28 @@ export enum ReadingStatusEnum {
   FINISHED,
 }
 
+export const readingStatusConfig = {
+  0: { label: "읽기 전", color: "text-yellow-700" },
+  1: { label: "읽는 중", color: "text-red-700" },
+  2: { label: "중단", color: "text-gray-700" },
+  3: { label: "완료", color: "text-green-700" },
+} as const;
+
 export const readingStatusList = [
   {
     id: ReadingStatusEnum.READY,
-    label: "읽기 전",
+    label: readingStatusConfig[0].label,
   },
   {
     id: ReadingStatusEnum.READING,
-    label: "읽는 중",
+    label: readingStatusConfig[1].label,
   },
   {
     id: ReadingStatusEnum.STOPPED,
-    label: "중단",
+    label: readingStatusConfig[2].label,
   },
   {
     id: ReadingStatusEnum.FINISHED,
-    label: "완료",
+    label: readingStatusConfig[3].label,
   },
 ];
-
-export const readingStatusConfig = {
-  0: { text: readingStatusList[0].label, color: "text-yellow-700" },
-  1: { text: readingStatusList[1].label, color: "text-red-700" },
-  2: { text: readingStatusList[2].label, color: "text-gray-700" },
-  3: { text: readingStatusList[3].label, color: "text-green-700" },
-} as const;
