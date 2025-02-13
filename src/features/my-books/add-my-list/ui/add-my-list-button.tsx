@@ -73,29 +73,38 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   return (
     <>
       <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
-        <div className="flex items-stretch">
-          {status === -1 ? (
-            <Button disabled={!user} onClick={handleAddToList} className="w-32">
-              <Plus className="h-6 w-6 pr-2 opacity-70" />
-              읽기 전
-            </Button>
-          ) : (
-            <>
+        <div className="flex flex-col">
+          <div className="flex items-stretch">
+            {status === -1 ? (
               <Button
-                className="w-24 cursor-default rounded-r-none border-primary font-semibold text-foreground hover:bg-inherit"
-                variant="outline"
-                aria-readonly
+                disabled={!user}
+                onClick={handleAddToList}
+                className="w-32"
               >
-                <BookmarkCheckIcon
-                  className={`h-6 w-6 pr-2 ${readingStatusConfig[status]?.color}`}
-                />
-                {readingStatusConfig[status]?.label || "알 수 없음"}
+                <Plus className="h-6 w-6 pr-2 opacity-70" />
+                읽기 전
               </Button>
-              <ReadStatusSelect
-                status={status ?? ReadingStatusEnum.READY}
-                onChange={(status) => changeHandler(status)}
-              />
-            </>
+            ) : (
+              <>
+                <Button
+                  className="w-24 cursor-default rounded-r-none border-primary font-semibold text-foreground hover:bg-inherit"
+                  variant="outline"
+                  aria-readonly
+                >
+                  <BookmarkCheckIcon
+                    className={`h-6 w-6 pr-2 ${readingStatusConfig[status]?.color}`}
+                  />
+                  {readingStatusConfig[status]?.label || "알 수 없음"}
+                </Button>
+                <ReadStatusSelect
+                  status={status ?? ReadingStatusEnum.READY}
+                  onChange={(status) => changeHandler(status)}
+                />
+              </>
+            )}
+          </div>
+          {!user && (
+            <p className="w-full text-center text-xs">로그인이 필요합니다</p>
           )}
         </div>
       </Tooltip>
