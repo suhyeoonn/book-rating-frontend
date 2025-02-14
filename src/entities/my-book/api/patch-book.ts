@@ -5,6 +5,7 @@ import {
   UpdateStatusParams,
 } from "../models/my-book.interface";
 
+// TODO: API 제거
 export const updateMemo = async ({ id, memo }: UpdateReviewParams) => {
   try {
     const res = await axiosClient.patch<UpdateReviewParams>(

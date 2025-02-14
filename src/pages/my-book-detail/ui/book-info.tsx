@@ -8,7 +8,6 @@ import { MyBook } from "@/entities/my-book/types";
 import { ReactNode } from "react";
 import { StatusSelect } from "@/features/my-books/update-status";
 import React from "react";
-import { ReviewComment } from "@/features/review/update-comment";
 import { useQuery } from "@tanstack/react-query";
 import { reviewApi } from "@/entities/review";
 import Link from "next/link";
@@ -59,9 +58,6 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           </DetailItem>
           <DetailItem label="완료일">
             {formatDateTime(finishedAt) || "-"}
-          </DetailItem>
-          <DetailItem label="한줄평">
-            <ReviewComment review={review} />
           </DetailItem>
         </dl>
 

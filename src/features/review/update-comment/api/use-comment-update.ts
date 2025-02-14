@@ -8,6 +8,7 @@ interface UpdateCommentProps {
   successCallback: () => void;
 }
 
+// TODO: invalidateQueries 필요한지 확인
 export const useUpdateComment = ({
   reviewId,
   successCallback,

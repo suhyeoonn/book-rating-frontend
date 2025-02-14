@@ -12,7 +12,7 @@ import React, { ChangeEvent } from "react";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import { useAddReview } from "../api/use-add-review";
-import { RatingSelect } from "../../update-rating";
+import { RatingSelect } from "../../set-rating";
 
 const defaultContent: Record<number, string> = {
   0: "",
@@ -23,6 +23,7 @@ const defaultContent: Record<number, string> = {
   5: "정말 감명 깊게 읽었어요. 최고의 책이에요!",
 };
 
+// TODO: 제거
 export const RatingWithReviewModal = ({
   open,
   setOpen,

@@ -1,30 +1,42 @@
 "use client";
 
 import { Button } from "@/shared/ui/button";
-import { updateReview } from "@/entities/my-book/api";
 import { toast } from "@/shared/lib/use-toast";
-import { UpdateReviewParams } from "@/entities/my-book/models/my-book.interface";
-import { useEditorConfig } from "@/entities/editor/config/editor-config";
-import Toolbar from "@/entities/editor/ui/editor-toolbar";
-import { EditorContent } from "@tiptap/react";
+import { Textarea } from "@/shared/ui/textarea";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { reviewApi } from "@/entities/review";
+import { updateComment } from "@/entities/review/api";
 
-export const MemoEditor = ({ id, memo }: UpdateReviewParams) => {
-  const { editor } = useEditorConfig(memo); // TODO: useRef
+export interface MemoEditorProps {
+  id: number;
+}
 
-  if (!editor) {
-    return null;
-  }
+export const MemoEditor = ({ id }: MemoEditorProps) => {
+  const { data: review } = useQuery(reviewApi.reviewQueries.get(id));
+
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    setValue(review?.comment || "");
+  }, [review]);
+
+  const onChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(target.value);
+  };
 
   const handleSave = async () => {
-    const content = editor.getHTML();
-    await updateReview({ id, memo: content });
+    if (!review?.id) {
+      alert("먼저 별점을 등록해 주세요.");
+      return;
+    }
+    await updateComment({ reviewId: review.id, comment: value });
     toast({ title: "저장되었습니다." });
   };
 
   return (
     <div>
-      <Toolbar editor={editor} />
-      <EditorContent editor={editor} />
+      <Textarea value={value} onChange={onChange} />
       <div className="flex justify-end border-t p-6">
         <Button onClick={handleSave} size={"lg"}>
           저장
