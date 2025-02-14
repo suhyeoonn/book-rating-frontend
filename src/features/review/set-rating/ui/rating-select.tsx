@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -21,6 +21,10 @@ export const RatingSelect = ({
   const { selectedValue, handleChange } = useSelect(
     rating > 0 ? rating + "" : "",
   );
+
+  useEffect(() => {
+    handleChange(rating + "");
+  }, [rating]);
 
   return (
     <Select

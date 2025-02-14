@@ -7,7 +7,7 @@ export const reviewQueries = {
     queryOptions({
       queryKey: [...reviewQueries.all(), id],
       queryFn: async () => {
-        if (!id) return null;
+        if (!id) return;
         return await getReview(id);
       },
     }),

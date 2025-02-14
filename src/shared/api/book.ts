@@ -1,8 +1,6 @@
 import axios from "axios";
-import { AddBook } from "../types";
 import { Book } from "@/entities/book/types";
-import axiosClient, { ssrAxiosClient } from "../axios";
-import { getIsbn } from "../utils";
+import axiosClient from "../axios";
 
 export const patchBook = async (book: Book) => {
   try {

@@ -7,22 +7,19 @@ import dayjs from "dayjs";
 import { MyBook } from "@/entities/my-book/types";
 import { ReactNode } from "react";
 import { StatusSelect } from "@/features/my-books/update-status";
-import { UpdateRating } from "@/features/review/update-rating";
-import { RatingWithReviewModal } from "@/features/review/add-review";
-import { Select, SelectTrigger } from "@/shared/ui/select";
-import StarGroup from "@/shared/ui/star-group";
 import React from "react";
 import { ReviewComment } from "@/features/review/update-comment";
 import { useQuery } from "@tanstack/react-query";
 import { reviewApi } from "@/entities/review";
 import Link from "next/link";
 import { menus } from "@/widgets/layout-header";
+import { RatingSelect, useSetRating } from "@/features/review/set-rating";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const { id, book, status, createdAt, updatedAt, finishedAt } = myBook;
 
   const { data: review } = useQuery(reviewApi.reviewQueries.get(id));
-  const [open, setOpen] = React.useState(false);
+  const { changeRating } = useSetRating({ review, myBookId: id });
 
   return (
     <article className="flex justify-center gap-16 text-slate-500">
@@ -35,16 +32,12 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           className="max-h-52 border border-gray-100 object-contain p-1 shadow-lg"
         />
         <div className="mt-8 flex items-center">
-          {!review?.rating ? (
-            <Select open={open} onOpenChange={() => setOpen(true)}>
-              <SelectTrigger>
-                <StarGroup rating={0} />
-              </SelectTrigger>
-            </Select>
-          ) : (
-            <UpdateRating rating={review.rating} reviewId={review.id} />
-          )}
-          <RatingWithReviewModal open={open} setOpen={setOpen} id={id} />
+          <RatingSelect
+            rating={review?.rating || 0}
+            changeCallback={changeRating}
+          />
+          {/* TODO: 제거 */}
+          {/*<RatingWithReviewModal open={open} setOpen={setOpen} id={id} /> */}
         </div>
       </div>
 
