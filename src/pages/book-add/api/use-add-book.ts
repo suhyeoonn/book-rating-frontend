@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { KakaoResponseBook } from "../model/kakao-interface";
 import { myBookApi } from "@/entities/my-book";
 import { Book } from "@/entities/book/types";
+import { ReadingStatusEnum } from "@/entities/my-book/types";
 
 interface Props {
   onSuccess: (book: Book) => void;
@@ -10,7 +11,7 @@ interface Props {
 }
 export const useAddBook = (mutateCallback: Props) => {
   const [selectedBook, setSelectedBook] = useState<KakaoResponseBook | null>(
-    null
+    null,
   );
 
   const queryClient = useQueryClient();
@@ -27,8 +28,12 @@ export const useAddBook = (mutateCallback: Props) => {
     if (!selectedBook) return;
     try {
       mutation.mutate(
-        { ...selectedBook, authors: selectedBook.authors.join(", ") },
-        mutateCallback
+        {
+          ...selectedBook,
+          authors: selectedBook.authors.join(", "),
+          status: ReadingStatusEnum.READY,
+        },
+        mutateCallback,
       );
     } catch (err) {
       if (err instanceof Error) alert(err.message);

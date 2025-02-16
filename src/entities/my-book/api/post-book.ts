@@ -3,28 +3,16 @@ import axiosClient from "@/shared/axios";
 import { AddBook } from "@/shared/types";
 import { getIsbn } from "@/shared/utils";
 import axios from "axios";
+import { ReadingStatusEnum } from "../types";
 
-export const postBook = async ({
-  isbn,
-  title,
-  thumbnail,
-  contents,
-  datetime,
-  url,
-  authors,
-  publisher,
-}: AddBook) => {
+export const postBook = async (
+  book: AddBook & { status: ReadingStatusEnum },
+) => {
   try {
     const res = await axiosClient.post<Book>(`/my-books`, {
-      isbn: getIsbn(isbn),
-      title,
-      thumbnail,
+      ...book,
+      isbn: getIsbn(book.isbn),
       tags: [],
-      contents,
-      datetime,
-      url,
-      authors,
-      publisher,
     });
     return res.data;
   } catch (err) {

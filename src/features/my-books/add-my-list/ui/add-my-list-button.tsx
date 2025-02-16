@@ -6,10 +6,8 @@ import { AddBook } from "@/shared/types";
 import { AlertDialog } from "@/shared/ui/alert-dialog";
 import { Button } from "@/shared/ui/button";
 import Tooltip from "@/shared/ui/tooltip";
-import { menus } from "@/widgets/layout-header";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BookmarkCheckIcon, Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ReadStatusSelect } from "./read-status-select";
 import { ReadingStatusEnum } from "@/entities/my-book/types";
@@ -49,19 +47,17 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
     }
   }, [data]);
 
-  const handleAddToList = async () => {
-    mutation.mutate(book);
+  const handleAddToList = async (status: ReadingStatusEnum) => {
+    mutation.mutate({
+      ...book,
+      status,
+    });
     setOpen(true);
-  };
-
-  const router = useRouter();
-  const handleAction = () => {
-    router.push(menus[1].href);
   };
 
   const changeHandler = async (status: string) => {
     if (!myBookId) {
-      await handleAddToList(); // TODO: 추가 시 status 전달
+      await handleAddToList(+status);
       return;
     }
     await updateStatus({ id: myBookId, status: +status });
@@ -76,14 +72,16 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
         <div className="flex flex-col">
           <div className="flex items-stretch">
             {status === -1 ? (
-              <Button
-                disabled={!user}
-                onClick={handleAddToList}
-                className="w-32"
-              >
-                <Plus className="h-6 w-6 pr-2 opacity-70" />
-                읽기 전
-              </Button>
+              <>
+                <Button
+                  disabled={!user}
+                  onClick={() => handleAddToList(ReadingStatusEnum.READY)}
+                  className="w-32 rounded-r-none"
+                >
+                  <Plus className="h-6 w-6 pr-2 opacity-70" />
+                  읽고싶어요
+                </Button>
+              </>
             ) : (
               <>
                 <Button
@@ -96,25 +94,26 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
                   />
                   {readingStatusConfig[status]?.label || "알 수 없음"}
                 </Button>
-                <ReadStatusSelect
-                  status={status ?? ReadingStatusEnum.READY}
-                  onChange={(status) => changeHandler(status)}
-                />
               </>
             )}
+            <ReadStatusSelect
+              status={status === -1 ? ReadingStatusEnum.READY : status}
+              onChange={(status) => changeHandler(status)}
+            />
           </div>
           {!user && (
             <p className="w-full text-center text-xs">로그인이 필요합니다</p>
           )}
         </div>
       </Tooltip>
-      <AlertDialog
+      {/* 상태 변경해서 책 등록 시 모달이 표시되면 에러가 발생하여 주석 처리 */}
+      {/* <AlertDialog
         open={open}
         handleOpen={() => setOpen(false)}
         handleAction={handleAction}
         title="추가된 책을 확인할까요?"
         description="My Books 페이지로 이동합니다."
-      />
+      /> */}
     </>
   );
 };
