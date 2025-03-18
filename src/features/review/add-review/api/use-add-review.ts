@@ -17,8 +17,8 @@ export const useAddReview = (myBookId: number) => {
     },
   });
 
-  const addReview = (content: string, rating: number) => {
-    mutation.mutate({ myBookId, content, rating });
+  const addReview = (content: string, rating: number, levels: string[]) => {
+    mutation.mutate({ myBookId, content, rating, levels });
   };
 
   return { mutation, addReview };
