@@ -4,10 +4,11 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Book Rating",
-    default: "Book Rating",
+    template: "%s - IT Book Rating",
+    default: "IT Book Rating",
   },
-  description: "책 리뷰와 별점을 기록하며 독서의 즐거움을 더하세요:)",
+  description:
+    "개발자를 위한 IT·프로그래밍 서적 평가 플랫폼. 리뷰, 별점, 추천 레벨을 통해 자신에게 맞는 책을 찾아보세요!",
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => {

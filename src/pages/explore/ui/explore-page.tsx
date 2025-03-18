@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import BookList from "@/pages/search/ui/book-list";
+import BookList from "@/pages/explore/ui/book-list";
 import { SearchInput } from "@/features/book-search";
 
-export function SearchPage() {
+export function ExplorePage() {
   const [keyword, setKeyword] = useState("");
   return (
     <>
