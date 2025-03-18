@@ -5,7 +5,7 @@ import TagGroup from "../../../shared/ui/tag-group";
 import { formatDateTime, validateSrc } from "@/shared/utils";
 import dayjs from "dayjs";
 import { MyBook } from "@/entities/my-book/types";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { StatusSelect } from "@/features/my-books/update-status";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -13,12 +13,17 @@ import { reviewApi } from "@/entities/review";
 import Link from "next/link";
 import { menus } from "@/widgets/layout-header";
 import { RatingSelect, useSetRating } from "@/features/review/set-rating";
+import { RatingWithReviewModal } from "@/features/review/add-review";
+import { Button } from "@/shared/ui/button";
+import { Plus } from "lucide-react";
 
 export default function BookInfo({ book: myBook }: { book: MyBook }) {
   const { id, book, status, createdAt, updatedAt, finishedAt } = myBook;
 
   const { data: review } = useQuery(reviewApi.reviewQueries.get(id));
   const { changeRating } = useSetRating({ review, myBookId: id });
+
+  const [open, setOpen] = useState(false);
 
   return (
     <article className="flex justify-center gap-16 text-slate-500">
@@ -31,12 +36,18 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
           className="max-h-52 border border-gray-100 object-contain p-1 shadow-lg"
         />
         <div className="mt-8 flex items-center">
-          <RatingSelect
-            rating={review?.rating || 0}
-            changeCallback={changeRating}
-          />
-          {/* TODO: 제거 */}
-          {/*<RatingWithReviewModal open={open} setOpen={setOpen} id={id} /> */}
+          {!review?.rating ? (
+            <Button className="w-full" onClick={() => setOpen(true)}>
+              <Plus className="size-5" />
+              후기 등록하기
+            </Button>
+          ) : (
+            <RatingSelect
+              rating={review?.rating || 0}
+              changeCallback={changeRating}
+            />
+          )}
+          <RatingWithReviewModal open={open} setOpen={setOpen} myBookId={id} />
         </div>
       </div>
 

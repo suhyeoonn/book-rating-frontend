@@ -27,16 +27,16 @@ const defaultContent: Record<number, string> = {
 export const RatingWithReviewModal = ({
   open,
   setOpen,
-  id,
+  myBookId,
 }: {
   open: boolean;
   setOpen: (state: boolean) => void;
-  id: number;
+  myBookId: number;
 }) => {
   const [rating, setRating] = React.useState(0);
   const [comment, setComment] = React.useState("");
 
-  const { addReview } = useAddReview(id);
+  const { addReview } = useAddReview(myBookId);
 
   const handleSave = () => {
     addReview(comment, rating);

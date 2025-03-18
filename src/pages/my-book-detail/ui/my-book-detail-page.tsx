@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import BookInfo from "./book-info";
 import { Breadcrumb } from "@/shared/ui/breadcrumb";
 import { menus } from "@/widgets/layout-header";
@@ -8,9 +8,7 @@ import { MemoEditor } from "@/features/my-books/write-memo";
 import { RemoveButton } from "@/features/my-books/remove-book";
 import { useQuery } from "@tanstack/react-query";
 import { myBookApi } from "@/entities/my-book";
-import { ToggleGroup, ToggleGroupItem } from "@/shared/ui/toggle-group";
-import { ListIcon, MessageCircleMore, TextCursorInputIcon } from "lucide-react";
-import { NoteList } from "./note-list";
+import { Lock } from "lucide-react";
 import { useMyBookStore } from "@/entities/my-book/models/mybook.store";
 
 interface Props {
@@ -29,8 +27,6 @@ export const MyBookDetailPage = ({ id }: Props) => {
     setBookId({ myBookId: id, bookId: myBook?.book.id });
   }, [myBook]);
 
-  const [mode, setMode] = useState("single");
-
   if (!myBook || isFetching) {
     return <div>loading...</div>;
   }
@@ -43,20 +39,16 @@ export const MyBookDetailPage = ({ id }: Props) => {
       </div>
       <BookInfo book={myBook} />
       <hr />
-      <ToggleGroup
-        type="single"
-        className="justify-start"
-        value={mode}
-        onValueChange={setMode}
-      >
-        <ToggleGroupItem value="single" aria-label="Toggle Single Editor">
-          <MessageCircleMore className="h-4 w-4" /> 후기
-        </ToggleGroupItem>
-        <ToggleGroupItem value="list" aria-label="Toggle List">
-          <ListIcon className="h-4 w-4" /> 노트
-        </ToggleGroupItem>
-      </ToggleGroup>
-      {mode === "single" ? <MemoEditor id={id} /> : <NoteList />}
+      <h3 className="mb-1 text-base font-medium text-slate-800 md:text-lg">
+        Review
+      </h3>
+      {!myBook.review?.id ? (
+        <div className="flex items-center justify-center gap-2 rounded-lg bg-slate-50 p-10 text-sm italic">
+          <Lock className="size-5" /> <p>후기를 등록하세요.</p>
+        </div>
+      ) : (
+        <MemoEditor id={id} />
+      )}
     </div>
   );
 };
