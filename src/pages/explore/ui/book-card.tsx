@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Book } from "@/entities/book/types";
 import StarGroup from "@/shared/ui/star-group";
+import { Book } from "@/entities/aladin/model/aladin.interface";
 import TagGroup from "../../../shared/ui/tag-group";
 
 import { validateSrc } from "@/shared/utils";
@@ -12,7 +12,7 @@ export default function BookCard({ book }: { book: Book }) {
     <>
       <div className="group flex cursor-pointer flex-col overflow-hidden rounded-lg border-gray-200 shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
         <Image
-          src={validateSrc(book.thumbnail)}
+          src={validateSrc(book.cover)}
           alt={book.title}
           width={150}
           height={150}
@@ -26,9 +26,10 @@ export default function BookCard({ book }: { book: Book }) {
             <TagGroup tags={book.tags} />
           </div> */}
           <div className="flex items-center justify-between">
-            <StarGroup rating={book.averageRating} />
+            <StarGroup rating={book.customerReviewRank} />
             <span className="text-xs text-gray-500">
-              {book.reviewCount} reviews
+              0 reviews
+              {/* {book.reviewCount} reviews */}
             </span>
           </div>
         </div>

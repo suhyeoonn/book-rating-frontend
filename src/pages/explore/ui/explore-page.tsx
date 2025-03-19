@@ -1,21 +1,12 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import BookList from "@/pages/explore/ui/book-list";
-import { SearchInput } from "@/features/book-search";
+import { BookFilterBar } from "./book-filter-bar";
 
 export function ExplorePage() {
-  const [keyword, setKeyword] = useState("");
   return (
-    <>
-      <div className="container mx-auto px-4 py-8 md:px-6">
-        <div className="mb-8 flex items-center justify-start">
-          <SearchInput setKeyword={setKeyword} />
-        </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          <BookList keyword={keyword} />
-        </div>
-      </div>
-    </>
+    <div className="container mx-auto px-4 py-8 md:px-6">
+      <BookFilterBar />
+      <BookList keyword={""} />
+    </div>
   );
 }

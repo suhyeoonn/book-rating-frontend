@@ -4,16 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import BookCard from "./book-card";
 import { menus } from "@/widgets/layout-header";
-import { bookApi } from "@/entities/book";
+import { bookQueries } from "@/entities/aladin";
 
 interface BookListProps {
   keyword: string;
 }
 
 export default function BookList({ keyword }: BookListProps) {
-  const { data: books, isFetching } = useQuery(
-    bookApi.bookQueries.list(keyword),
-  );
+  const { data: books, isFetching } = useQuery(bookQueries.list(437, keyword));
 
   if (!isFetching && keyword && !books?.length) {
     return (
@@ -22,13 +20,14 @@ export default function BookList({ keyword }: BookListProps) {
       </div>
     );
   }
+
   return (
-    <>
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {books?.map((book, index) => (
-        <Link href={`${menus[0].href}/${book.id}`} key={index}>
+        <Link href={`${menus[0].href}/${book.isbn13}`} key={index}>
           <BookCard book={book} />
         </Link>
       ))}
-    </>
+    </div>
   );
 }
