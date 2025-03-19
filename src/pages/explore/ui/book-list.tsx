@@ -1,20 +1,22 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import BookCard from "./book-card";
 import { menus } from "@/widgets/layout-header";
-import { bookQueries } from "@/entities/aladin";
-import { useExploreStore } from "../model/explore.store";
+import { useBookFilter } from "@/features/explore/book-filter/model/useBookFilter";
 
 export default function BookList() {
-  const { category, keyword } = useExploreStore((state) => state);
+  const { books, isFetching } = useBookFilter();
 
-  const { data: books, isFetching } = useQuery(
-    bookQueries.list(category, keyword),
-  );
+  if (isFetching) {
+    return (
+      <div className="mt-5 text-sm italic text-gray-500">
+        📚 책을 찾고 있어요…
+      </div>
+    );
+  }
 
-  if (!isFetching && keyword && !books?.length) {
+  if (!isFetching && !books?.length) {
     return (
       <div className="mt-5 text-sm italic text-gray-500">
         검색 결과가 없습니다.

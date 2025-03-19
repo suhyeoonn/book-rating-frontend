@@ -16,7 +16,7 @@ const categories = [
   { value: 2719, label: "컴퓨터 공학" },
   { value: 363, label: "OS/Networking" },
   { value: 55977, label: "모바일 프로그래밍" },
-  { value: 6355, label: "HTML/JavaScript" },
+  { value: 6355, label: "웹 프로그래밍" },
 ];
 
 export const CategorySelect = () => {
@@ -27,7 +27,7 @@ export const CategorySelect = () => {
       value={category + ""}
       onValueChange={(value) => setCategory(+value)}
     >
-      <SelectTrigger className="max-w-40 px-2 py-1">
+      <SelectTrigger className="max-w-44 px-2 py-1">
         <SelectValue placeholder="카테고리 선택" />
       </SelectTrigger>
       <SelectContent>
