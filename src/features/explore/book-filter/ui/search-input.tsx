@@ -1,12 +1,15 @@
 "use client";
 
+import { useExploreStore } from "@/pages/explore/model/explore.store";
 import DebounceInput from "@/shared/ui/debounce-input";
 
 interface SearchInputProps {
   setKeyword: (value: string) => void;
 }
 
-export function SearchInput({ setKeyword }: SearchInputProps) {
+export function SearchInput() {
+  const { setKeyword } = useExploreStore((state) => state);
+
   const handleChange = (value: string) => {
     setKeyword(value);
   };

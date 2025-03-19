@@ -5,13 +5,14 @@ import Link from "next/link";
 import BookCard from "./book-card";
 import { menus } from "@/widgets/layout-header";
 import { bookQueries } from "@/entities/aladin";
+import { useExploreStore } from "../model/explore.store";
 
-interface BookListProps {
-  keyword: string;
-}
+export default function BookList() {
+  const { category, keyword } = useExploreStore((state) => state);
 
-export default function BookList({ keyword }: BookListProps) {
-  const { data: books, isFetching } = useQuery(bookQueries.list(437, keyword));
+  const { data: books, isFetching } = useQuery(
+    bookQueries.list(category, keyword),
+  );
 
   if (!isFetching && keyword && !books?.length) {
     return (

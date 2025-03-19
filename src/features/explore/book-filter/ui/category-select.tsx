@@ -7,11 +7,7 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/shared/ui/select";
-
-interface CategorySelectProps {
-  category: number;
-  setCategory: (category: string) => void;
-}
+import { useExploreStore } from "../../../../pages/explore/model/explore.store";
 
 const categories = [
   { value: 351, label: "카테고리 전체" },
@@ -23,12 +19,14 @@ const categories = [
   { value: 6355, label: "HTML/JavaScript" },
 ];
 
-export const CategorySelect = ({
-  category,
-  setCategory,
-}: CategorySelectProps) => {
+export const CategorySelect = () => {
+  const { category, setCategory } = useExploreStore((state) => state);
+
   return (
-    <Select value={category + ""} onValueChange={setCategory}>
+    <Select
+      value={category + ""}
+      onValueChange={(value) => setCategory(+value)}
+    >
       <SelectTrigger className="max-w-40 px-2 py-1">
         <SelectValue placeholder="카테고리 선택" />
       </SelectTrigger>
