@@ -1,6 +1,5 @@
 import axiosClient, { ssrAxiosClient } from "@/shared/axios";
 import { Book } from "../types";
-import { BookSectionItem } from "@/pages/home/model/home.interface";
 
 export const fetchBooks = async (keyword?: string): Promise<Book[]> => {
   try {
@@ -24,7 +23,7 @@ export const fetchBook = async (id: number): Promise<Book> => {
   }
 };
 
-export const popularBooks = async (): Promise<BookSectionItem[]> => {
+export const popularBooks = async (): Promise<Book[]> => {
   try {
     const { data } = await axiosClient.get(`books/popular`);
 
@@ -35,7 +34,7 @@ export const popularBooks = async (): Promise<BookSectionItem[]> => {
   }
 };
 
-export const mostAddedBooks = async (): Promise<BookSectionItem[]> => {
+export const mostAddedBooks = async (): Promise<Book[]> => {
   try {
     const { data } = await axiosClient.get(`books/most-added`);
 

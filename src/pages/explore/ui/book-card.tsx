@@ -4,14 +4,20 @@ import Image from "next/image";
 import StarGroup from "@/shared/ui/star-group";
 
 import { validateSrc } from "@/shared/utils";
-import { BookSectionItem } from "@/pages/home/model/home.interface";
 
-export default function BookCard({ book }: { book: BookSectionItem }) {
+export interface BookCardItem {
+  title: string;
+  isbn: string;
+  averageRating: number;
+  thumbnail: string;
+  reviewCount: number;
+}
+export default function BookCard({ book }: { book: BookCardItem }) {
   return (
     <>
       <div className="group flex cursor-pointer flex-col overflow-hidden rounded-lg border-gray-200 shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
         <Image
-          src={validateSrc(book?.thumbnail || book?.cover || "")}
+          src={validateSrc(book.thumbnail)}
           alt={book.title}
           width={150}
           height={150}

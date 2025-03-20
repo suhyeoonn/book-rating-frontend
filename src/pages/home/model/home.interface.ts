@@ -1,11 +1,9 @@
-export interface BookSectionItem {
-  id: number;
+export interface BookCardItem {
   title: string;
   isbn: string;
   averageRating: number;
-  thumbnail?: string;
-  cover?: string;
+  thumbnail: string;
   reviewCount: number;
 }
 
-export type BookSectionList = BookSectionItem[] | undefined;
+export type BookSectionList = BookCardItem[] | undefined;
