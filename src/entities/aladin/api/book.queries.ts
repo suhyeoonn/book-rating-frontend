@@ -1,13 +1,19 @@
 import { queryOptions } from "@tanstack/react-query";
-import { getItemLIst, getItemSearch } from "./aladin.api";
+import { getItemList, getItemSearch } from "./aladin.api";
 
 export const bookQueries = {
   all: () => ["books"] as const,
 
+  newItems: () =>
+    queryOptions({
+      queryKey: [...bookQueries.all(), "newItems"],
+      queryFn: () => getItemList(351, "ItemNewSpecial"),
+    }),
+
   byCategory: (categoryId: number, keyword: string) =>
     queryOptions({
       queryKey: [...bookQueries.all(), "category", categoryId],
-      queryFn: () => getItemLIst(categoryId),
+      queryFn: () => getItemList(categoryId),
       enabled: !keyword,
     }),
 

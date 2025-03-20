@@ -37,8 +37,6 @@ export const useSetRating = ({ review, myBookId }: SetRatingProps) => {
   const changeRating = (value: string) => {
     if (review && review?.id) {
       mutationUpdate.mutate({ reviewId: review.id, rating: +value });
-    } else {
-      mutationCreate.mutate({ myBookId, content: "", rating: +value });
     }
   };
 

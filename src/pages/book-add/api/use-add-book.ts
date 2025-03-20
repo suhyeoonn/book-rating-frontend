@@ -27,14 +27,15 @@ export const useAddBook = (mutateCallback: Props) => {
   const onSubmit = async () => {
     if (!selectedBook) return;
     try {
-      mutation.mutate(
-        {
-          ...selectedBook,
-          authors: selectedBook.authors.join(", "),
-          status: ReadingStatusEnum.READY,
-        },
-        mutateCallback,
-      );
+      // TODO: 제거
+      // mutation.mutate(
+      //   {
+      //     ...selectedBook,
+      //     author: selectedBook.authors.join(", "),
+      //     status: ReadingStatusEnum.READY,
+      //   },
+      //   mutateCallback,
+      // );
     } catch (err) {
       if (err instanceof Error) alert(err.message);
     }
