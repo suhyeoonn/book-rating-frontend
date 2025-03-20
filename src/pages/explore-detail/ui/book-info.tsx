@@ -36,12 +36,6 @@ export default function BookInfo({
         {book.subInfo?.itemPage && (
           <BookDetailItem label="페이지 수" value={book.subInfo.itemPage} />
         )}
-        {book.subInfo?.bestSellerRank && (
-          <BookDetailItem
-            label="주간베스트셀러 순위"
-            value={book.subInfo.bestSellerRank}
-          />
-        )}
       </dl>
 
       <p className="text-sm text-slate-600">{book.description}</p>

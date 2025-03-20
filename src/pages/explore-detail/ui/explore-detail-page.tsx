@@ -35,12 +35,7 @@ export const ExploreDetailPage = ({ book }: { book: Book }) => {
             className="max-h-52 border border-gray-100 object-contain p-1 shadow-lg"
           />
           <div className="mt-4 flex flex-grow items-center">
-            {/* <AddMyListButton
-              book={{
-                ...book,
-                tags: [],
-              }}
-            /> */}
+            <AddMyListButton book={book} />
           </div>
         </section>
         <section className="flex-1 md:col-span-3">
