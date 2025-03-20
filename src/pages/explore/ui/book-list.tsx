@@ -27,15 +27,8 @@ export default function BookList() {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {books?.map((book, index) => (
-        <Link href={`${menus[0].href}/${book.isbn13}`} key={index}>
-          <BookCard
-            book={{
-              ...book,
-              thumbnail: book.cover,
-              averageRating: 0,
-              reviewCount: 0,
-            }}
-          />
+        <Link href={`${menus[0].href}/${book.isbn}`} key={index}>
+          <BookCard book={book} />
         </Link>
       ))}
     </div>

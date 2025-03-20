@@ -4,15 +4,16 @@ import {
   fetchBooks,
   mostAddedBooks,
   popularBooks,
-} from "./get-book";
+} from "./book.api";
 
 export const bookQueries = {
   all: () => ["books"] as const,
 
-  list: (keyword: string) =>
+  byCategory: (categoryId: number, keyword: string) =>
     queryOptions({
-      queryKey: [...bookQueries.all(), "list", keyword],
-      queryFn: () => fetchBooks(keyword),
+      queryKey: [...bookQueries.all(), "category", categoryId],
+      queryFn: () => fetchBooks(categoryId, "Bestseller", 100),
+      enabled: !keyword,
     }),
 
   detail: (id: number) =>
@@ -31,5 +32,17 @@ export const bookQueries = {
     queryOptions({
       queryKey: [...bookQueries.all(), "mostAdded"],
       queryFn: () => mostAddedBooks(),
+    }),
+
+  bestseller: () =>
+    queryOptions({
+      queryKey: [...bookQueries.all(), "bestseller"],
+      queryFn: () => fetchBooks(351, "Bestseller", 10),
+    }),
+
+  newItems: () =>
+    queryOptions({
+      queryKey: [...bookQueries.all(), "newItems"],
+      queryFn: () => fetchBooks(351, "ItemNewSpecial", 10),
     }),
 };

@@ -1,9 +1,19 @@
 import axiosClient, { ssrAxiosClient } from "@/shared/axios";
 import { Book } from "../types";
 
-export const fetchBooks = async (keyword?: string): Promise<Book[]> => {
+export const fetchBooks = async (
+  categoryId: number,
+  queryType: string,
+  size: number,
+): Promise<Book[]> => {
   try {
-    const { data } = await axiosClient.get(`books?title=${keyword}`);
+    const { data } = await axiosClient.get(`books`, {
+      params: {
+        categoryId,
+        queryType,
+        size,
+      },
+    });
 
     return data;
   } catch (error) {
