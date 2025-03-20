@@ -14,11 +14,7 @@ const BookDetailItem = ({
   </div>
 );
 
-export default function BookInfo({
-  selectedBook: book,
-}: {
-  selectedBook: Book;
-}) {
+export function BookInfo({ selectedBook: book }: { selectedBook: Book }) {
   return (
     <div className="space-y-2 md:space-y-4">
       <h2 className="text-2xl font-bold text-slate-900 lg:text-3xl">
