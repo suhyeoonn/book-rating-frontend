@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { fetchBooksByCategory, fetchBooksByKeyword } from "./aladin.api";
+import { getItemLIst, getItemSearch } from "./aladin.api";
 
 export const bookQueries = {
   all: () => ["books"] as const,
@@ -7,14 +7,14 @@ export const bookQueries = {
   byCategory: (categoryId: number, keyword: string) =>
     queryOptions({
       queryKey: [...bookQueries.all(), "category", categoryId],
-      queryFn: () => fetchBooksByCategory(categoryId),
+      queryFn: () => getItemLIst(categoryId),
       enabled: !keyword,
     }),
 
   search: (categoryId: number, keyword: string) =>
     queryOptions({
       queryKey: [...bookQueries.all(), "search", categoryId, keyword],
-      queryFn: () => fetchBooksByKeyword(categoryId, keyword),
+      queryFn: () => getItemSearch(categoryId, keyword),
       enabled: !!keyword,
     }),
 };

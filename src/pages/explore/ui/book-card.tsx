@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import StarGroup from "@/shared/ui/star-group";
-import { Book } from "@/entities/aladin/model/aladin.interface";
+import { Book } from "@/entities/aladin";
 import TagGroup from "../../../shared/ui/tag-group";
 
 import { validateSrc } from "@/shared/utils";

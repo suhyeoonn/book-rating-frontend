@@ -1,18 +1,16 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Book } from "@/entities/book/types";
 import BookReview from "./review-item";
 import { ReviewResponse } from "../model/review-interface";
 import { reviewApi } from "@/entities/review";
 
 interface Props {
-  selectedBook: Book;
+  isbn: string;
 }
-const ReviewList = ({ selectedBook }: Props) => {
-  const { isPending, isError, data, error } = useQuery<ReviewResponse>({
-    queryKey: ["reviews", selectedBook],
-    queryFn: () => reviewApi.fetchReviews(selectedBook.id),
-    enabled: !!selectedBook?.id,
+const ReviewList = ({ isbn }: Props) => {
+  const { isFetching, data } = useQuery<ReviewResponse>({
+    queryKey: ["reviews", isbn],
+    queryFn: () => reviewApi.fetchReviews(isbn),
   });
 
   return (

@@ -32,5 +32,6 @@ export interface SeriesInfo {
 }
 
 export interface SubInfo {
-  // API에서 `subInfo`가 빈 객체 `{}`로 오므로, 실제 필드가 필요하면 여기에 정의
+  bestSellerRank: string;
+  itemPage: number;
 }
