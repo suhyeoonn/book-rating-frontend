@@ -5,6 +5,7 @@ export interface Review {
   comment: string;
   updatedAt: string;
   userId: number;
+  levels: number[];
 }
 
 export interface UpdateRatingParams {

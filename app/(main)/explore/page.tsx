@@ -1,4 +1,4 @@
-import { SearchPage } from "@/pages/search";
+import { ExplorePage } from "@/pages/explore";
 import { menus } from "@/widgets/layout-header";
 
 export const metadata = {
@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <SearchPage />;
+  return <ExplorePage />;
 }

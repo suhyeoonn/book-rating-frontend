@@ -6,17 +6,20 @@ export const postReview = async ({
   myBookId,
   content,
   rating,
+  levels,
 }: {
   myBookId: number;
   content: string;
   rating: number;
+  levels: string[];
 }) => {
   try {
     return await axiosClient.post<AddReviewResponse>(
-      `my-books/${myBookId}/review`,
+      `reviews/${myBookId}/review`,
       {
         comment: content,
         rating,
+        levels,
       },
     );
   } catch (err) {

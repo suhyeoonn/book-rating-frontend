@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { RatingWithReviewModal } from "./rating-with-review-modal";
+import { AddReviewModal } from "./rating-with-review-modal";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -12,7 +12,7 @@ describe("리뷰 등록", () => {
   test("별점을 설정하면 처음 한 번에 한해 한줄평에 기본 텍스트가 표시된다.", async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <RatingWithReviewModal open={true} setOpen={jest.fn()} id={1} />
+        <AddReviewModal open={true} setOpen={jest.fn()} id={1} />
       </QueryClientProvider>,
     );
 

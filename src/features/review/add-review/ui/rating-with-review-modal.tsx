@@ -9,10 +9,12 @@ import {
   AlertDialogTitle,
 } from "@/shared/ui/alert-dialog";
 import React, { ChangeEvent } from "react";
-import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 import { useAddReview } from "../api/use-add-review";
 import { RatingSelect } from "../../set-rating";
+import { Textarea } from "@/shared/ui/textarea";
+import { levelList } from "@/shared/model/levels";
+import { MultiSelect } from "@/shared/ui/multi-select";
 
 const defaultContent: Record<number, string> = {
   0: "",
@@ -23,29 +25,29 @@ const defaultContent: Record<number, string> = {
   5: "정말 감명 깊게 읽었어요. 최고의 책이에요!",
 };
 
-// TODO: 제거
-export const RatingWithReviewModal = ({
+export const AddReviewModal = ({
   open,
   setOpen,
-  id,
+  myBookId,
 }: {
   open: boolean;
   setOpen: (state: boolean) => void;
-  id: number;
+  myBookId: number;
 }) => {
   const [rating, setRating] = React.useState(0);
   const [comment, setComment] = React.useState("");
+  const [selectedLevels, setSelectedLevels] = React.useState<string[]>([]);
 
-  const { addReview } = useAddReview(id);
+  const { addReview } = useAddReview(myBookId);
 
   const handleSave = () => {
-    addReview(comment, rating);
+    addReview(comment, rating, selectedLevels);
     setOpen(false);
   };
 
   const handleChange = ({
     target: { value },
-  }: ChangeEvent<HTMLInputElement>) => {
+  }: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(value);
   };
 
@@ -60,7 +62,7 @@ export const RatingWithReviewModal = ({
     <AlertDialogRoot open={open} onOpenChange={setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>별점과 함께 한줄평을 공유하세요.</AlertDialogTitle>
+          <AlertDialogTitle>어떠셨나요?</AlertDialogTitle>
           <AlertDialogDescription asChild>
             <div className="mt-2 space-y-3">
               <div className="space-y-1">
@@ -68,11 +70,22 @@ export const RatingWithReviewModal = ({
                 <RatingSelect rating={rating} changeCallback={handleRating} />
               </div>
               <div className="space-y-1">
+                <Label className="font-semibold">이 레벨에 추천해요</Label>
+                <MultiSelect
+                  options={levelList}
+                  onValueChange={setSelectedLevels}
+                  defaultValue={selectedLevels}
+                  placeholder="Select Levels"
+                  variant="inverted"
+                  maxCount={3}
+                  modalPopover
+                />
+              </div>
+              <div className="space-y-1">
                 <Label className="font-semibold">한줄평</Label>
-                <Input
+                <Textarea
                   className="px-3 py-2 text-xs"
-                  disabled={!rating}
-                  placeholder="별점을 먼저 선택하세요."
+                  placeholder="후기를 입력하세요."
                   onChange={handleChange}
                   value={comment}
                 />

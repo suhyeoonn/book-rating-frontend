@@ -1,1 +1,1 @@
-export { RatingWithReviewModal } from "./ui/rating-with-review-modal";
+export { AddReviewModal as RatingWithReviewModal } from "./ui/rating-with-review-modal";

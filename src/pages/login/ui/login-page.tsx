@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { LoginForm } from "./login-form";
 import { SocialLogin } from "./social-login";
-import { LogoFull } from "@/widgets/logo";
+import { Logo } from "@/shared/ui/logo";
 
 export function LoginPage() {
   return (
     <div className="flex w-[400px] flex-col justify-center border-0 p-5">
-      <Link href="/">
-        <h1 className="mb-10">
-          <LogoFull className="mx-auto" />
+      <Link href="/explore">
+        <h1 className="flex items-center justify-center gap-2 text-xl font-bold">
+          <Logo />
+          <span>IT Book Rating</span>
         </h1>
       </Link>
       {/* <LoginForm /> */}

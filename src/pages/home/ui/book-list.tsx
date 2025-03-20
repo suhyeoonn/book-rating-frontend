@@ -1,7 +1,7 @@
 "use client";
 
 import { bookApi } from "@/entities/book";
-import BookCard from "@/pages/search/ui/book-card";
+import BookCard from "@/pages/explore/ui/book-card";
 import { menus } from "@/widgets/layout-header";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
