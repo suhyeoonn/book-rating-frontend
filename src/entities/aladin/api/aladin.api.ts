@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { Book } from "../model/aladin.interface";
+import { BookSectionItem } from "@/pages/home/model/home.interface";
 
 // NOTE: 알라딘 API 매뉴얼
 // https://docs.google.com/document/d/1mX-WxuoGs8Hy-QalhHcvuV17n50uGI2Sg_GHofgiePE/edit?tab=t.0
@@ -9,7 +10,8 @@ import { Book } from "../model/aladin.interface";
 export const getItemList = async (
   categoryId: number,
   queryType = "Bestseller",
-): Promise<Book[]> => {
+  size = 10,
+): Promise<BookSectionItem[]> => {
   try {
     const { data } = await axios.get(
       `http://www.aladin.co.kr/ttb/api/ItemList.aspx`,
@@ -17,7 +19,7 @@ export const getItemList = async (
         params: {
           ttbkey: process.env.ALADIN_SERVICE_KEY,
           QueryType: queryType,
-          MaxResults: 100,
+          MaxResults: size,
           start: 1,
           SearchTarget: "Book",
           output: "js",
@@ -87,6 +89,7 @@ export const getItemLookUp = async (isbn13: string): Promise<Book> => {
       },
     );
 
+    console.log(data?.item?.[0]);
     return data?.item?.[0];
   } catch (error) {
     console.error("Database Error:", error);

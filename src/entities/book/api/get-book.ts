@@ -1,5 +1,6 @@
 import axiosClient, { ssrAxiosClient } from "@/shared/axios";
 import { Book } from "../types";
+import { BookSectionItem } from "@/pages/home/model/home.interface";
 
 export const fetchBooks = async (keyword?: string): Promise<Book[]> => {
   try {
@@ -15,6 +16,28 @@ export const fetchBooks = async (keyword?: string): Promise<Book[]> => {
 export const fetchBook = async (id: number): Promise<Book> => {
   try {
     const { data } = await ssrAxiosClient.get(`books/${id}`);
+
+    return data;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch data.");
+  }
+};
+
+export const popularBooks = async (): Promise<BookSectionItem[]> => {
+  try {
+    const { data } = await axiosClient.get(`books/popular`);
+
+    return data;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch data.");
+  }
+};
+
+export const mostAddedBooks = async (): Promise<BookSectionItem[]> => {
+  try {
+    const { data } = await axiosClient.get(`books/most-added`);
 
     return data;
   } catch (error) {
