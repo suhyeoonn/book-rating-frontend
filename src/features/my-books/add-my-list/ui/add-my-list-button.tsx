@@ -7,8 +7,8 @@ import Tooltip from "@/shared/ui/tooltip";
 import { ReadStatusSelect } from "./read-status-select";
 import { ReadingStatusEnum } from "@/entities/my-book/types";
 import { readingStatusConfig } from "@/entities/my-book/models/reading-status";
-import { Book } from "@/entities/aladin";
 import { useBookStatus } from "../model/use-book-status";
+import { Book } from "@/entities/book/types";
 
 interface AddMyListButtonProps {
   book: Book;
