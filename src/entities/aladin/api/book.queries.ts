@@ -15,6 +15,7 @@ export const aladinQueries = {
           thumbnail: d.cover,
           reviewCount: 0,
           averageRating: 0,
+          isbn: d.isbn13,
         }));
       },
     }),
@@ -29,6 +30,7 @@ export const aladinQueries = {
           thumbnail: d.cover,
           reviewCount: 0,
           averageRating: 0,
+          isbn: d.isbn13,
         }));
       },
     }),
