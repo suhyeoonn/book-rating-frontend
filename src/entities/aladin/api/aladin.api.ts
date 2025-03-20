@@ -62,7 +62,7 @@ export const getItemSearch = async (
   }
 };
 
-export const getItemLookUp = async (isbn13: string): Promise<Book[]> => {
+export const getItemLookUp = async (isbn13: string): Promise<Book> => {
   try {
     const { data } = await axios.get(
       `http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx`,
@@ -80,10 +80,10 @@ export const getItemLookUp = async (isbn13: string): Promise<Book[]> => {
           Cover: "Big",
           OptResult: "ratingInfo,bestSellerRank",
         },
+        adapter: ["fetch", "xhr", "http"],
       },
     );
 
-    console.log(data?.item?.[0]);
     return data?.item?.[0];
   } catch (error) {
     console.error("Database Error:", error);

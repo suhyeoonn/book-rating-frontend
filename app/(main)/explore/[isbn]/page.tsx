@@ -8,8 +8,10 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params: { isbn } }: PageProps) {
+  const { title } = await aladinApi.getItemLookUp(isbn);
+
   return {
-    title: "test",
+    title,
   };
 }
 
