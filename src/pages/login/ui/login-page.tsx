@@ -6,7 +6,7 @@ import { Logo } from "@/shared/ui/logo";
 export function LoginPage() {
   return (
     <div className="flex w-[400px] flex-col justify-center border-0 p-5">
-      <Link href="/explore">
+      <Link href="/">
         <h1 className="flex items-center justify-center gap-2 text-xl font-bold">
           <Logo />
           <span>IT Book Rating</span>
