@@ -1,55 +1,34 @@
-import { Button } from "@/shared/ui/button";
-import { menus } from "@/widgets/layout-header";
-import Link from "next/link";
-import { BookList } from "./book-list";
+"use client";
+
+import { InfoIcon } from "lucide-react";
+import { useSectionList } from "../model/useSectionList";
+import { BookSection } from "./book-section";
+import { HomeBanner } from "./home-banner";
 
 export function HomePage() {
+  const { newItems, bestseller, popular, mostAdded } = useSectionList();
+
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative flex h-[60vh] w-full items-center justify-center">
-        <div className="text-center">
-          <h2 className="mb-4 text-3xl font-bold text-[#333] sm:text-5xl">
-            {/* 책을 읽고, 나만의 기록을 남겨보세요. */}
-            책, 그 너머를 향해
-          </h2>
-          <p className="mb-8 text-lg font-medium text-[#888] sm:text-2xl">
-            읽고 기록하고 나누세요.
-            <br />
-            당신의 기록이 또 다른 독서의 시작이 됩니다.
-          </p>
-          <Link href={menus[0].href}>
-            <Button size="lg" className="text-base font-semibold shadow-2xl">
-              책 탐험하기
-            </Button>
-          </Link>
-        </div>
-      </section>
+      <HomeBanner />
 
-      {/* Featured Books */}
-      <section className="flex w-full justify-center bg-gradient-to-t from-primary/10 to-primary/5 py-16">
-        <div className="container px-4 sm:px-0">
-          <h2 className="mb-8 text-3xl font-bold">지금, 이 책</h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <BookList />
-          </div>
-        </div>
-      </section>
-
-      {/* User Login/Register CTA */}
-      <section className="flex h-[60vh] items-center bg-background py-16">
-        <div className="container text-center">
-          <h2 className="mb-4 text-3xl font-bold">우리와 함께해요!</h2>
-          <p className="mb-8 text-xl">로그인하고 다양한 기능을 즐겨보세요.</p>
-          <div className="space-x-4">
-            <Link href="/login">
-              <Button size="lg" className="shadow-lg">
-                Login
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <div className="mb-8">
+        <BookSection title="인기 IT 책" data={popular} />
+        <BookSection title="이번 달 신간" data={newItems} />
+        <BookSection title="개발자가 많이 읽는 책" data={mostAdded} />
+        <BookSection
+          title={
+            <div className="flex items-end gap-1">
+              베스트셀러
+              <div className="flex items-center pb-0.5 text-gray-500">
+                <InfoIcon className="size-3" />
+                <span className="ml-0.5 text-sm font-normal">알라딘 제공</span>
+              </div>
+            </div>
+          }
+          data={bestseller}
+        />
+      </div>
     </>
   );
 }

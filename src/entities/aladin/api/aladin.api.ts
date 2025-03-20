@@ -9,6 +9,7 @@ import { Book } from "../model/aladin.interface";
 export const getItemList = async (
   categoryId: number,
   queryType = "Bestseller",
+  size = 10,
 ): Promise<Book[]> => {
   try {
     const { data } = await axios.get(
@@ -17,7 +18,7 @@ export const getItemList = async (
         params: {
           ttbkey: process.env.ALADIN_SERVICE_KEY,
           QueryType: queryType,
-          MaxResults: 100,
+          MaxResults: size,
           start: 1,
           SearchTarget: "Book",
           output: "js",

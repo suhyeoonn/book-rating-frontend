@@ -1,5 +1,10 @@
 import { queryOptions } from "@tanstack/react-query";
-import { fetchBook, fetchBooks } from "./get-book";
+import {
+  fetchBook,
+  fetchBooks,
+  mostAddedBooks,
+  popularBooks,
+} from "./get-book";
 
 export const bookQueries = {
   all: () => ["books"] as const,
@@ -14,5 +19,17 @@ export const bookQueries = {
     queryOptions({
       queryKey: [...bookQueries.all(), id],
       queryFn: () => fetchBook(id),
+    }),
+
+  popular: () =>
+    queryOptions({
+      queryKey: [...bookQueries.all(), "popular"],
+      queryFn: () => popularBooks(),
+    }),
+
+  mostAdded: () =>
+    queryOptions({
+      queryKey: [...bookQueries.all(), "mostAdded"],
+      queryFn: () => mostAddedBooks(),
     }),
 };
