@@ -4,6 +4,7 @@ import { IUser } from "@/shared/types";
 export interface ReviewResponse {
   bookId: number;
   reviews: ReviewResponseItem[];
+  averageRating: number;
 }
 
 export type ReviewResponseItem = Review & { user: IUser };

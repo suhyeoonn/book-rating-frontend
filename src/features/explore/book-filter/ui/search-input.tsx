@@ -1,12 +1,11 @@
 "use client";
 
+import { useExploreStore } from "@/pages/explore/model/explore.store";
 import DebounceInput from "@/shared/ui/debounce-input";
 
-interface SearchInputProps {
-  setKeyword: (value: string) => void;
-}
+export function SearchInput() {
+  const { setKeyword } = useExploreStore((state) => state);
 
-export function SearchInput({ setKeyword }: SearchInputProps) {
   const handleChange = (value: string) => {
     setKeyword(value);
   };
@@ -16,7 +15,7 @@ export function SearchInput({ setKeyword }: SearchInputProps) {
       <DebounceInput
         changeCallback={handleChange}
         placeholder="책 이름을 검색하세요"
-        className="rounded-lg px-2 py-1 text-xs placeholder:text-xs"
+        className="rounded-lg px-2 py-1 text-xs"
       />
     </form>
   );

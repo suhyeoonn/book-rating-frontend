@@ -13,7 +13,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["search1.kakaocdn.net"], // 외부 이미지 호스트 추가
+    domains: ["search1.kakaocdn.net", "image.aladin.co.kr"], // 외부 이미지 호스트 추가
   },
 };
 
