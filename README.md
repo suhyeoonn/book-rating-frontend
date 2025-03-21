@@ -1,49 +1,94 @@
-# 📚 Book Rating Frontend (Next.js)
+# IT Book Rating - Frontend
 
-**Book Rating**은 사용자가 책에 대한 리뷰와 별점을 작성하고 조회할 수 있는 웹 애플리케이션입니다.  
-이 저장소는 **Next.js** 기반의 프론트엔드 프로젝트로, 사용자가 편리하게 책을 평가하고, 리뷰를 남길 수 있는 기능을 제공합니다.
+<div align="center">
+    <img width="500px" src="./public/readme-main.png" />
+</div>
 
----
+**IT Book Rating**은 IT 책에 대한 리뷰와 평점을 공유하는 Next.js 기반 반응형 웹 애플리케이션입니다.
+
+## 🛠️ 기술 스택
+
+### Framework / Language
+
+<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white">
+<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+
+### Data Fetching / State Management
+
+<img src="https://img.shields.io/badge/tanstackquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
+<img src="https://img.shields.io/badge/zustand-F7DF1E?style=for-the-badge&logoColor=white">
+
+### Styling / UI
+
+<img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+<img src="https://img.shields.io/badge/shadcn\ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white">
+
+## 📺 화면 구성
+
+|                              Home                              |                            Explore                             |
+| :------------------------------------------------------------: | :------------------------------------------------------------: |
+|      <img width="160px" src="./public/readme/main.png" />      |    <img width="160px" src="./public/readme/explore.png" />     |
+|                         Explore detail                         |                            My Books                            |
+| <img width="160px" src="./public/readme/explore-detail.png" /> | <img width="160px" src="./public/readme/my-book-detail.png" /> |
+
+### GIF
+
+<img width="500px" src="./public/readme/2025-03-212.54.32-ezgif.com-speed.gif" />
+
+## 🚀 주요 기능
+
+- 책 검색
+  - 알라딘 Open API를 활용한 IT 서적 검색 기능
+  - 책 제목, 이미지 등 기본적인 책 이미지는 알라딘 API를 활용하고, 후기와 관련된 정보는 내부 시스템에서 추가로 조회
+- 나의 책 리스트 관리
+  - 책의 읽기 상태를 읽기 전 / 읽는 중 / 중단 / 완료로 관리
+  - 검색 목록 또는 My books에서 책 상태 변경 가능
+- 별점 및 한줄평 공유
+  - 별점과 함께 리뷰 작성 가능
 
 ## 📦 프로젝트 아키텍처: FSD (Feature-Sliced Design)
-
-이 프로젝트는 **Feature-Sliced Design (FSD)** 아키텍처를 도입하여, 기능 중심으로 코드를 분리하고 유지보수성을 강화했습니다.
 
 ### 📁 폴더 구조
 
 ```plaintext
 src
-┣ app                  # 글로벌 설정 및 레이아웃 관리
-┃ ┣ layouts            # 페이지 레이아웃 구성
-┃ ┣ providers          # 전역 상태 및 React Query Provider 설정
-┃ ┗ styles             # 전역 CSS 및 스타일 정의
-┣ entities             # 핵심 도메인 모델 (auth, book, review 등)
-┃ ┣ auth               # 인증 관련 로직
-┃ ┣ book               # 책 정보 및 API
-┃ ┗ review             # 리뷰 관리 및 API
-┣ features             # 구체적인 기능 단위의 UI, 로직 (e.g., 리뷰 작성, 삭제)
-┣ pages                # Next.js 페이지 라우트 및 UI 구성
-┣ shared               # 공통 컴포넌트, 훅, 유틸리티
-┃ ┣ api                # 공통 API 클라이언트 및 요청 관리
-┃ ┣ ui                 # 버튼, 모달, 입력 필드 등 재사용 가능한 컴포넌트
-┃ ┗ hooks              # 재사용 가능한 React 훅
-┗ widgets              # 레이아웃과 헤더, 푸터 등 UI 위젯
+ ┣ app                # 전역 스타일, 레이아웃, Provider 설정 등 애플리케이션 기본 구성
+ ┃ ┣ font
+ ┃ ┣ layouts
+ ┃ ┣ providers
+ ┃ ┣ styles
+ ┣ entities           # 도메인별 API, 모델, 유틸 정리 (aladin, auth, book 등)
+ ┃ ┣ aladin
+ ┃ ┣ auth
+ ┃ ┣ book
+ ┃ ┣ my-book
+ ┃ ┣ review
+ ┣ features           # 사용자 인터랙션 중심의 기능 단위 구성
+ ┃ ┣ auth
+ ┃ ┣ explore
+ ┃ ┃ ┗ book-filter
+ ┃ ┣ my-books
+ ┃ ┃ ┣ add-my-list
+ ┃ ┃ ┣ remove-book
+ ┃ ┃ ┣ update-status
+ ┃ ┃ ┗ write-memo
+ ┃ ┣ note
+ ┃ ┃ ┗ write-note
+ ┃ ┗ review
+ ┃ ┃ ┣ add-review
+ ┃ ┃ ┣ set-rating
+ ┃ ┃ ┗ update-comment
+ ┣ pages              # 라우트 단위의 페이지 구성
+ ┃ ┣ explore
+ ┃ ┣ explore-detail
+ ┃ ┣ home
+ ┃ ┣ login
+ ┃ ┣ my-book-detail
+ ┃ ┣ my-books
+ ┃ ┗ register
+ ┣ shared             # 전역적으로 사용되는 유틸, 훅, 타입 등 공통 모듈
+ ┗ widgets            # 공통 레이아웃 UI (헤더, 푸터 등)
 ```
-
-## 🚀 주요 기능
-
-- 나의 리스트에 책 추가 및 상태 관리: 사용자가 자신의 리스트에 책을 추가하고, 책의 읽기 상태(읽기 전, 읽는 중, 중단 등)를 관리할 수 있습니다.
-- 개인 메모 작성: 리스트에 추가한 책에 대해 나만의 메모를 작성할 수 있으며, 해당 메모는 본인만 접근 가능합니다.
-- 별점 및 한줄평 공유: 사용자가 책에 별점을 부여하고, 한줄평을 작성하여 다른 사용자들과 책 후기를 공유할 수 있습니다.
-
-## 🛠️ 기술 스택
-
-- 프론트엔드 프레임워크: Next.js 13+
-- 상태 관리 및 데이터 패칭: React Query
-- UI 라이브러리: TailwindCSS, Shadcn UI
-- 데이터 관리: TypeScript, Axios
-- 테스트: Jest, React Testing Library (RTL)
-- 코드 품질: ESLint, Prettier
 
 ## 🔧 설치 및 실행 방법
 
@@ -75,5 +120,5 @@ npm run test:coverage
 
 ## 📈 프로젝트 개선 사항 (To-Do List)
 
-- 다중 언어 지원 (i18n)
+- 노션과 같은 개인 메모 작성 기능 추가
 - E2E 테스트 (Cypress 도입 고려)
