@@ -1,7 +1,6 @@
 import { Book } from "@/entities/book/types";
 import React from "react";
 import Image from "next/image";
-import { Button } from "@/shared/ui/button";
 import Link from "next/link";
 import { menus } from "@/widgets/layout-header";
 import { AddMyListButton } from "@/features/my-books/add-my-list";

@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import BookCard from "./book-card";
-import { menus } from "@/widgets/layout-header";
 import { useBookFilter } from "@/features/explore/book-filter/model/useBookFilter";
 import { BookListItem } from "./book-list-item";
 

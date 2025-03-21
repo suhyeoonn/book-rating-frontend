@@ -7,6 +7,7 @@ export const postBook = async (book: Book & { status: ReadingStatusEnum }) => {
   try {
     const res = await axiosClient.post<Book>(`/my-books`, {
       ...book,
+      datetime: new Date(book.datetime).toISOString(),
       tags: [],
     });
     return res.data;

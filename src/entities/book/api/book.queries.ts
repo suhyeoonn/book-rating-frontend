@@ -14,6 +14,7 @@ export const bookQueries = {
       queryKey: [...bookQueries.all(), "category", categoryId],
       queryFn: () => fetchBooks(categoryId, "Bestseller", 100),
       enabled: !keyword,
+      refetchOnWindowFocus: false,
     }),
 
   detail: (id: number) =>
