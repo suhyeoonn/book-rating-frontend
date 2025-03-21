@@ -1,4 +1,5 @@
 import { aladinQueries } from "@/entities/aladin";
+import { bookQueries } from "@/entities/book/api";
 import { useExploreStore } from "@/pages/explore/model/explore.store";
 import { useQuery } from "@tanstack/react-query";
 
@@ -6,7 +7,7 @@ export const useBookFilter = () => {
   const { category, keyword } = useExploreStore((state) => state);
 
   const { data: booksByCategory, isFetching: isCategoryFetching } = useQuery(
-    aladinQueries.byCategory(category, keyword),
+    bookQueries.byCategory(category, keyword),
   );
 
   const { data: booksBySearch, isFetching: isSearchFetching } = useQuery(

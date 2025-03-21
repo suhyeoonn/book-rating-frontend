@@ -7,8 +7,8 @@ import Tooltip from "@/shared/ui/tooltip";
 import { ReadStatusSelect } from "./read-status-select";
 import { ReadingStatusEnum } from "@/entities/my-book/types";
 import { readingStatusConfig } from "@/entities/my-book/models/reading-status";
-import { Book } from "@/entities/aladin";
 import { useBookStatus } from "../model/use-book-status";
+import { Book } from "@/entities/book/types";
 
 interface AddMyListButtonProps {
   book: Book;
@@ -25,9 +25,9 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
         <Button
           disabled={!user}
           onClick={() => handleAddToList(ReadingStatusEnum.READY)}
-          className="w-32 rounded-r-none"
+          className="w-24 rounded-r-none p-0 text-xs"
         >
-          <Plus className="h-6 w-6 pr-2 opacity-70" />
+          <Plus className="size-5 pr-1 opacity-70" />
           읽고싶어요
         </Button>
       );
@@ -49,7 +49,7 @@ export const AddMyListButton = ({ book }: AddMyListButtonProps) => {
   return (
     <Tooltip content={!user ? "로그인이 필요합니다" : ""}>
       <div className="flex flex-col">
-        <div className="flex items-stretch">
+        <div className="flex w-32 items-stretch">
           {getButtonComponent()}
           <ReadStatusSelect
             status={status === -1 ? ReadingStatusEnum.READY : status}

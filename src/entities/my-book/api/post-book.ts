@@ -1,21 +1,13 @@
 import { Book } from "@/entities/book/types";
-import { Book as AladinBook } from "@/entities/aladin";
 import axiosClient from "@/shared/axios";
 import axios from "axios";
 import { ReadingStatusEnum } from "../types";
 
-export const postBook = async (
-  book: AladinBook & { status: ReadingStatusEnum },
-) => {
+export const postBook = async (book: Book & { status: ReadingStatusEnum }) => {
   try {
     const res = await axiosClient.post<Book>(`/my-books`, {
       ...book,
-      thumbnail: book.cover,
-      contents: book.description,
-      isbn: book.isbn13,
-      datetime: new Date(book.pubDate).toISOString(),
-      authors: book.author,
-      url: book.link,
+      datetime: new Date(book.datetime).toISOString(),
       tags: [],
     });
     return res.data;

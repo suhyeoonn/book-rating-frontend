@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import BookCard from "./book-card";
-import { menus } from "@/widgets/layout-header";
 import { useBookFilter } from "@/features/explore/book-filter/model/useBookFilter";
+import { BookListItem } from "./book-list-item";
 
 export default function BookList() {
   const { books, isFetching } = useBookFilter();
@@ -25,19 +23,8 @@ export default function BookList() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      {books?.map((book, index) => (
-        <Link href={`${menus[0].href}/${book.isbn13}`} key={index}>
-          <BookCard
-            book={{
-              ...book,
-              thumbnail: book.cover,
-              averageRating: 0,
-              reviewCount: 0,
-            }}
-          />
-        </Link>
-      ))}
-    </div>
+    <ul className="mt-5">
+      {books?.map((book) => <BookListItem book={book} key={book.isbn} />)}
+    </ul>
   );
 }
