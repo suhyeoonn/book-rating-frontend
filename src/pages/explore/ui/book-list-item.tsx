@@ -46,9 +46,7 @@ export const BookListItem = ({ book: d }: BookListItemProps) => {
           </div>
         </div>
       </Link>
-      <div className="inline-block w-32">
-        <AddMyListButton book={d} />
-      </div>
+      <AddMyListButton book={d} />
     </li>
   );
 };

@@ -25,7 +25,7 @@ export function ReadStatusSelect({ status, onChange }: ReadStatusSelectProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild disabled={!user}>
-        <Button className="w-8 rounded-l-none border-l border-l-white/30 p-0">
+        <Button className="min-w-8 rounded-l-none border-l border-l-white/30 p-0">
           <ChevronDown className="h-4 w-4 text-base" />
         </Button>
       </DropdownMenuTrigger>
