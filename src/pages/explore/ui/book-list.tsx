@@ -26,7 +26,7 @@ export default function BookList() {
   }
 
   return (
-    <ul className="mt-5 space-y-10">
+    <ul className="mt-5">
       {books?.map((book) => <BookListItem book={book} key={book.isbn} />)}
     </ul>
   );

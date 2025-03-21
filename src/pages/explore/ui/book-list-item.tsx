@@ -14,7 +14,7 @@ export const BookListItem = ({ book: d }: BookListItemProps) => {
   return (
     <li
       key={d.isbn}
-      className="rounded-xs relative flex min-h-32 cursor-pointer items-center gap-5 border bg-white hover:bg-gray-100"
+      className="rounded-xs flex min-h-32 cursor-pointer items-center gap-6 border-b bg-white px-5 py-10 hover:bg-gray-100"
     >
       <Link href={`${menus[0].href}/${d.isbn}`} className="contents">
         <Image
@@ -46,7 +46,7 @@ export const BookListItem = ({ book: d }: BookListItemProps) => {
           </div>
         </div>
       </Link>
-      <div className="absolute right-5 col-span-2 inline-block w-32">
+      <div className="inline-block w-32">
         <AddMyListButton book={d} />
       </div>
     </li>
