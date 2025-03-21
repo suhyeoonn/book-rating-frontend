@@ -15,7 +15,7 @@ export default function BookInfo({ book: myBook }: { book: MyBook }) {
   return (
     <section className="flex-1">
       <h2 className="text-2xl font-bold text-slate-900 underline-offset-4 hover:underline lg:text-3xl">
-        <Link href={`${menus[0].href}/${book.id}`}>{book.title}</Link>
+        <Link href={`${menus[0].href}/${book.isbn}`}>{book.title}</Link>
       </h2>
       <dl className="mt-4 grid grid-cols-1 gap-4 text-sm">
         <DetailItem label="상태">
