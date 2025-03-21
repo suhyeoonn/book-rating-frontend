@@ -14,7 +14,7 @@ export const BookListItem = ({ book: d }: BookListItemProps) => {
   return (
     <li
       key={d.isbn}
-      className="rounded-xs flex min-h-32 cursor-pointer items-center gap-6 border-b bg-white px-5 py-10 hover:bg-gray-100"
+      className="rounded-xs flex min-h-32 cursor-pointer flex-col items-center gap-6 border-b bg-white px-5 py-10 hover:bg-gray-100 sm:flex-row"
     >
       <Link href={`${menus[0].href}/${d.isbn}`} className="contents">
         <Image
@@ -24,7 +24,7 @@ export const BookListItem = ({ book: d }: BookListItemProps) => {
           height={128}
           className="rounded-xs col-span-3 shadow-2xl"
         />
-        <div className="flex-1 pr-5 text-sm">
+        <div className="flex-1 text-sm">
           <div className="font-semibold text-gray-900">{d.title}</div>
           <div className="mt-5 space-y-1 text-xs text-gray-500">
             <div>
