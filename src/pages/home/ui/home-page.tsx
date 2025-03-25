@@ -13,7 +13,7 @@ export function HomePage() {
       <HomeBanner />
 
       <div className="mb-8">
-        <BookSection title="인기 IT 책" data={popular} />
+        <BookSection title="평점 높은 책" data={popular} />
         <BookSection title="이번 달 신간" data={newItems} />
         <BookSection title="개발자가 많이 읽는 책" data={mostAdded} />
         <BookSection
