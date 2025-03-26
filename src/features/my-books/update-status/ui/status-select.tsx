@@ -11,7 +11,7 @@ import {
 } from "@/shared/ui/select";
 import { ReadingStatusBadge } from "@/entities/my-book";
 import { useSelect } from "@/shared/lib/use-select";
-import { useUpdateStatus } from "../api/use-update-status";
+import { useUpdateStatus } from "../model/use-update-status";
 
 export const StatusSelect = ({ id, value }: { id: number; value: number }) => {
   const { selectedValue, handleChange } = useSelect(value + "");
@@ -25,7 +25,7 @@ export const StatusSelect = ({ id, value }: { id: number; value: number }) => {
 
   return (
     <Select defaultValue={selectedValue} onValueChange={changeStatus}>
-      <SelectTrigger className="w-[100px] border-0 px-1 py-1">
+      <SelectTrigger className="w-[100px] border-0 px-1 py-1 pl-0">
         <SelectValue placeholder="상태" />
       </SelectTrigger>
       <SelectContent>

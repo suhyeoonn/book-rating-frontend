@@ -8,15 +8,10 @@ export const useUpdateStatus = () => {
     mutationFn: updateStatus,
 
     onSuccess: (_, updatedItem) => {
-      // 캐시된 데이터 업데이트
-      queryClient.setQueryData(
-        bookQueries.detail(updatedItem.id).queryKey,
-        (oldData) => {
-          if (!oldData) return;
-
-          return { ...oldData, status: updatedItem.status };
-        },
-      );
+      // 캐시 무효화해서 데이터 다시 가져오기
+      queryClient.invalidateQueries({
+        queryKey: bookQueries.detail(updatedItem.id).queryKey,
+      });
 
       queryClient.setQueryData(bookQueries.list().queryKey, (oldData) => {
         if (!oldData) return;
