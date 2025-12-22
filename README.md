@@ -46,50 +46,6 @@
 - 별점 및 한줄평 공유
   - 별점과 함께 리뷰 작성 가능
 
-## 📦 프로젝트 아키텍처: FSD (Feature-Sliced Design)
-
-### 📁 폴더 구조
-
-```plaintext
-src
- ┣ app                # 전역 스타일, 레이아웃, Provider 설정 등 애플리케이션 기본 구성
- ┃ ┣ font
- ┃ ┣ layouts
- ┃ ┣ providers
- ┃ ┣ styles
- ┣ entities           # 도메인별 API, 모델, 유틸 정리 (aladin, auth, book 등)
- ┃ ┣ aladin
- ┃ ┣ auth
- ┃ ┣ book
- ┃ ┣ my-book
- ┃ ┣ review
- ┣ features           # 사용자 인터랙션 중심의 기능 단위 구성
- ┃ ┣ auth
- ┃ ┣ explore
- ┃ ┃ ┗ book-filter
- ┃ ┣ my-books
- ┃ ┃ ┣ add-my-list
- ┃ ┃ ┣ remove-book
- ┃ ┃ ┣ update-status
- ┃ ┃ ┗ write-memo
- ┃ ┣ note
- ┃ ┃ ┗ write-note
- ┃ ┗ review
- ┃ ┃ ┣ add-review
- ┃ ┃ ┣ set-rating
- ┃ ┃ ┗ update-comment
- ┣ pages              # 라우트 단위의 페이지 구성
- ┃ ┣ explore
- ┃ ┣ explore-detail
- ┃ ┣ home
- ┃ ┣ login
- ┃ ┣ my-book-detail
- ┃ ┣ my-books
- ┃ ┗ register
- ┣ shared             # 전역적으로 사용되는 유틸, 훅, 타입 등 공통 모듈
- ┗ widgets            # 공통 레이아웃 UI (헤더, 푸터 등)
-```
-
 ## 🔧 설치 및 실행 방법
 
 ```bash
@@ -117,8 +73,3 @@ npm run test
 # 커버리지 리포트 포함 테스트 실행
 npm run test:coverage
 ```
-
-## 📈 프로젝트 개선 사항 (To-Do List)
-
-- 노션과 같은 개인 메모 작성 기능 추가
-- E2E 테스트 (Cypress 도입 고려)
